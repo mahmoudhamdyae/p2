@@ -28,6 +28,9 @@ class _MyAppState extends State<MyApp> {
       theme: getApplicationTheme(),
       onGenerateRoute: RouteGenerator.getRoute,
       initialRoute: Routes.splashRoute,
+      builder: (BuildContext context, Widget? child) {
+        return Directionality(textDirection: TextDirection.rtl, child: child!);
+      },
     );
   }
 }
