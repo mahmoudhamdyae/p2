@@ -60,7 +60,27 @@ class MasrofatView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(item.description),
+                          Column(
+                            children: [
+                              Text(
+                                item.description,
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 23,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: AppSize.s12,
+                              ),
+                              Text(
+                                item.amount,
+                                style: const TextStyle(
+                                  color: Colors.black38,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
                           Row(
                             children: [
                               IconButton(
