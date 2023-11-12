@@ -63,54 +63,16 @@ class _MainContentState extends State<MainContent> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppPadding.p32),
+      padding: const EdgeInsets.only(
+        top: AppPadding.p48,
+        bottom: AppPadding.p48,
+        left: AppPadding.p32,
+        right: AppPadding.p32,
+      ),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Expanded(
           child: Row(
             children: [
-              // مصروفات
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppSize.s16),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: const Offset(0, 3)
-                      ),
-                    ],
-                  ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: GestureDetector(
-                      onTap: () => {
-                        Navigator.pushNamed(context, Routes.fridgesRoute)
-                      },
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Icon(Icons.attach_money,
-                                size: 50,
-                                color: Theme.of(context).primaryColor),
-                            Text(
-                              AppStrings.masrofat_button,
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 20,
-                              ),
-                            )
-                          ]),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: AppSize.s32,
-              ),
               // عملاء
               Expanded(
                 child: Container(
@@ -133,32 +95,29 @@ class _MainContentState extends State<MainContent> {
                         onTap: () =>
                         {Navigator.pushNamed(context, Routes.fridgesRoute)},
                         child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(Icons.people,
-                                  size: 50,
+                                  size: 65,
                                   color: Theme.of(context).primaryColor),
+                              const SizedBox(
+                                height: AppSize.s32,
+                              ),
                               Text(
                                 AppStrings.clients_button,
                                 style: TextStyle(
                                   color: Theme.of(context).primaryColor,
-                                  fontSize: 20,
+                                  fontSize: 25,
                                 ),
                               ),
                             ])),
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: AppSize.s32,
-        ),
-        Expanded(
-          child: Row(
-            children: [
-              // إعدادات
+              const SizedBox(
+                width: AppSize.s32,
+              ),
+              // مصروفات
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -178,29 +137,38 @@ class _MainContentState extends State<MainContent> {
                     height: double.infinity,
                     child: GestureDetector(
                       onTap: () => {
-                        // Navigator.pushNamed(context, Routes.pricesRoute)
+                        Navigator.pushNamed(context, Routes.fridgesRoute)
                       },
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Icon(Icons.settings,
-                              size: 50, color: Theme.of(context).primaryColor),
-                          Text(
-                            AppStrings.settings_button,
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 20,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.attach_money,
+                                size: 65,
+                                color: Theme.of(context).primaryColor),
+                            const SizedBox(
+                              height: AppSize.s32,
                             ),
-                          ),
-                        ],
-                      ),
+                            Text(
+                              AppStrings.masrofat_button,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 25,
+                              ),
+                            )
+                          ]),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(
-                width: AppSize.s32,
-              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: AppSize.s32,
+        ),
+        Expanded(
+          child: Row(
+            children: [
               // تقارير
               Expanded(
                 child: Container(
@@ -224,17 +192,66 @@ class _MainContentState extends State<MainContent> {
                         // Navigator.pushNamed(context, Routes.pricesRoute)
                       },
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.bar_chart,
-                              size: 50, color: Theme.of(context).primaryColor),
+                              size: 65, color: Theme.of(context).primaryColor),
+                          const SizedBox(
+                            height: AppSize.s32,
+                          ),
                           Text(
                             AppStrings.reports_button,
                             style: TextStyle(
                               color: Theme.of(context).primaryColor,
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: AppSize.s32,
+              ),
+              // إعدادات
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppSize.s16),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3)
+                      ),
+                    ],
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: GestureDetector(
+                      onTap: () => {
+                        // Navigator.pushNamed(context, Routes.pricesRoute)
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.settings,
+                              size: 65, color: Theme.of(context).primaryColor),
+                          const SizedBox(
+                            height: AppSize.s32,
+                          ),
+                          Text(
+                            AppStrings.settings_button,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 25,
+                            ),
+                          ),
                         ],
                       ),
                     ),
