@@ -72,13 +72,14 @@ class _MainContentState extends State<MainContent> {
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white, // Container background color
+                    borderRadius: BorderRadius.circular(AppSize.s16),
+                    color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.5), // Shadow color
-                        spreadRadius: 5, // Spread radius
-                        blurRadius: 7, // Blur radius
-                        offset: Offset(0, 3), // Offset in the x, y axis
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3)
                       ),
                     ],
                   ),
@@ -86,31 +87,24 @@ class _MainContentState extends State<MainContent> {
                     width: double.infinity,
                     height: double.infinity,
                     child: GestureDetector(
-                        onTap: () => {
-                          Navigator.pushNamed(context, Routes.fridgesRoute)
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).primaryColor, // Use the primary color
-                            borderRadius:
-                                BorderRadius.circular(10), // Set the border radius
-                          ),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Icon(Icons.attach_money,
-                                    size: 50,
-                                    color: Theme.of(context).secondaryHeaderColor),
-                                const Text(
-                                  AppStrings.masrofat_button,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),
-                                )
-                              ]),
-                        )),
+                      onTap: () => {
+                        Navigator.pushNamed(context, Routes.fridgesRoute)
+                      },
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(Icons.attach_money,
+                                size: 50,
+                                color: Theme.of(context).primaryColor),
+                            Text(
+                              AppStrings.masrofat_button,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 20,
+                              ),
+                            )
+                          ]),
+                    ),
                   ),
                 ),
               ),
@@ -119,34 +113,40 @@ class _MainContentState extends State<MainContent> {
               ),
               // عملاء
               Expanded(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: GestureDetector(
-                      onTap: () =>
-                      {Navigator.pushNamed(context, Routes.fridgesRoute)},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color:
-                          Theme.of(context).primaryColor, // Use the primary color
-                          borderRadius:
-                          BorderRadius.circular(10), // Set the border radius
-                        ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppSize.s16),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3)
+                      ),
+                    ],
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: GestureDetector(
+                        onTap: () =>
+                        {Navigator.pushNamed(context, Routes.fridgesRoute)},
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Icon(Icons.people,
                                   size: 50,
-                                  color: Theme.of(context).secondaryHeaderColor),
-                              const Text(
+                                  color: Theme.of(context).primaryColor),
+                              Text(
                                 AppStrings.clients_button,
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Theme.of(context).primaryColor,
                                   fontSize: 20,
                                 ),
                               ),
-                            ]),
-                      )),
+                            ])),
+                  ),
                 ),
               ),
             ],
@@ -160,29 +160,35 @@ class _MainContentState extends State<MainContent> {
             children: [
               // إعدادات
               Expanded(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: GestureDetector(
-                    onTap: () => {
-                      // Navigator.pushNamed(context, Routes.pricesRoute)
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color:
-                            Theme.of(context).primaryColor, // Use the primary color
-                        borderRadius:
-                            BorderRadius.circular(10), // Set the border radius
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppSize.s16),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3)
                       ),
+                    ],
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: GestureDetector(
+                      onTap: () => {
+                        // Navigator.pushNamed(context, Routes.pricesRoute)
+                      },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Icon(Icons.settings,
-                              size: 50, color: Theme.of(context).secondaryHeaderColor),
-                          const Text(
+                              size: 50, color: Theme.of(context).primaryColor),
+                          Text(
                             AppStrings.settings_button,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Theme.of(context).primaryColor,
                               fontSize: 20,
                             ),
                           ),
@@ -197,29 +203,35 @@ class _MainContentState extends State<MainContent> {
               ),
               // تقارير
               Expanded(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: GestureDetector(
-                    onTap: () => {
-                      // Navigator.pushNamed(context, Routes.pricesRoute)
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color:
-                        Theme.of(context).primaryColor, // Use the primary color
-                        borderRadius:
-                        BorderRadius.circular(10), // Set the border radius
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppSize.s16),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3)
                       ),
+                    ],
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: GestureDetector(
+                      onTap: () => {
+                        // Navigator.pushNamed(context, Routes.pricesRoute)
+                      },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Icon(Icons.bar_chart,
-                              size: 50, color: Theme.of(context).secondaryHeaderColor),
-                          const Text(
+                              size: 50, color: Theme.of(context).primaryColor),
+                          Text(
                             AppStrings.reports_button,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Theme.of(context).primaryColor,
                               fontSize: 20,
                             ),
                           )
