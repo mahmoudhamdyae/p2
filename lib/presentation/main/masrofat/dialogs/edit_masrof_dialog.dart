@@ -83,7 +83,7 @@ class _CustomDialogState extends State<CustomDialog> {
                     height: AppPadding.p16,
                   ),
                   TextFormField(
-                    controller: amountController,
+                    controller: descriptionController,
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.text,
                     validator: (val) {

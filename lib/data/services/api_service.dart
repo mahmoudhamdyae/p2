@@ -243,7 +243,8 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
+    print("==========respomse2 ${response.body}");
     _checkServer(response);
-    await json.decode(response.body);
+    final responseData = await json.decode(response.body);
   }
 }
