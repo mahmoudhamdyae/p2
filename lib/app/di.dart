@@ -1,12 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testt/data/services/account_service.dart';
 import 'package:testt/data/services/api_service.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
+import 'package:testt/presentation/main/masrofat/masrofat_controller.dart';
 
 import '../data/network/dio_factory.dart';
 import '../data/network/network_info.dart';
@@ -33,8 +32,6 @@ Future<void> initAppModule() async {
   // Dio factory
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
 
-  Dio dio = await instance<DioFactory>().getDio();
-
   // AccountService
   instance.registerLazySingleton<AccountService>(
           () => AccountServiceImpl(instance<NetworkInfo>(), instance<AppPreferences>()));
@@ -46,4 +43,8 @@ Future<void> initAppModule() async {
   // Fridges Controller
   instance.registerLazySingleton<FridgesController>(
       () => Get.put(FridgesController(instance<ApiService>())));
+
+  // Masrofat Controller
+  instance.registerLazySingleton<MasrofatController>(
+          () => Get.put(MasrofatController(instance<ApiService>())));
 }

@@ -38,7 +38,7 @@ class RouteGenerator {
       case Routes.fridgesRoute:
         return MaterialPageRoute(builder: (_) => const FridgesView());
       case Routes.masrofatRoute:
-        return MaterialPageRoute(builder: (_) => const MasrofatView());
+        return MaterialPageRoute(builder: (_) => MasrofatView());
       case Routes.pricesRoute:
         return MaterialPageRoute(builder: (_) => const PricesView());
       default:
