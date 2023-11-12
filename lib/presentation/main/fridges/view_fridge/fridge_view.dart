@@ -5,6 +5,7 @@ import 'package:testt/app/di.dart';
 import 'package:testt/model/fridge.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
+import 'package:testt/presentation/resources/values_manager.dart';
 
 import '../../../common/state_renderer/state_renderer.dart';
 import '../../../component/empty.dart';
@@ -57,7 +58,24 @@ class ViewFridgeView extends StatelessWidget {
                   const Text(AppStrings.owner_name),
                   Text(controller.fridge.value.owner.name)
                 ],
-              )
+              ),
+              controller.fridge.value.ambers.isEmpty ?
+                Container()
+              :
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: controller.fridge.value.ambers.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(AppPadding.p16),
+                            child: Card(
+                              elevation: AppSize.s8,
+                              child: Text(controller.fridge.value.ambers[index].name),
+                            ),
+                          );
+                        }
+                    ),
+                  )
             ],
           );
         }
