@@ -39,44 +39,89 @@ class ViewFridgeView extends StatelessWidget {
                 await controller.getFridges();
               });
         } else {
-          return Column(
-            children: [
-              Row(
-                children: [
-                  const Text(AppStrings.fridge_name),
-                  Text(controller.fridge.value.name)
-                ],
-              ),
-              Row(
-                children: [
-                  const Text(AppStrings.ambars_number),
-                  Text(controller.fridge.value.ambers.length.toString())
-                ],
-              ),
-              Row(
-                children: [
-                  const Text(AppStrings.owner_name),
-                  Text(controller.fridge.value.owner.name)
-                ],
-              ),
-              controller.fridge.value.ambers.isEmpty ?
-                Container()
-              :
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: controller.fridge.value.ambers.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(AppPadding.p16),
-                            child: Card(
-                              elevation: AppSize.s8,
-                              child: Text(controller.fridge.value.ambers[index].name),
-                            ),
-                          );
-                        }
+          return Padding(
+            padding: const EdgeInsets.all(AppPadding.p12),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      AppStrings.fridge_name,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: AppSize.s24
+                      ),
                     ),
-                  )
-            ],
+                    Text(
+                      controller.fridge.value.name,
+                      style: const TextStyle(
+                          fontSize: AppSize.s24
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: AppSize.s12,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      AppStrings.ambars_number,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: AppSize.s24
+                      ),
+                    ),
+                    Text(
+                      controller.fridge.value.ambers.length.toString(),
+                      style: const TextStyle(
+                          fontSize: AppSize.s24
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: AppSize.s12,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      AppStrings.owner_name,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: AppSize.s24
+                      ),
+                    ),
+                    Text(
+                      controller.fridge.value.owner.name,
+                      style: const TextStyle(
+                          fontSize: AppSize.s24
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: AppSize.s12,
+                ),
+                controller.fridge.value.ambers.isEmpty ?
+                  Container()
+                :
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: controller.fridge.value.ambers.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(AppPadding.p16),
+                              child: Card(
+                                elevation: AppSize.s8,
+                                child: Text(controller.fridge.value.ambers[index].name),
+                              ),
+                            );
+                          }
+                      ),
+                    )
+              ],
+            ),
           );
         }
       }),
