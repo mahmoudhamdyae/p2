@@ -8,7 +8,6 @@ import 'package:testt/data/services/account_service.dart';
 import 'package:testt/data/services/api_service.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 
-import '../data/network/app_api.dart';
 import '../data/network/dio_factory.dart';
 import '../data/network/network_info.dart';
 import 'app_prefs.dart';
@@ -35,8 +34,6 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
 
   Dio dio = await instance<DioFactory>().getDio();
-  // App service client
-  instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
 
   // AccountService
   instance.registerLazySingleton<AccountService>(
