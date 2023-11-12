@@ -2,10 +2,10 @@ class Fridge {
   int id;
   String name;
   String size;
-  int user_id;
+  int userId;
   Owner owner;
 
-  Fridge(this.id, this.name, this.size, this.user_id, this.owner);
+  Fridge(this.id, this.name, this.size, this.userId, this.owner);
 
   factory Fridge.fromJson(Map<String, dynamic> json) {
     return Fridge(

@@ -3,7 +3,7 @@ import 'package:testt/model/fridge.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 
 class ViewFridgeView extends StatefulWidget {
-  final Fridge fridge;
+  final Fridge? fridge;
   const ViewFridgeView({Key? key, required this.fridge}) : super(key: key);
 
   @override

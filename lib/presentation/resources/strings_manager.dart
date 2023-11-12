@@ -26,9 +26,10 @@ class AppStrings {
   static const String logout = "تسجيل الخروج";
 
   // Main
-  static const String fridges_button = "الثلاجات";
-  static const String prices_button = "قائمة الأسعار";
-  static const String clients_button = "العملاء";
+  static const String masrofat_button = "مصروفات";
+  static const String clients_button = "عملاء";
+  static const String settings_button = "إعدادات";
+  static const String reports_button = "تقارير";
 
   // Friges
   static const String fridges = "الثلاجات";

@@ -9,7 +9,7 @@ import 'package:testt/presentation/resources/values_manager.dart';
 
 
 class EditFridgeView extends StatefulWidget {
-  final Fridge fridge;
+  final Fridge? fridge;
   const EditFridgeView({Key? key, required this.fridge}) : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class _EditFridgeViewState extends State<EditFridgeView> {
       appBar: AppBar(
         title: const Text(AppStrings.edit_fridge),
       ),
-      body: AddFridgeContent(fridge: widget.fridge,),
+      body: widget.fridge == null ? Container() : AddFridgeContent(fridge: widget.fridge!,),
     );
   }
 }

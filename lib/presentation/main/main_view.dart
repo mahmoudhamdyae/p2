@@ -65,109 +65,160 @@ class _MainContentState extends State<MainContent> {
     return Padding(
       padding: const EdgeInsets.all(AppPadding.p20),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        // الثلاجات
         Expanded(
-          child: SizedBox(
-            width: double.infinity,
-            child: GestureDetector(
-                onTap: () =>
-                    {Navigator.pushNamed(context, Routes.fridgesRoute)},
-                child: Container(
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).primaryColor, // Use the primary color
-                    borderRadius:
-                        BorderRadius.circular(10), // Set the border radius
-                  ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Text(
-                          AppStrings.fridges_button,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
+          child: Row(
+            children: [
+              // مصروفات
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: GestureDetector(
+                      onTap: () => {
+                        Navigator.pushNamed(context, Routes.fridgesRoute)
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color:
+                              Theme.of(context).primaryColor, // Use the primary color
+                          borderRadius:
+                              BorderRadius.circular(10), // Set the border radius
                         ),
-                        Icon(Icons.kitchen,
-                            size: 50,
-                            color: Theme.of(context).secondaryHeaderColor)
-                      ]),
-                )),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const Text(
+                                AppStrings.masrofat_button,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Icon(Icons.attach_money,
+                                  size: 50,
+                                  color: Theme.of(context).secondaryHeaderColor)
+                            ]),
+                      )),
+                ),
+              ),
+              const SizedBox(
+                width: AppSize.s16,
+              ),
+              // عملاء
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: GestureDetector(
+                      onTap: () =>
+                      {Navigator.pushNamed(context, Routes.fridgesRoute)},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color:
+                          Theme.of(context).primaryColor, // Use the primary color
+                          borderRadius:
+                          BorderRadius.circular(10), // Set the border radius
+                        ),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const Text(
+                                AppStrings.clients_button,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Icon(Icons.people,
+                                  size: 50,
+                                  color: Theme.of(context).secondaryHeaderColor)
+                            ]),
+                      )),
+                ),
+              ),
+            ],
           ),
         ),
         const SizedBox(
           height: AppSize.s16,
         ),
-        // قائمة الأسعار
         Expanded(
-          child: SizedBox(
-            width: double.infinity,
-            child: GestureDetector(
-              onTap: () => {
-                // Navigator.pushNamed(context, Routes.pricesRoute)
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color:
-                      Theme.of(context).primaryColor, // Use the primary color
-                  borderRadius:
-                      BorderRadius.circular(10), // Set the border radius
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text(
-                      AppStrings.prices_button,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
+          child: Row(
+            children: [
+              // إعدادات
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: GestureDetector(
+                    onTap: () => {
+                      // Navigator.pushNamed(context, Routes.pricesRoute)
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color:
+                            Theme.of(context).primaryColor, // Use the primary color
+                        borderRadius:
+                            BorderRadius.circular(10), // Set the border radius
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Text(
+                            AppStrings.settings_button,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Icon(Icons.settings,
+                              size: 50, color: Theme.of(context).secondaryHeaderColor)
+                        ],
                       ),
                     ),
-                    Icon(Icons.attach_money,
-                        size: 50, color: Theme.of(context).secondaryHeaderColor)
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: AppSize.s16,
-        ),
-        // العملاء
-        Expanded(
-          child: SizedBox(
-            width: double.infinity,
-            child: GestureDetector(
-              onTap: () => {
-                // Navigator.pushNamed(context, Routes.pricesRoute)
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color:
-                      Theme.of(context).primaryColor, // Use the primary color
-                  borderRadius:
-                      BorderRadius.circular(10), // Set the border radius
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text(
-                      AppStrings.clients_button,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
+              const SizedBox(
+                width: AppSize.s16,
+              ),
+              // تقارير
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: GestureDetector(
+                    onTap: () => {
+                      // Navigator.pushNamed(context, Routes.pricesRoute)
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color:
+                        Theme.of(context).primaryColor, // Use the primary color
+                        borderRadius:
+                        BorderRadius.circular(10), // Set the border radius
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Text(
+                            AppStrings.reports_button,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Icon(Icons.bar_chart,
+                              size: 50, color: Theme.of(context).secondaryHeaderColor)
+                        ],
                       ),
                     ),
-                    Icon(Icons.people,
-                        size: 50, color: Theme.of(context).secondaryHeaderColor)
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-        )
+        ),
       ]),
     );
   }
