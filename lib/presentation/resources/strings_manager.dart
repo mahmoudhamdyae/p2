@@ -31,6 +31,9 @@ class AppStrings {
   static const String settings_button = "إعدادات";
   static const String reports_button = "تقارير";
 
+  // Settings
+  static const String settings_title = "الإعدادات";
+
   // Friges
   static const String fridges = "الثلاجات";
 
