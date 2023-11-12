@@ -155,5 +155,7 @@ class ApiServiceImpl implements ApiService {
     print("============== response data user_id ---- ${responseData["fridge"]["user_id"]}");
     print("============== response data ambers ---- ${responseData["fridge"]["ambers"]}");
     print("============== response data owner name ---- ${responseData["fridge"]["owner"]["name"]}");
+    Fridge fridge = Fridge.fromJson(responseData["fridge"]);
+    print("--------------- $fridge");
   }
 }
