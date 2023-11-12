@@ -40,7 +40,7 @@ class ViewFridgeView extends StatelessWidget {
               });
         } else {
           return Padding(
-            padding: const EdgeInsets.all(AppPadding.p12),
+            padding: const EdgeInsets.all(AppPadding.p16),
             child: Column(
               children: [
                 Row(
@@ -61,7 +61,7 @@ class ViewFridgeView extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: AppSize.s12,
+                  height: AppSize.s16,
                 ),
                 Row(
                   children: [
@@ -81,7 +81,7 @@ class ViewFridgeView extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: AppSize.s12,
+                  height: AppSize.s16,
                 ),
                 Row(
                   children: [
@@ -101,23 +101,52 @@ class ViewFridgeView extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: AppSize.s12,
+                  height: AppSize.s16,
                 ),
-                controller.fridge.value.ambers.isEmpty ?
-                  Container()
-                :
-                    Expanded(
-                      child: ListView.builder(
-                          itemCount: controller.fridge.value.ambers.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(AppPadding.p16),
-                              child: Card(
-                                elevation: AppSize.s8,
-                                child: Text(controller.fridge.value.ambers[index].name),
-                              ),
-                            );
-                          }
+                if (controller.fridge.value.ambers.isEmpty) Container() else Expanded(
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: AppSize.s12,
+                          ),
+                          Text(
+                              AppStrings.ambers_name,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: AppSize.s20
+                            ),
+                          ),
+                          const SizedBox(
+                            height: AppSize.s12,
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: controller.fridge.value.ambers.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(AppPadding.p8),
+                                    child: Card(
+                                      elevation: AppSize.s8,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: AppPadding.p8,
+                                            bottom : AppPadding.p8,
+                                            right: AppPadding.p16,
+                                            left: AppPadding.p16
+                                        ),
+                                        child: Text(
+                                          controller.fridge.value.ambers[index].name,
+                                          style: const TextStyle(
+                                              fontSize: AppSize.s24
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                            ),
+                          ),
+                        ],
                       ),
                     )
               ],

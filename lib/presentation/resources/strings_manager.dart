@@ -34,7 +34,7 @@ class AppStrings {
   // Settings
   static const String settings_title = "الإعدادات";
 
-  // Friges
+  // Fridges
   static const String fridges = "الثلاجات";
 
   // Add Fridge
@@ -47,7 +47,8 @@ class AppStrings {
   // View Fridge
   static const String fridge_name = "اسم الثلاجة: ";
   static const String ambars_number = "عدد العنابر: ";
-  static const String owner_name = "اسم المالك: ";
+  static const String owner_name = "المالك: ";
+  static const String ambers_name = "أسماء العنابر";
 
   // Amber
   static const String add_anbar = "إضافة عنبر";
