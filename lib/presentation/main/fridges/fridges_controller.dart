@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:get/get.dart';
 
 import '../../../app/di.dart';
@@ -67,7 +69,13 @@ class FridgesController extends GetxController {
       isLoading.value = true;
       error.value = '';
       await _apiService.addAmber(fridgeId, amberName).then((value) {
-        // fridges.value.add(Fridge(44, fridgeName, "0", 0, Owner("")));
+        fridges.value = fridges.value.map((fridge) {
+          if (fridge.id == fridgeId) {
+            return Fridge(fridge.id, fridge.name, (int.parse(fridge.size) + 1).toString(), fridge.userId, fridge.owner);
+          } else {
+            return fridge;
+          }
+        }).toList();
         error.value = '';
         isLoading.value = false;
       });
