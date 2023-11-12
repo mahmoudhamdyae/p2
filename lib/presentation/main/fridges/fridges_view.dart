@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testt/app/di.dart';
+import 'package:testt/presentation/main/fridges/dialogs/add_ambar_dialog.dart';
 import 'package:testt/presentation/main/fridges/edit_fridge/edit_fridge_view.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 import 'package:testt/presentation/main/fridges/view_fridge/fridge_view.dart';
@@ -9,10 +10,8 @@ import 'package:testt/presentation/resources/strings_manager.dart';
 import 'package:testt/presentation/resources/values_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
-import '../../component/alert.dart';
 import '../../component/empty.dart';
-import '../../component/error.dart';
-import '../../resources/routes_manager.dart';
+import 'dialogs/add_fridge_dialog.dart';
 
 class FridgesView extends StatefulWidget {
   const FridgesView({Key? key}) : super(key: key);
@@ -31,109 +30,12 @@ class _FridgesViewState extends State<FridgesView> {
           child: const Icon(Icons.add),
           onPressed: () {
             // Navigator.of(context).pushNamed(Routes.addFridgeRoute);
-            _showCustomDialog(context);
+            showAddFridgeDialog(context);
           }),
       body: PricesList(),
     );
   }
 }
-
-
-
-
-
-
-
-void _showCustomDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return CustomDialog(); // Your custom dialog widget
-    },
-  );
-}
-
-class CustomDialog extends StatelessWidget {
-  TextEditingController nameController = TextEditingController();
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
-  final FridgesController controller = instance<FridgesController>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      // Your custom dialog content
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              AppStrings.add_fridge,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            Form(
-              key: formState,
-              child: TextFormField(
-                controller: nameController,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.text,
-                validator: (val) {
-                  if (val == null || val.isEmpty) {
-                    return AppStrings.fridge_name_invalid;
-                  }
-                  return null;
-                },
-                decoration: const InputDecoration(
-                    hintText: AppStrings.fridge_name_hint,
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(width: 1))),
-              ),
-            ),
-
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () async {
-                var formData = formState.currentState;
-                if (formData!.validate()) {
-                  formData.save();
-                  try {
-                    showLoading(context);
-                    await controller.addFridge(nameController.text)
-                        .then((userCredential) {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pop();
-                    });
-                  } on Exception catch (e) {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                    showError(context, e.toString());
-                  }
-                }
-              },
-              child: const Text(AppStrings.add_fridge_button),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  CustomDialog({super.key});
-}
-
-
-
-
-
-
-
-
-
 
 class PricesList extends StatelessWidget {
   PricesList({super.key});
@@ -241,7 +143,7 @@ class PricesList extends StatelessWidget {
                                     ),
                                     ElevatedButton(
                                         onPressed: () {
-                                          // _addAmber(item.id);
+                                          showAddAmberDialog(context, item.id);
                                         },
                                         child: const Text(AppStrings.add_anbar_button)),
                                   ],

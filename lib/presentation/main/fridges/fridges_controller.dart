@@ -52,7 +52,22 @@ class FridgesController extends GetxController {
       error.value = '';
       await _apiService.addFridge(fridgeName).then((value) {
         fridges.value.add(Fridge(44, fridgeName, "0", 0, Owner("")));
-        // getFridges();
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      fridges.value = List<Fridge>.empty();
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> addAnbar(int fridgeId, String amberName) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.addAmber(fridgeId, amberName).then((value) {
+        // fridges.value.add(Fridge(44, fridgeName, "0", 0, Owner("")));
         error.value = '';
         isLoading.value = false;
       });

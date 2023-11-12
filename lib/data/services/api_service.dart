@@ -14,7 +14,7 @@ abstract class ApiService {
   Future addFridge(String name);
   Future delFridge(int id);
   Future updateFridge(int id, String name, String sizeString);
-  Future addAmber(int fridgeId);
+  Future addAmber(int fridgeId, String anbarName);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -116,10 +116,10 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future addAmber(int fridgeId) async {
+  Future addAmber(int fridgeId, String anbarName) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}amber/$fridgeId";
+    String url = "${Constants.baseUrl}amber/$fridgeId?name=$anbarName";
     final response = await http.post(
         Uri.parse(url),
         headers: {

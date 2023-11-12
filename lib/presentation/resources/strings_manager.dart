@@ -42,13 +42,18 @@ class AppStrings {
   static const String fridge_name_hint = "اسم الثلاجة";
   static const String fridge_size_hint = "عدد العنابر";
   static const String fridge_name_invalid = "يجب إضافة اسم للثلاجة";
-  static const String fridge_size_invalid = "يجب إضافة عدد للعنابر";
   static const String add_fridge_button = "إضافة الثلاجة";
+
+  // Amber
+  static const String add_anbar = "إضافة عنبر";
   static const String add_anbar_button = "إضافة عنبر";
+  static const String amber_name_invalid = "يجب إضافة اسم للعنبر";
 
   // Edit Fridge
   static const String edit_fridge = "تعديل الثلاجة";
   static const String edit_fridge_button = "تعديل الثلاجة";
+  static const String fridge_size_invalid = "يجب إضافة عدد للعنابر";
+  static const String amber_name_hint = "اسم العنبر";
 
   // Error handler
   static const String badRequestError = "طلب غير صالح. حاول مرة أخرى لاحقًا";
