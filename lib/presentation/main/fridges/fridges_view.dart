@@ -28,12 +28,70 @@ class _FridgesViewState extends State<FridgesView> {
           backgroundColor: Theme.of(context).primaryColor,
           child: const Icon(Icons.add),
           onPressed: () {
-            Navigator.of(context).pushNamed(Routes.addFridgeRoute);
+            // Navigator.of(context).pushNamed(Routes.addFridgeRoute);
+            _showCustomDialog(context);
           }),
       body: PricesList(),
     );
   }
 }
+
+
+
+
+
+
+
+void _showCustomDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return CustomDialog(); // Your custom dialog widget
+    },
+  );
+}
+
+class CustomDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      // Your custom dialog content
+      child: Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Custom Dialog',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 16),
+            Text('This is a custom dialog content.'),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Close'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
 
 class PricesList extends StatelessWidget {
   PricesList({super.key});
