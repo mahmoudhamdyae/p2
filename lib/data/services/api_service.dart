@@ -170,11 +170,9 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
-    print("========== getMasrofat $responseData");
     List<Masrofat> masrofat = [];
     for (var singleMasrof in responseData["expense"]) {
       Masrofat masrof = Masrofat.fromJson(singleMasrof);
-      print("========== getMasrof $masrof");
       masrofat.add(masrof);
     }
     return masrofat;
@@ -194,7 +192,7 @@ class ApiServiceImpl implements ApiService {
         }
     );
     _checkServer(response);
-    await json.decode(response.body);
+    final responseData = await json.decode(response.body);
   }
 
   @override

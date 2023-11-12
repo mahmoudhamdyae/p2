@@ -38,10 +38,12 @@ class MasrofatController extends GetxController {
         masrofat.value.add(Masrofat(int.parse(const Uuid().v4.toString()), amount.toString(), description, ""));
         error.value = '';
         isLoading.value = false;
+        getMasrofat();
       });
     } on Exception catch (e) {
-      error.value = e.toString();
+      // error.value = e.toString();
       isLoading.value = false;
+      getMasrofat();
     }
   }
 
