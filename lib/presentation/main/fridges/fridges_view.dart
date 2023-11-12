@@ -174,44 +174,79 @@ class PricesList extends StatelessWidget {
                         child: Card(
                           elevation: AppPadding.p8,
                           child: Padding(
-                            padding: const EdgeInsets.all(AppPadding.p4),
-                            child: ListTile(
-                              title: Text(item.name),
-                              subtitle: Text("${item.size} عنابر"),
-                              trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  ElevatedButton(
-                                      onPressed: () {
-                                        // _addAmber(item.id);
-                                      },
-                                      child: const Text("Add Amber")),
-                                  IconButton(
-                                    onPressed: () async {
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) =>
-                                              EditFridgeView(fridge: item)));
-                                    },
-                                    icon: const Icon(Icons.edit),
-                                  ),
-                                  IconButton(
-                                    onPressed: () async {
-                                      return AwesomeDialog(
-                                          btnCancelText: "الغاء",
-                                          btnOkText: "حذف",
-                                          context: context,
-                                          dialogType: DialogType.noHeader,
-                                          title: "حذف ثلاجة",
-                                          desc: "هل أنت متأكد من حذف هذه الثلاجة ؟",
-                                          btnCancelOnPress: () {},
-                                          btnOkOnPress: () async {
-                                            await controller.delFridge(item);
-                                          }).show();
-                                    },
-                                    icon: const Icon(Icons.delete),
-                                  ),
-                                ],
-                              ),
+                            padding: const EdgeInsets.all(AppPadding.p16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                        item.name,
+                                      style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: 23,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: AppSize.s12,
+                                    ),
+                                    Text(
+                                        "${item.size} عنابر",
+                                      style: const TextStyle(
+                                        color: Colors.black38,
+                                        fontSize: 14,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        IconButton(
+                                          onPressed: () async {
+                                            Navigator.of(context).push(MaterialPageRoute(
+                                                builder: (context) =>
+                                                    EditFridgeView(fridge: item)));
+                                          },
+                                          icon: const Icon(
+                                            Icons.edit,
+                                            color: Colors.black38,
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () async {
+                                            return AwesomeDialog(
+                                                btnCancelText: "الغاء",
+                                                btnOkText: "حذف",
+                                                context: context,
+                                                dialogType: DialogType.noHeader,
+                                                title: "حذف ثلاجة",
+                                                desc: "هل أنت متأكد من حذف هذه الثلاجة ؟",
+                                                btnCancelOnPress: () {},
+                                                btnOkOnPress: () async {
+                                                  await controller.delFridge(item);
+                                                }).show();
+                                          },
+                                          icon: const Icon(
+                                            Icons.delete,
+                                            color: Colors.black38,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: AppSize.s8,
+                                    ),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          // _addAmber(item.id);
+                                        },
+                                        child: const Text(AppStrings.add_anbar_button)),
+                                  ],
+                                )
+                              ],
                             ),
                           ),
                         ),
