@@ -61,6 +61,9 @@ class AppStrings {
   static const String fridge_size_invalid = "يجب إضافة عدد للعنابر";
   static const String amber_name_hint = "اسم العنبر";
 
+  // Masrofat
+  static const String masrofat = "مصروفات";
+
   // Error handler
   static const String badRequestError = "طلب غير صالح. حاول مرة أخرى لاحقًا";
   static const String noContent = "لا يوجد محتوى";
