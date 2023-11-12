@@ -63,46 +63,59 @@ class _MainContentState extends State<MainContent> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppPadding.p20),
+      padding: const EdgeInsets.all(AppPadding.p32),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Expanded(
           child: Row(
             children: [
               // مصروفات
               Expanded(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: GestureDetector(
-                      onTap: () => {
-                        Navigator.pushNamed(context, Routes.fridgesRoute)
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).primaryColor, // Use the primary color
-                          borderRadius:
-                              BorderRadius.circular(10), // Set the border radius
-                        ),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Text(
-                                AppStrings.masrofat_button,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              Icon(Icons.attach_money,
-                                  size: 50,
-                                  color: Theme.of(context).secondaryHeaderColor)
-                            ]),
-                      )),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white, // Container background color
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5), // Shadow color
+                        spreadRadius: 5, // Spread radius
+                        blurRadius: 7, // Blur radius
+                        offset: Offset(0, 3), // Offset in the x, y axis
+                      ),
+                    ],
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: GestureDetector(
+                        onTap: () => {
+                          Navigator.pushNamed(context, Routes.fridgesRoute)
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                                Theme.of(context).primaryColor, // Use the primary color
+                            borderRadius:
+                                BorderRadius.circular(10), // Set the border radius
+                          ),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Icon(Icons.attach_money,
+                                    size: 50,
+                                    color: Theme.of(context).secondaryHeaderColor),
+                                const Text(
+                                  AppStrings.masrofat_button,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                )
+                              ]),
+                        )),
+                  ),
                 ),
               ),
               const SizedBox(
-                width: AppSize.s16,
+                width: AppSize.s32,
               ),
               // عملاء
               Expanded(
@@ -119,9 +132,12 @@ class _MainContentState extends State<MainContent> {
                           borderRadius:
                           BorderRadius.circular(10), // Set the border radius
                         ),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
+                              Icon(Icons.people,
+                                  size: 50,
+                                  color: Theme.of(context).secondaryHeaderColor),
                               const Text(
                                 AppStrings.clients_button,
                                 style: TextStyle(
@@ -129,9 +145,6 @@ class _MainContentState extends State<MainContent> {
                                   fontSize: 20,
                                 ),
                               ),
-                              Icon(Icons.people,
-                                  size: 50,
-                                  color: Theme.of(context).secondaryHeaderColor)
                             ]),
                       )),
                 ),
@@ -140,7 +153,7 @@ class _MainContentState extends State<MainContent> {
           ),
         ),
         const SizedBox(
-          height: AppSize.s16,
+          height: AppSize.s32,
         ),
         Expanded(
           child: Row(
@@ -161,9 +174,11 @@ class _MainContentState extends State<MainContent> {
                         borderRadius:
                             BorderRadius.circular(10), // Set the border radius
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          Icon(Icons.settings,
+                              size: 50, color: Theme.of(context).secondaryHeaderColor),
                           const Text(
                             AppStrings.settings_button,
                             style: TextStyle(
@@ -171,8 +186,6 @@ class _MainContentState extends State<MainContent> {
                               fontSize: 20,
                             ),
                           ),
-                          Icon(Icons.settings,
-                              size: 50, color: Theme.of(context).secondaryHeaderColor)
                         ],
                       ),
                     ),
@@ -180,7 +193,7 @@ class _MainContentState extends State<MainContent> {
                 ),
               ),
               const SizedBox(
-                width: AppSize.s16,
+                width: AppSize.s32,
               ),
               // تقارير
               Expanded(
@@ -198,18 +211,18 @@ class _MainContentState extends State<MainContent> {
                         borderRadius:
                         BorderRadius.circular(10), // Set the border radius
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          Icon(Icons.bar_chart,
+                              size: 50, color: Theme.of(context).secondaryHeaderColor),
                           const Text(
                             AppStrings.reports_button,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                             ),
-                          ),
-                          Icon(Icons.bar_chart,
-                              size: 50, color: Theme.of(context).secondaryHeaderColor)
+                          )
                         ],
                       ),
                     ),
