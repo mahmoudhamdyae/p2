@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:core';
 
-import 'package:dio/dio.dart';
 import 'package:testt/model/fridge.dart';
 import 'package:http/http.dart' as http;
 import '../../app/app_prefs.dart';
@@ -14,6 +13,7 @@ abstract class ApiService {
   Future addFridge(String name);
   Future delFridge(int id);
   Future updateFridge(int id, String name);
+  Future showFridge(int id);
   Future addAmber(int fridgeId, String anbarName);
 }
 
@@ -130,5 +130,23 @@ class ApiServiceImpl implements ApiService {
     if (response.statusCode != 200) {
       throw (Exception("لا يمكن الاتصال بالسيرفر"));
     }
+  }
+
+  @override
+  Future showFridge(int id) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}fridge/$id/show";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    print("============== response data ---- $responseData");
   }
 }

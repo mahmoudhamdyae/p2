@@ -87,6 +87,7 @@ class _CustomDialogState extends State<CustomDialog> {
                         .then((userCredential) {
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
+                      controller.getFridges();
                     });
                   } on Exception catch (e) {
                     Navigator.of(context).pop();
