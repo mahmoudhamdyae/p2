@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 
-import '../../../app/di.dart';
 import '../../../data/services/api_service.dart';
 import '../../../model/fridge.dart';
 
@@ -98,6 +95,28 @@ class FridgesController extends GetxController {
             return fridge;
           }
         }).toList();
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      fridges.value = List<Fridge>.empty();
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> showFridge(int fridgeId) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.showFridge(fridgeId).then((value) {
+        // fridges.value = fridges.value.map((fridge) {
+        //   if (fridge.id == fridgeId) {
+        //     return Fridge(fridge.id, fridge.name, (int.parse(fridge.size) + 1).toString(), fridge.userId, fridge.owner);
+        //   } else {
+        //     return fridge;
+        //   }
+        // }).toList();
         error.value = '';
         isLoading.value = false;
       });
