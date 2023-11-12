@@ -50,7 +50,7 @@ class FridgesController extends GetxController {
       isLoading.value = true;
       error.value = '';
       await _apiService.addFridge(fridgeName).then((value) {
-        fridges.value.add(Fridge(44, fridgeName, "0", 0, Owner("")));
+        fridges.value.add(Fridge(44, fridgeName, "0", 0, Owner(""), []));
         error.value = '';
         isLoading.value = false;
       });
@@ -68,7 +68,7 @@ class FridgesController extends GetxController {
       await _apiService.updateFridge(fridgeId, amberName).then((value) {
         fridges.value = fridges.value.map((fridge) {
           if (fridge.id == fridgeId) {
-            return Fridge(fridge.id, fridgeName, fridge.size, fridge.userId, fridge.owner);
+            return Fridge(fridge.id, fridgeName, fridge.size, fridge.userId, fridge.owner, fridge.ambers);
           } else {
             return fridge;
           }
@@ -90,7 +90,7 @@ class FridgesController extends GetxController {
       await _apiService.addAmber(fridgeId, amberName).then((value) {
         fridges.value = fridges.value.map((fridge) {
           if (fridge.id == fridgeId) {
-            return Fridge(fridge.id, fridge.name, (int.parse(fridge.size) + 1).toString(), fridge.userId, fridge.owner);
+            return Fridge(fridge.id, fridge.name, (int.parse(fridge.size) + 1).toString(), fridge.userId, fridge.owner, fridge.ambers);
           } else {
             return fridge;
           }
