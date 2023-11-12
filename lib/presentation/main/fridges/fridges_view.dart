@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/presentation/main/fridges/dialogs/add_ambar_dialog.dart';
-import 'package:testt/presentation/main/fridges/edit_fridge/edit_fridge_view.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 import 'package:testt/presentation/main/fridges/view_fridge/fridge_view.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
@@ -12,6 +11,7 @@ import 'package:testt/presentation/resources/values_manager.dart';
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
 import 'dialogs/add_fridge_dialog.dart';
+import 'dialogs/edit_fridge_dialog.dart';
 
 class FridgesView extends StatefulWidget {
   const FridgesView({Key? key}) : super(key: key);
@@ -108,9 +108,7 @@ class PricesList extends StatelessWidget {
                                       children: [
                                         IconButton(
                                           onPressed: () async {
-                                            Navigator.of(context).push(MaterialPageRoute(
-                                                builder: (context) =>
-                                                    EditFridgeView(fridge: item)));
+                                            showEditFridgeDialog(context, item);
                                           },
                                           icon: const Icon(
                                             Icons.edit,

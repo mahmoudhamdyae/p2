@@ -13,7 +13,7 @@ abstract class ApiService {
   Future<List<Fridge>> getFridges();
   Future addFridge(String name);
   Future delFridge(int id);
-  Future updateFridge(int id, String name, String sizeString);
+  Future updateFridge(int id, String name);
   Future addAmber(int fridgeId, String anbarName);
 }
 
@@ -91,18 +91,12 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future updateFridge(int id, String name, String sizeString) async {
-    int size;
-    try{
-      size = int.parse(sizeString);
-    } on Exception {
-      throw Exception("اختر قيمة صحيحة للحجم");
-    }
+  Future updateFridge(int id, String name) async {
 
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}fridge/$id/edit?name=$name&size=$size&_method=put";
-    final response = await http.post(
+    String url = "${Constants.baseUrl}fridge/$id/edit?name=$name";
+    final response = await http.put(
         Uri.parse(url),
         headers: {
           'content-type': 'application/json;charset=utf-8',
