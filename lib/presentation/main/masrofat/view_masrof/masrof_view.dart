@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:testt/app/di.dart';
@@ -41,18 +40,18 @@ class ViewMasrofView extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(AppPadding.p16),
             child: Column(
-              children: [Placeholder()/*
+              children: [
                 Row(
                   children: [
                     Text(
-                      AppStrings.fridge_name,
+                      AppStrings.description,
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontSize: AppSize.s24
                       ),
                     ),
                     Text(
-                      controller.fridge.value.name,
+                      controller.masrof.value.description,
                       style: const TextStyle(
                           fontSize: AppSize.s24
                       ),
@@ -65,89 +64,20 @@ class ViewMasrofView extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      AppStrings.ambars_number,
+                      AppStrings.amount,
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontSize: AppSize.s24
                       ),
                     ),
                     Text(
-                      controller.fridge.value.ambers.length.toString(),
+                      controller.masrof.value.amount.toString(),
                       style: const TextStyle(
                           fontSize: AppSize.s24
                       ),
                     )
                   ],
-                ),
-                const SizedBox(
-                  height: AppSize.s16,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      AppStrings.owner_name,
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: AppSize.s24
-                      ),
-                    ),
-                    Text(
-                      controller.fridge.value.owner.name,
-                      style: const TextStyle(
-                          fontSize: AppSize.s24
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: AppSize.s16,
-                ),
-                if (controller.fridge.value.ambers.isEmpty) Container() else Expanded(
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: AppSize.s12,
-                      ),
-                      Text(
-                        AppStrings.ambers_name,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: AppSize.s20
-                        ),
-                      ),
-                      const SizedBox(
-                        height: AppSize.s12,
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                            itemCount: controller.fridge.value.ambers.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(AppPadding.p8),
-                                child: Card(
-                                  elevation: AppSize.s8,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: AppPadding.p8,
-                                        bottom : AppPadding.p8,
-                                        right: AppPadding.p16,
-                                        left: AppPadding.p16
-                                    ),
-                                    child: Text(
-                                      controller.fridge.value.ambers[index].name,
-                                      style: const TextStyle(
-                                          fontSize: AppSize.s24
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-                        ),
-                      ),
-                    ],
-                  ),
-                )*/
+                )
               ],
             ),
           );
