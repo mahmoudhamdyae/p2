@@ -38,11 +38,16 @@ class ViewFridgeView extends StatelessWidget {
                 await controller.getFridges();
               });
         } else {
-          if (controller.fridges.value.isEmpty) {
-            return emptyScreen(context, "لا يوجد ثلاجات");
-          } else {
-            return Placeholder();
-          }
+          return Column(
+            children: [
+              Row(
+                children: [
+                  Text("اسم الثلاجة: "),
+                  Text(controller.fridge.value?.name ?? "")
+                ],
+              )
+            ],
+          );
         }
       }),
     );

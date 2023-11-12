@@ -13,7 +13,7 @@ abstract class ApiService {
   Future addFridge(String name);
   Future delFridge(int id);
   Future updateFridge(int id, String name);
-  Future showFridge(int id);
+  Future<Fridge> showFridge(int id);
   Future addAmber(int fridgeId, String anbarName);
 }
 
@@ -133,7 +133,7 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future showFridge(int id) async {
+  Future<Fridge> showFridge(int id) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}fridge/$id/show";
@@ -147,15 +147,6 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
-    print("============== response data ---- $responseData");
-    print("============== response data status ---- ${responseData["status"]}");
-    print("============== response data fridge ---- ${responseData["fridge"]}");
-    print("============== response data name ---- ${responseData["fridge"]["name"]}");
-    print("============== response data size ---- ${responseData["fridge"]["size"]}");
-    print("============== response data user_id ---- ${responseData["fridge"]["user_id"]}");
-    print("============== response data ambers ---- ${responseData["fridge"]["ambers"]}");
-    print("============== response data owner name ---- ${responseData["fridge"]["owner"]["name"]}");
-    Fridge fridge = Fridge.fromJson(responseData["fridge"]);
-    print("--------------- $fridge");
+    return Fridge.fromJson(responseData["fridge"]);
   }
 }

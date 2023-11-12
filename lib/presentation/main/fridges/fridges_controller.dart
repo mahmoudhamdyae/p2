@@ -7,6 +7,7 @@ class FridgesController extends GetxController {
 
   final ApiService _apiService;
   RxList<Fridge> fridges = List<Fridge>.empty().obs;
+  Rx<Fridge> fridge = Fridge(0, "", "", -1, Owner(""), []).obs;
   Rx<bool> isLoading = true.obs;
   Rx<String> error = ''.obs;
 
@@ -109,20 +110,13 @@ class FridgesController extends GetxController {
     try {
       isLoading.value = true;
       error.value = '';
-      await _apiService.showFridge(fridgeId).then((value) {
-        // fridges.value = fridges.value.map((fridge) {
-        //   if (fridge.id == fridgeId) {
-        //     return Fridge(fridge.id, fridge.name, (int.parse(fridge.size) + 1).toString(), fridge.userId, fridge.owner);
-        //   } else {
-        //     return fridge;
-        //   }
-        // }).toList();
+      await _apiService.showFridge(fridgeId).then((fridgeApi) {
+        fridge.value = fridgeApi;
         error.value = '';
         isLoading.value = false;
       });
     } on Exception catch (e) {
       error.value = e.toString();
-      fridges.value = List<Fridge>.empty();
       isLoading.value = false;
     }
   }
