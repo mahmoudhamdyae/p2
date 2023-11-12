@@ -46,7 +46,7 @@ class FridgesController extends GetxController {
     }
   }
 
-  Future<void> addFridges(String fridgeName) async {
+  Future<void> addFridge(String fridgeName) async {
     try {
       isLoading.value = true;
       error.value = '';

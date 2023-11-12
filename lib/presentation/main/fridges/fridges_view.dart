@@ -9,7 +9,9 @@ import 'package:testt/presentation/resources/strings_manager.dart';
 import 'package:testt/presentation/resources/values_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
+import '../../component/alert.dart';
 import '../../component/empty.dart';
+import '../../component/error.dart';
 import '../../resources/routes_manager.dart';
 
 class FridgesView extends StatefulWidget {
@@ -52,36 +54,76 @@ void _showCustomDialog(BuildContext context) {
 }
 
 class CustomDialog extends StatelessWidget {
+  TextEditingController nameController = TextEditingController();
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  final FridgesController controller = instance<FridgesController>();
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
       // Your custom dialog content
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'Custom Dialog',
+            const Text(
+              AppStrings.add_fridge,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 16),
-            Text('This is a custom dialog content.'),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
+
+            Form(
+              key: formState,
+              child: TextFormField(
+                controller: nameController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                validator: (val) {
+                  if (val == null || val.isEmpty) {
+                    return AppStrings.fridge_name_invalid;
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                    hintText: AppStrings.fridge_name_hint,
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1))),
+              ),
+            ),
+
+            const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+              onPressed: () async {
+                var formData = formState.currentState;
+                if (formData!.validate()) {
+                  formData.save();
+                  try {
+                    showLoading(context);
+                    await controller.addFridge(nameController.text)
+                        .then((userCredential) {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    });
+                  } on Exception catch (e) {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                    showError(context, e.toString());
+                  }
+                }
               },
-              child: Text('Close'),
+              child: const Text(AppStrings.add_fridge_button),
             ),
           ],
         ),
       ),
     );
   }
+
+  CustomDialog({super.key});
 }
 
 
