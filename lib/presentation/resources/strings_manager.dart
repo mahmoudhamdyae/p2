@@ -44,6 +44,11 @@ class AppStrings {
   static const String fridge_name_invalid = "يجب إضافة اسم للثلاجة";
   static const String add_fridge_button = "إضافة الثلاجة";
 
+  // View Fridge
+  static const String fridge_name = "اسم الثلاجة: ";
+  static const String ambars_number = "عدد العنابر: ";
+  static const String owner_name = "اسم المالك: ";
+
   // Amber
   static const String add_anbar = "إضافة عنبر";
   static const String add_anbar_button = "إضافة عنبر";

@@ -42,8 +42,20 @@ class ViewFridgeView extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text("اسم الثلاجة: "),
-                  Text(controller.fridge.value?.name ?? "")
+                  const Text(AppStrings.fridge_name),
+                  Text(controller.fridge.value.name)
+                ],
+              ),
+              Row(
+                children: [
+                  const Text(AppStrings.ambars_number),
+                  Text(controller.fridge.value.ambers.length.toString())
+                ],
+              ),
+              Row(
+                children: [
+                  const Text(AppStrings.owner_name),
+                  Text(controller.fridge.value.owner.name)
                 ],
               )
             ],
