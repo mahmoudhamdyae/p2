@@ -80,10 +80,11 @@ class MasrofatView extends StatelessWidget {
                                       context: context,
                                       dialogType: DialogType.noHeader,
                                       title: "حذف",
-                                      desc: "هل أنت متأكد ؟",
+                                      desc: "هل أنت متأكد من حذف ${item.description} ؟",
                                       btnCancelOnPress: () {},
                                       btnOkOnPress: () async {
                                         await controller.delMasrof(item.id);
+                                        await controller.getMasrofat();
                                       }).show();
                                 },
                                 icon: const Icon(

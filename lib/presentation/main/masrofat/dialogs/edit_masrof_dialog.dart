@@ -113,7 +113,7 @@ class _CustomDialogState extends State<CustomDialog> {
                         .then((userCredential) {
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
-                      controller.getMasrofat();
+                      // controller.getMasrofat();
                     });
                   } on Exception catch (e) {
                     Navigator.of(context).pop();

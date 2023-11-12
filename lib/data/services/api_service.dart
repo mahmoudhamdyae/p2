@@ -200,7 +200,7 @@ class ApiServiceImpl implements ApiService {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}expense/$masrofId/delete";
-    final response = await http.get(
+    final response = await http.delete(
         Uri.parse(url),
         headers: {
           'content-type': 'application/json;charset=utf-8',
