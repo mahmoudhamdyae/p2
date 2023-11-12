@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:testt/app/di.dart';
 import 'package:testt/presentation/main/fridges/edit_fridge/edit_fridge_view.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 import 'package:testt/presentation/main/fridges/view_fridge/fridge_view.dart';
@@ -36,7 +37,7 @@ class _FridgesViewState extends State<FridgesView> {
 
 class PricesList extends StatelessWidget {
   PricesList({super.key});
-  final FridgesController controller = Get.put(FridgesController());
+  final FridgesController controller = instance<FridgesController>();
 
   @override
   Widget build(BuildContext context) {

@@ -6,10 +6,12 @@ import '../../../model/fridge.dart';
 
 class FridgesController extends GetxController {
 
-  final ApiService _apiService = instance<ApiService>();
+  final ApiService _apiService;
   RxList<Fridge> fridges = List<Fridge>.empty().obs;
   Rx<bool> isLoading = true.obs;
   Rx<String> error = ''.obs;
+
+  FridgesController(this._apiService);
 
   Future<void> getFridges() async {
     try {

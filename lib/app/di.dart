@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testt/data/services/account_service.dart';
 import 'package:testt/data/services/api_service.dart';
+import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 
-import '../data/data_source/local_data_source.dart';
-import '../data/data_source/remote_data_source.dart';
 import '../data/network/app_api.dart';
 import '../data/network/dio_factory.dart';
 import '../data/network/network_info.dart';
@@ -44,4 +45,8 @@ Future<void> initAppModule() async {
   // Api Service
   instance.registerLazySingleton<ApiService>(
           () => ApiServiceImpl(instance<NetworkInfo>(), instance<AppPreferences>()));
+
+  // Fridges Controller
+  instance.registerLazySingleton<FridgesController>(
+      () => Get.put(FridgesController(instance<ApiService>())));
 }
