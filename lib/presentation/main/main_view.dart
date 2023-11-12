@@ -92,8 +92,9 @@ class _MainContentState extends State<MainContent> {
                     width: double.infinity,
                     height: double.infinity,
                     child: GestureDetector(
-                        onTap: () =>
-                        {Navigator.pushNamed(context, Routes.fridgesRoute)},
+                        onTap: () => {
+                          Navigator.pushNamed(context, Routes.fridgesRoute)
+                        },
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -217,26 +218,26 @@ class _MainContentState extends State<MainContent> {
               ),
               // إعدادات
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppSize.s16),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3)
-                      ),
-                    ],
-                  ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: GestureDetector(
-                      onTap: () => {
-                        // Navigator.pushNamed(context, Routes.pricesRoute)
-                      },
+                child: GestureDetector(
+                  onTap: () => {
+                    Navigator.pushNamed(context, Routes.settingsRoute)
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppSize.s16),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: const Offset(0, 3)
+                        ),
+                      ],
+                    ),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
