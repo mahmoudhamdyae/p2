@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_controller.dart';
+import 'package:testt/presentation/main/masrofat/view_masrof/masrof_view.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 import 'package:testt/presentation/resources/values_manager.dart';
 
@@ -51,70 +52,76 @@ class MasrofatView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final item = controller.masrofat.value[index];
 
-                return Padding(
-                  padding: const EdgeInsets.all(AppPadding.p8),
-                  child: Card(
-                    elevation: AppSize.s8,
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppPadding.p8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                item.description,
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 23,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ViewMasrofView(masrofat: item)));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppPadding.p8),
+                    child: Card(
+                      elevation: AppSize.s8,
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppPadding.p8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  item.description,
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 23,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: AppSize.s12,
-                              ),
-                              Text(
-                                item.amount,
-                                style: const TextStyle(
-                                  color: Colors.black38,
-                                  fontSize: 14,
+                                const SizedBox(
+                                  height: AppSize.s12,
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              IconButton(
-                                onPressed: () async {
-                                  showEditMasrofDialog(context, item);
-                                },
-                                icon: const Icon(
-                                  Icons.edit,
-                                  color: Colors.black38,
+                                Text(
+                                  item.amount,
+                                  style: const TextStyle(
+                                    color: Colors.black38,
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                onPressed: () async {
-                                  return AwesomeDialog(
-                                      btnCancelText: "الغاء",
-                                      btnOkText: "حذف",
-                                      context: context,
-                                      dialogType: DialogType.noHeader,
-                                      title: "حذف",
-                                      desc: "هل أنت متأكد من حذف ${item.description} ؟",
-                                      btnCancelOnPress: () {},
-                                      btnOkOnPress: () async {
-                                        await controller.delMasrof(item.id);
-                                        await controller.getMasrofat();
-                                      }).show();
-                                },
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.black38,
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    showEditMasrofDialog(context, item);
+                                  },
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    color: Colors.black38,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
+                                IconButton(
+                                  onPressed: () async {
+                                    return AwesomeDialog(
+                                        btnCancelText: "الغاء",
+                                        btnOkText: "حذف",
+                                        context: context,
+                                        dialogType: DialogType.noHeader,
+                                        title: "حذف",
+                                        desc: "هل أنت متأكد من حذف ${item.description} ؟",
+                                        btnCancelOnPress: () {},
+                                        btnOkOnPress: () async {
+                                          await controller.delMasrof(item.id);
+                                          await controller.getMasrofat();
+                                        }).show();
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Colors.black38,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
