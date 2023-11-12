@@ -18,6 +18,10 @@ abstract class ApiService {
   Future addAmber(int fridgeId, String anbarName);
 
   Future<List<Masrofat>> getMasrofat();
+  Future addMasrof(int amount, String description);
+  Future updateMasrof(int masrofId, int amount, String description);
+  Future<Masrofat> showMasrof(int masrofId);
+  Future delMasrof(int masrofId);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -52,8 +56,6 @@ class ApiServiceImpl implements ApiService {
     List<Fridge> fridges = [];
     for (var singleFridge in responseData["fridge"]) {
       Fridge fridge = Fridge.fromJson(singleFridge);
-
-      // Adding user to the list.
       fridges.add(fridge);
     }
     return fridges;
@@ -168,7 +170,82 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
-    print("========== $responseData");
-    return [Masrofat(3, "amount", "description", "date")];
+    print("========== getMasrofat $responseData");
+    List<Masrofat> masrofat = [];
+    for (var singleMasrof in responseData["expense"]) {
+      Masrofat masrof = Masrofat.fromJson(singleMasrof);
+      print("========== getMasrof $masrof");
+      masrofat.add(masrof);
+    }
+    return masrofat;
+  }
+
+  @override
+  Future addMasrof(int amount, String description) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}expense?amount=$amount&description=$description";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future delMasrof(int masrofId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}expense/$masrofId/delete";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future<Masrofat> showMasrof(int masrofId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}expense/$masrofId/show";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    return Masrofat.fromJson(responseData["expense"]);
+  }
+
+  @override
+  Future updateMasrof(int masrofId, int amount, String description) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}expense/$masrofId/edit?amount=$amount&description=$description";
+    final response = await http.put(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
   }
 }

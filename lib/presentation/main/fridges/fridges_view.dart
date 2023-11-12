@@ -29,7 +29,6 @@ class _FridgesViewState extends State<FridgesView> {
           backgroundColor: Theme.of(context).primaryColor,
           child: const Icon(Icons.add),
           onPressed: () {
-            // Navigator.of(context).pushNamed(Routes.addFridgeRoute);
             showAddFridgeDialog(context);
           }),
       body: PricesList(),

@@ -60,7 +60,7 @@ class _CustomDialogState extends State<CustomDialog> {
               key: formState,
               child: TextFormField(
                 controller: nameController,
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
                 keyboardType: TextInputType.text,
                 validator: (val) {
                   if (val == null || val.isEmpty) {

@@ -63,6 +63,12 @@ class AppStrings {
 
   // Masrofat
   static const String masrofat = "مصروفات";
+  static const String add_masrouf = "إضافة";
+  static const String amount_hint = "الكمية";
+  static const String description_hint = "الوصف";
+  static const String amount_masrouf_invalid = "يجب إضافة الكمية";
+  static const String description_masrouf_invalid = "يجب إضافة الوصف";
+  static const String add_masrof_button = "إضافة";
 
   // Error handler
   static const String badRequestError = "طلب غير صالح. حاول مرة أخرى لاحقًا";

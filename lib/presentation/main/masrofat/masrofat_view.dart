@@ -7,6 +7,7 @@ import 'package:testt/presentation/resources/values_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
+import 'dialogs/add_masrouf_dialog.dart';
 
 class MasrofatView extends StatelessWidget {
   final MasrofatController controller = instance<MasrofatController>();
@@ -20,6 +21,12 @@ class MasrofatView extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AppStrings.masrofat),
       ),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(Icons.add),
+          onPressed: () {
+            showAddMasrofDialog(context);
+          }),
       body: Obx(() {
         if (controller.isLoading.value) {
           return StateRenderer(
