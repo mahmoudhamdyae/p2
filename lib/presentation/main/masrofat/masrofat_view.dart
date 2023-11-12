@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:testt/app/di.dart';
@@ -8,6 +9,7 @@ import 'package:testt/presentation/resources/values_manager.dart';
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
 import 'dialogs/add_masrouf_dialog.dart';
+import 'dialogs/edit_masrof_dialog.dart';
 
 class MasrofatView extends StatelessWidget {
   final MasrofatController controller = instance<MasrofatController>();
@@ -55,7 +57,44 @@ class MasrofatView extends StatelessWidget {
                     elevation: AppSize.s8,
                     child: Padding(
                       padding: const EdgeInsets.all(AppPadding.p8),
-                      child: Text(item.description),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(item.description),
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () async {
+                                  showEditMasrofDialog(context, item);
+                                },
+                                icon: const Icon(
+                                  Icons.edit,
+                                  color: Colors.black38,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () async {
+                                  return AwesomeDialog(
+                                      btnCancelText: "الغاء",
+                                      btnOkText: "حذف",
+                                      context: context,
+                                      dialogType: DialogType.noHeader,
+                                      title: "حذف",
+                                      desc: "هل أنت متأكد ؟",
+                                      btnCancelOnPress: () {},
+                                      btnOkOnPress: () async {
+                                        await controller.delMasrof(item.id);
+                                      }).show();
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.black38,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 );

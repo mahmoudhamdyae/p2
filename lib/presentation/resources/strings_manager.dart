@@ -69,6 +69,7 @@ class AppStrings {
   static const String amount_masrouf_invalid = "يجب إضافة الكمية";
   static const String description_masrouf_invalid = "يجب إضافة الوصف";
   static const String add_masrof_button = "إضافة";
+  static const String edit_masrof_button = "تعديل";
 
   // Error handler
   static const String badRequestError = "طلب غير صالح. حاول مرة أخرى لاحقًا";
