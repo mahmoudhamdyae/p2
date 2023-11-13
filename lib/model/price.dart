@@ -12,7 +12,7 @@ class Price {
 
   factory Price.fromJson(Map<String, dynamic> json) {
     return Price(
-        json['vegetableName'] as String? ?? "",
+        json['vegetable_name'] as String? ?? "",
         json['ton'] as String? ?? "-1",
         json['small_shakara'] as String? ?? "-1",
         json['big_shakara'] as String? ?? "-1",
