@@ -75,43 +75,44 @@ class _MainContentState extends State<MainContent> {
             children: [
               // عملاء
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppSize.s16),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3)
-                      ),
-                    ],
-                  ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: GestureDetector(
-                        onTap: () => {
-                          Navigator.pushNamed(context, Routes.fridgesRoute)
-                        },
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.people,
-                                  size: 65,
-                                  color: Theme.of(context).primaryColor),
-                              const SizedBox(
-                                height: AppSize.s32,
+                child: GestureDetector(
+                  onTap: () => {
+                    Navigator.pushNamed(context, Routes.clientsRoute)
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppSize.s16),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: const Offset(0, 3)
+                        ),
+                      ],
+                    ),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.people,
+                                size: 65,
+                                color: Theme.of(context).primaryColor),
+                            const SizedBox(
+                              height: AppSize.s32,
+                            ),
+                            Text(
+                              AppStrings.clients_button,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 25,
                               ),
-                              Text(
-                                AppStrings.clients_button,
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 25,
-                                ),
-                              ),
-                            ])),
+                            ),
+                          ]),
+                    ),
                   ),
                 ),
               ),
@@ -172,26 +173,26 @@ class _MainContentState extends State<MainContent> {
             children: [
               // تقارير
               Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppSize.s16),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3)
-                      ),
-                    ],
-                  ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: GestureDetector(
-                      onTap: () => {
-                        // Navigator.pushNamed(context, Routes.pricesRoute)
-                      },
+                child: GestureDetector(
+                  onTap: () => {
+                    Navigator.pushNamed(context, Routes.reportsRoute)
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppSize.s16),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: const Offset(0, 3)
+                        ),
+                      ],
+                    ),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

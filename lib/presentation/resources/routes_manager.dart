@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:testt/presentation/main/clients/clients_view.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_view.dart';
 import 'package:testt/presentation/main/prices/prices_view.dart';
+import 'package:testt/presentation/main/reports/reports_view.dart';
 import 'package:testt/presentation/main/settings/settings_view.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 
@@ -20,6 +22,8 @@ class Routes {
   static const String masrofatRoute = "/masrofat";
   static const String addFridgeRoute = "/add_fridge";
   static const String pricesRoute = "/prices";
+  static const String clientsRoute = "/clients";
+  static const String reportsRoute = "/reports";
 }
 
 class RouteGenerator {
@@ -41,6 +45,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => MasrofatView());
       case Routes.pricesRoute:
         return MaterialPageRoute(builder: (_) => const PricesView());
+      case Routes.clientsRoute:
+        return MaterialPageRoute(builder: (_) => const ClientsView());
+      case Routes.reportsRoute:
+        return MaterialPageRoute(builder: (_) => const ReportsView());
       default:
         return unDefinedRoute();
     }
