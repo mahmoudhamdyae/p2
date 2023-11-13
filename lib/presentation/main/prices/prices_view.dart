@@ -74,24 +74,85 @@ class PricesList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              item.vegetableName,
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  AppStrings.prices_vegetable_name_hint,
+                                  style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: AppSize.s24
+                                  ),
+                                ),
+                                Text(
+                                  item.vegetableName,
+                                  style: const TextStyle(
+                                      fontSize: AppSize.s24
+                                  ),
+                                )
+                              ],
                             ),
                             const SizedBox(
-                              height: AppSize.s12,
+                              height: AppSize.s16,
                             ),
-                            Text(
-                              item.big_shakara.toString(),
-                              style: const TextStyle(
-                                color: Colors.black38,
-                                fontSize: 14,
-                              ),
-                            )
+                            Row(
+                              children: [
+                                Text(
+                                  AppStrings.prices_ton_hint,
+                                  style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: AppSize.s24
+                                  ),
+                                ),
+                                Text(
+                                  item.ton,
+                                  style: const TextStyle(
+                                      fontSize: AppSize.s24
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: AppSize.s16,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  AppStrings.prices_small_shakara_hint,
+                                  style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: AppSize.s24
+                                  ),
+                                ),
+                                Text(
+                                  item.small_shakara,
+                                  style: const TextStyle(
+                                      fontSize: AppSize.s24
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: AppSize.s16,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  AppStrings.prices_big_shakara_hint,
+                                  style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: AppSize.s24
+                                  ),
+                                ),
+                                Text(
+                                  item.big_shakara,
+                                  style: const TextStyle(
+                                      fontSize: AppSize.s24
+                                  ),
+                                )
+                              ],
+                            ),
                           ],
                         ),
                         Column(

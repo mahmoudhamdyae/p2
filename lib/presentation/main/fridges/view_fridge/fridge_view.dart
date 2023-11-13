@@ -23,7 +23,7 @@ class ViewFridgeView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppStrings.edit_fridge),
+        title: Text(fridge.name),
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
