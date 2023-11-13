@@ -4,14 +4,12 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/model/masrofat.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_controller.dart';
-import 'package:testt/presentation/main/masrofat/view_masrof/masrof_view.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 import 'package:testt/presentation/resources/values_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
 import 'dialogs/add_masrouf_dialog.dart';
-import 'dialogs/edit_masrof_dialog.dart';
 
 class MasrofatView extends StatelessWidget {
   final MasrofatController controller = instance<MasrofatController>();
@@ -164,7 +162,7 @@ class MasrofatView extends StatelessWidget {
                             )
                         ),
                       ],
-                      source: YourDataTableSource(data: controller.masrofat.value),
+                      source: YourDataTableSource(data: controller.masrofat.value, context: context, controller: controller),
                     )
                   ),
                   Row(
@@ -202,9 +200,11 @@ class MasrofatView extends StatelessWidget {
 }
 
 class YourDataTableSource extends DataTableSource {
+  final BuildContext context;
+  final MasrofatController controller;
   final List<Masrofat> data;
 
-  YourDataTableSource({required this.data});
+  YourDataTableSource({required this.context, required this.data, required this.controller});
 
   @override
   DataRow? getRow(int index) {
@@ -233,12 +233,76 @@ class YourDataTableSource extends DataTableSource {
             )
         ),
         DataCell(
-            Text(
-              item.date,
-              style: const TextStyle(
-                color: Colors.black45,
-                fontSize: 14,
-              ),
+            Row(
+              children: [
+                Text(
+                  item.date,
+                  style: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 14,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () async {
+                    return AwesomeDialog(
+                        btnCancelText: "الغاء",
+                        btnOkText: "حذف",
+                        context: context,
+                        dialogType: DialogType.noHeader,
+                        title: "حذف",
+                        desc: "هل أنت متأكد من حذف ${item.description} ؟",
+                        btnCancelOnPress: () {},
+                        btnOkOnPress: () async {
+                          await controller.delMasrof(item.id);
+                          await controller.getMasrofat();
+                        }).show();
+                  },
+                  icon: const Icon(
+                    Icons.delete,
+                    color: Colors.black38,
+                  ),
+                )
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*Row(
+                  children: [
+                    IconButton(
+                      onPressed: () async {
+                        showEditMasrofDialog(context, item);
+                      },
+                      icon: const Icon(
+                        Icons.edit,
+                        color: Colors.black38,
+                      ),
+                    ),
+
+                  ],
+                )*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+              ],
             )
         ),
       ],
