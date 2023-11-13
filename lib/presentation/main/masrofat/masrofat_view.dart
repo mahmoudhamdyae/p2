@@ -129,41 +129,70 @@ class MasrofatView extends StatelessWidget {
                 );
               },
             )*/
-              SizedBox(
-                width: double.infinity,
-                child: PaginatedDataTable(
-                  rowsPerPage: (controller.masrofat.length < 10) ? controller.masrofat.length : 10,
-                  columns: [
-                    DataColumn(
-                        label: Text(
-                          AppStrings.mablagh,
+              Column(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: PaginatedDataTable(
+                      rowsPerPage: (controller.masrofat.length < 10) ? controller.masrofat.length : 10,
+                      columns: [
+                        DataColumn(
+                            label: Text(
+                              AppStrings.mablagh,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            )
+                        ),
+                        DataColumn(
+                            label: Text(
+                              AppStrings.desc,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            )
+                        ),
+                        DataColumn(
+                            label: Text(
+                              AppStrings.date,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            )
+                        ),
+                      ],
+                      source: YourDataTableSource(data: controller.masrofat.value),
+                    )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(AppPadding.p16),
+                        child: Text(
+                          "الإجمالى: ",
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 23,
                           ),
-                        )
-                    ),
-                    DataColumn(
-                        label: Text(
-                          AppStrings.desc,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(AppPadding.p16),
+                        child: Text(
+                          controller.sum.toString(),
+                          style: const TextStyle(
+                            color: Colors.black45,
                             fontSize: 23,
                           ),
-                        )
-                    ),
-                    DataColumn(
-                        label: Text(
-                          AppStrings.date,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 23,
-                          ),
-                        )
-                    ),
-                  ],
-                  source: YourDataTableSource(data: controller.masrofat.value),
-                )
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               );
           }
         }
