@@ -10,6 +10,7 @@ import 'package:testt/presentation/resources/values_manager.dart';
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
 import 'dialogs/add_masrouf_dialog.dart';
+import 'dialogs/edit_masrof_dialog.dart';
 
 class MasrofatView extends StatelessWidget {
   final MasrofatController controller = instance<MasrofatController>();
@@ -213,6 +214,9 @@ class YourDataTableSource extends DataTableSource {
     }
     final item = data[index];
     return DataRow(
+      onLongPress: () {
+        showEditMasrofDialog(context, item);
+      },
       cells: [
         DataCell(
             Text(
