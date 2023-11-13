@@ -91,10 +91,12 @@ class PricesController extends GetxController {
         prices.value.remove(value);
         error.value = '';
         isLoading.value = false;
+        getPrices();
       });
     } on Exception catch (e) {
       error.value = e.toString();
       isLoading.value = false;
+      getPrices();
     }
   }
 }
