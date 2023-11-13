@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:testt/app/di.dart';
+import 'package:testt/model/masrofat.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_controller.dart';
 import 'package:testt/presentation/main/masrofat/view_masrof/masrof_view.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
@@ -143,7 +144,9 @@ class MasrofatView extends StatelessWidget {
 
               SizedBox(
                 width: double.infinity,
-                child: DataTable(
+                child: PaginatedDataTable(
+                  header: Text('Your Table Header'),
+                  rowsPerPage: 10, // Adjust the number of rows per page as needed
                   columns: [
                     DataColumn(
                         label: Text(
@@ -173,38 +176,8 @@ class MasrofatView extends StatelessWidget {
                         )
                     ),
                   ],
-                  rows: controller.masrofat.value.map((item) => DataRow(
-                    cells: [
-                      DataCell(
-                          Text(
-                            item.amount,
-                            style: const TextStyle(
-                              color: Colors.black45,
-                              fontSize: 14,
-                            ),
-                          )
-                      ),
-                      DataCell(
-                          Text(
-                            item.description,
-                            style: const TextStyle(
-                              color: Colors.black45,
-                              fontSize: 14,
-                            ),
-                          )
-                      ),
-                      DataCell(
-                          Text(
-                            item.date,
-                            style: const TextStyle(
-                              color: Colors.black45,
-                              fontSize: 14,
-                            ),
-                          )
-                      ),
-                    ],
-                  )).toList(),
-                ),
+                  source: YourDataTableSource(data: controller.masrofat.value),
+                )
               )
 
 
@@ -227,4 +200,105 @@ class MasrofatView extends StatelessWidget {
       }),
     );
   }
+}
+
+
+
+
+
+
+
+
+/*
+columns: [
+                      DataColumn(
+                          label: Text(
+                            AppStrings.mablagh,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
+                            ),
+                          )
+                      ),
+                      DataColumn(
+                          label: Text(
+                            AppStrings.desc,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
+                            ),
+                          )
+                      ),
+                      DataColumn(
+                          label: Text(
+                            AppStrings.date,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
+                            ),
+                          )
+                      ),
+                    ],
+
+
+* */
+
+
+
+
+
+
+
+class YourDataTableSource extends DataTableSource {
+  final List<Masrofat> data;
+
+  YourDataTableSource({required this.data});
+
+  @override
+  DataRow? getRow(int index) {
+    if (index >= data.length) {
+      return null;
+    }
+    final item = data[index];
+    return DataRow(
+      cells: [
+        DataCell(
+            Text(
+              item.amount,
+              style: const TextStyle(
+                color: Colors.black45,
+                fontSize: 14,
+              ),
+            )
+        ),
+        DataCell(
+            Text(
+              item.description,
+              style: const TextStyle(
+                color: Colors.black45,
+                fontSize: 14,
+              ),
+            )
+        ),
+        DataCell(
+            Text(
+              item.date,
+              style: const TextStyle(
+                color: Colors.black45,
+                fontSize: 14,
+              ),
+            )
+        ),
+      ],
+    );
+  }
+
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get rowCount => data.length;
+
+  @override
+  int get selectedRowCount => 0;
 }
