@@ -30,11 +30,11 @@ class PricesController extends GetxController {
     }
   }
 
-  Future addPrice(Price price) async {
+  Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton) async {
     try {
       isLoading.value = true;
       error.value = '';
-      await _apiService.addPrice(price).then((value) {
+      await _apiService.addPrice(vegetableName, smallShakara, bigShakara, ton).then((value) {
         prices.value.add(Price("", -1, -1, -1, -1, int.parse(const Uuid().v4.toString())));
         error.value = '';
         isLoading.value = false;

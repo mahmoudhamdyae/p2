@@ -9,6 +9,7 @@ import 'package:testt/presentation/resources/values_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
+import 'dialogs/add_price_dialog.dart';
 
 class PricesView extends StatefulWidget {
   const PricesView({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _FridgesViewState extends State<PricesView> {
           backgroundColor: Theme.of(context).primaryColor,
           child: const Icon(Icons.add),
           onPressed: () {
-            // showAddFridgeDialog(context);
+            showAddPriceDialog(context);
           }),
       body: PricesList(),
     );

@@ -83,6 +83,16 @@ class AppStrings {
   static const String personal_data_button = "البيانات الشخصية";
   static const String users_button = "المستخدمين";
 
+  // Prices
+  static const String prices_vegetable_name_invalid = "يجب إضافة اسم للثمار";
+  static const String prices_small_shakara_invalid = "يجب إضافة حجم الشكارة";
+  static const String prices_big_shakara_invalid = "يجب إضافة حجم الشكارة";
+  static const String prices_ton_invalid = "يجب إضافة عدد الأطنان";
+  static const String prices_vegetable_name_hint = "اسم الثمار";
+  static const String prices_small_shakara_hint = "عدد الشكاير الكبيرة";
+  static const String prices_big_shakara_hint = "عدد الشكاير الصغيرة";
+  static const String prices_ton_hint = "عدد الأطنان";
+
   // Error handler
   static const String badRequestError = "طلب غير صالح. حاول مرة أخرى لاحقًا";
   static const String noContent = "لا يوجد محتوى";

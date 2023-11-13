@@ -25,7 +25,7 @@ abstract class ApiService {
   Future delMasrof(int masrofId);
 
   Future<List<Price>> getPrices(); // price get
-  Future addPrice(Price price); // price post
+  Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton); // price post
   Future updatePrice(Price price); // price/1/edit put
   Future delPrice(Price price); // price/1/delete del
   Future<Price> showPrice(int id); // price/1/show get
@@ -256,10 +256,10 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future addPrice(Price price) async {
+  Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}price";
+    String url = "${Constants.baseUrl}price?vegetableName=$vegetableName&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
     final response = await http.post(
         Uri.parse(url),
         headers: {
