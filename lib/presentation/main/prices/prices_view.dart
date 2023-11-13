@@ -129,7 +129,7 @@ class PricesList extends StatelessWidget {
                                           btnOkText: "حذف",
                                           context: context,
                                           dialogType: DialogType.noHeader,
-                                          title: "حذف ثلاجة",
+                                          title: "حذف",
                                           desc: "هل أنت متأكد ؟",
                                           btnCancelOnPress: () {},
                                           btnOkOnPress: () async {
