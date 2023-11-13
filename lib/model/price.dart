@@ -2,9 +2,9 @@ import 'package:uuid/uuid.dart';
 
 class Price {
   String vegetableName;
-  int ton;
-  int small_shakara;
-  int big_shakara;
+  String ton;
+  String small_shakara;
+  String big_shakara;
   int user_id;
   int id;
 
@@ -12,12 +12,12 @@ class Price {
 
   factory Price.fromJson(Map<String, dynamic> json) {
     return Price(
-        json['vegetableName'] as String,
-        json['ton'] as int,
-        json['small_shakara'] as int,
-        json['big_shakara'] as int,
-        json['user_id'] as int,
-        json['id'] as int,
+        json['vegetableName'] as String? ?? "",
+        json['ton'] as String? ?? "-1",
+        json['small_shakara'] as String? ?? "-1",
+        json['big_shakara'] as String? ?? "-1",
+        json['user_id'] as int? ?? -1,
+        json['id'] as int? ?? -1,
     );
   }
 }

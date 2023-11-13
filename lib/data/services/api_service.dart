@@ -268,7 +268,6 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
-    print("======== respo ${response.body}");
     _checkServer(response);
     await json.decode(response.body);
   }
@@ -303,6 +302,7 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
+    print("======== respo ${response.body}");
     _checkServer(response);
     final responseData = await json.decode(response.body);
     List<Price> prices = [];

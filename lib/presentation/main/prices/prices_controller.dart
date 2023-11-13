@@ -7,7 +7,7 @@ import '../../../data/services/api_service.dart';
 class PricesController extends GetxController {
   final ApiService _apiService;
   RxList<Price> prices = List<Price>.empty().obs;
-  Rx<Price> price = Price("", -1, -1, -1, -1, -1).obs;
+  Rx<Price> price = Price("", "-1", "-1", "-1", -1, -1).obs;
   Rx<bool> isLoading = true.obs;
   Rx<String> error = ''.obs;
 
@@ -35,7 +35,7 @@ class PricesController extends GetxController {
       isLoading.value = true;
       error.value = '';
       await _apiService.addPrice(vegetableName, smallShakara, bigShakara, ton).then((value) {
-        prices.value.add(Price("", -1, -1, -1, -1, int.parse(const Uuid().v4.toString())));
+        prices.value.add(Price("", "-1", "-1", "-1", -1, int.parse(const Uuid().v4.toString())));
         error.value = '';
         isLoading.value = false;
         getPrices();
