@@ -4,8 +4,10 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testt/data/services/account_service.dart';
 import 'package:testt/data/services/api_service.dart';
+import 'package:testt/presentation/main/clients/clients_controller.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_controller.dart';
+import 'package:testt/presentation/main/reports/reports_controller.dart';
 
 import '../data/network/dio_factory.dart';
 import '../data/network/network_info.dart';
@@ -47,4 +49,12 @@ Future<void> initAppModule() async {
   // Masrofat Controller
   instance.registerLazySingleton<MasrofatController>(
           () => Get.put(MasrofatController(instance<ApiService>())));
+
+  // Clients Controller
+  instance.registerLazySingleton<ClientsController>(
+          () => Get.put(ClientsController(instance<ApiService>())));
+
+  // Reports Controller
+  instance.registerLazySingleton<ReportsController>(
+          () => Get.put(ReportsController(instance<ApiService>())));
 }

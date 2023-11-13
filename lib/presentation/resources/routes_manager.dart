@@ -46,9 +46,9 @@ class RouteGenerator {
       case Routes.pricesRoute:
         return MaterialPageRoute(builder: (_) => const PricesView());
       case Routes.clientsRoute:
-        return MaterialPageRoute(builder: (_) => const ClientsView());
+        return MaterialPageRoute(builder: (_) => ClientsView());
       case Routes.reportsRoute:
-        return MaterialPageRoute(builder: (_) => const ReportsView());
+        return MaterialPageRoute(builder: (_) => ReportsView());
       default:
         return unDefinedRoute();
     }
