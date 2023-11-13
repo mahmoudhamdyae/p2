@@ -64,97 +64,82 @@ class PricesList extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = controller.prices.value[index];
 
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-
-
-
-                          // ViewFridgeView(fridge: item)
-                    Placeholder()
-
-
-
-                  ));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(AppPadding.p8),
-                  child: Card(
-                    elevation: AppPadding.p8,
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppPadding.p16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                item.vegetableName,
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 23,
-                                ),
+              return Padding(
+                padding: const EdgeInsets.all(AppPadding.p8),
+                child: Card(
+                  elevation: AppPadding.p8,
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppPadding.p16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              item.vegetableName,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
                               ),
-                              const SizedBox(
-                                height: AppSize.s12,
+                            ),
+                            const SizedBox(
+                              height: AppSize.s12,
+                            ),
+                            Text(
+                              item.big_shakara.toString(),
+                              style: const TextStyle(
+                                color: Colors.black38,
+                                fontSize: 14,
                               ),
-                              Text(
-                                item.big_shakara.toString(),
-                                style: const TextStyle(
-                                  color: Colors.black38,
-                                  fontSize: 14,
-                                ),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  IconButton(
-                                    onPressed: () async {
-                                      showEditPriceDialog(context, item);
-                                    },
-                                    icon: const Icon(
-                                      Icons.edit,
-                                      color: Colors.black38,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () async {
-                                      return AwesomeDialog(
-                                          btnCancelText: "الغاء",
-                                          btnOkText: "حذف",
-                                          context: context,
-                                          dialogType: DialogType.noHeader,
-                                          title: "حذف",
-                                          desc: "هل أنت متأكد ؟",
-                                          btnCancelOnPress: () {},
-                                          btnOkOnPress: () async {
-                                            await controller.delPrice(item);
-                                          }).show();
-                                    },
-                                    icon: const Icon(
-                                      Icons.delete,
-                                      color: Colors.black38,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: AppSize.s8,
-                              ),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    showAddAmberDialog(context, item.id);
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    showEditPriceDialog(context, item);
                                   },
-                                  child: const Text(AppStrings.add_anbar_button)),
-                            ],
-                          )
-                        ],
-                      ),
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    color: Colors.black38,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () async {
+                                    return AwesomeDialog(
+                                        btnCancelText: "الغاء",
+                                        btnOkText: "حذف",
+                                        context: context,
+                                        dialogType: DialogType.noHeader,
+                                        title: "حذف",
+                                        desc: "هل أنت متأكد ؟",
+                                        btnCancelOnPress: () {},
+                                        btnOkOnPress: () async {
+                                          await controller.delPrice(item);
+                                        }).show();
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Colors.black38,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: AppSize.s8,
+                            ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  showAddAmberDialog(context, item.id);
+                                },
+                                child: const Text(AppStrings.add_anbar_button)),
+                          ],
+                        )
+                      ],
                     ),
                   ),
                 ),
