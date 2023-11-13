@@ -7,8 +7,10 @@ import 'package:testt/data/services/api_service.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_controller.dart';
+import 'package:testt/presentation/main/personal_data/personal_data_controller.dart';
 import 'package:testt/presentation/main/prices/prices_controller.dart';
 import 'package:testt/presentation/main/reports/reports_controller.dart';
+import 'package:testt/presentation/main/users/users_controller.dart';
 
 import '../data/network/dio_factory.dart';
 import '../data/network/network_info.dart';
@@ -62,4 +64,12 @@ Future<void> initAppModule() async {
   // Prices Controller
   instance.registerLazySingleton<PricesController>(
           () => Get.put(PricesController(instance<ApiService>())));
+
+  // Personal Data Controller
+  instance.registerLazySingleton<PersonalDataController>(
+          () => Get.put(PersonalDataController(instance<ApiService>())));
+
+  // Users Controller
+  instance.registerLazySingleton<UsersController>(
+          () => Get.put(UsersController(instance<ApiService>())));
 }

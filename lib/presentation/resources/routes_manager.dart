@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testt/presentation/main/clients/clients_view.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_view.dart';
-import 'package:testt/presentation/main/personal_data.dart';
+import 'package:testt/presentation/main/personal_data/personal_data_view.dart';
 import 'package:testt/presentation/main/prices/prices_view.dart';
 import 'package:testt/presentation/main/reports/reports_view.dart';
 import 'package:testt/presentation/main/settings/settings_view.dart';
