@@ -129,14 +129,6 @@ class PricesList extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: AppSize.s8,
-                            ),
-                            ElevatedButton(
-                                onPressed: () {
-                                  showAddAmberDialog(context, item.id);
-                                },
-                                child: const Text(AppStrings.add_anbar_button)),
                           ],
                         )
                       ],
