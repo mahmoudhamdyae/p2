@@ -335,7 +335,7 @@ class ApiServiceImpl implements ApiService {
   Future updatePrice(int id, String vegetableName, int smallShakara, int bigShakara, int ton) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}price/$id/edit?vegetableName=$vegetableName&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
+    String url = "${Constants.baseUrl}price/$id/edit?vegetable_name=$vegetableName&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
     final response = await http.put(
         Uri.parse(url),
         headers: {
