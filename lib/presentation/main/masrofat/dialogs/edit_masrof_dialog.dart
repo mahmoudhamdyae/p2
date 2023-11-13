@@ -52,7 +52,7 @@ class _CustomDialogState extends State<CustomDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              AppStrings.edit_fridge,
+              AppStrings.edit_masrof_button,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
