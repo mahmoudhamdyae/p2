@@ -10,6 +10,7 @@ class MasrofatController extends GetxController {
   Rx<Masrofat> masrof = Masrofat(-1, "", "", "").obs;
   Rx<bool> isLoading = true.obs;
   Rx<String> error = ''.obs;
+  Rx<int> sum = 0.obs;
 
   MasrofatController(this._apiService);
 
@@ -19,7 +20,8 @@ class MasrofatController extends GetxController {
       masrofat.value = List<Masrofat>.empty();
       error.value = '';
       await _apiService.getMasrofat().then((value) {
-        masrofat.value = value;
+        masrofat.value = value.$1;
+        sum.value = value.$2;
         error.value = '';
         isLoading.value = false;
       });

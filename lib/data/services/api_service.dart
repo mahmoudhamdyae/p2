@@ -17,7 +17,7 @@ abstract class ApiService {
   Future<Fridge> showFridge(int id);
   Future addAmber(int fridgeId, String anbarName);
 
-  Future<List<Masrofat>> getMasrofat();
+  Future<(List<Masrofat>, int)> getMasrofat();
   Future addMasrof(int amount, String description);
   Future updateMasrof(int masrofId, int amount, String description);
   Future<Masrofat> showMasrof(int masrofId);
@@ -156,7 +156,7 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future<List<Masrofat>> getMasrofat() async {
+  Future<(List<Masrofat>, int)> getMasrofat() async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}expense";
@@ -170,12 +170,13 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
+    print("=========res data sunm ${responseData["sum"]}");
     List<Masrofat> masrofat = [];
     for (var singleMasrof in responseData["expense"]) {
       Masrofat masrof = Masrofat.fromJson(singleMasrof);
       masrofat.add(masrof);
     }
-    return masrofat;
+    return (masrofat, responseData["sum"] as int);
   }
 
   @override
@@ -192,7 +193,7 @@ class ApiServiceImpl implements ApiService {
         }
     );
     _checkServer(response);
-    final responseData = await json.decode(response.body);
+    await json.decode(response.body);
   }
 
   @override
@@ -243,8 +244,7 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
-    print("==========respomse2 ${response.body}");
     _checkServer(response);
-    final responseData = await json.decode(response.body);
+    await json.decode(response.body);
   }
 }
