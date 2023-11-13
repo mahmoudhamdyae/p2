@@ -79,7 +79,7 @@ class PricesList extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  AppStrings.prices_vegetable_name_hint,
+                                  AppStrings.prices_vegetable_name,
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColor,
                                       fontSize: AppSize.s24
@@ -99,7 +99,7 @@ class PricesList extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  AppStrings.prices_ton_hint,
+                                  AppStrings.prices_ton,
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColor,
                                       fontSize: AppSize.s24
@@ -119,7 +119,7 @@ class PricesList extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  AppStrings.prices_small_shakara_hint,
+                                  AppStrings.prices_small_shakara,
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColor,
                                       fontSize: AppSize.s24
@@ -139,7 +139,7 @@ class PricesList extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  AppStrings.prices_big_shakara_hint,
+                                  AppStrings.prices_big_shakara,
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColor,
                                       fontSize: AppSize.s24
@@ -157,7 +157,8 @@ class PricesList extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Row(
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 IconButton(

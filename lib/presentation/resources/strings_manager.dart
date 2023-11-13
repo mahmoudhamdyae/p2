@@ -85,13 +85,17 @@ class AppStrings {
 
   // Prices
   static const String prices_vegetable_name_invalid = "يجب إضافة اسم للثمار";
-  static const String prices_small_shakara_invalid = "يجب إضافة حجم الشكارة";
-  static const String prices_big_shakara_invalid = "يجب إضافة حجم الشكارة";
-  static const String prices_ton_invalid = "يجب إضافة عدد الأطنان";
+  static const String prices_small_shakara_invalid = "يجب إضافة سعر الشكارة";
+  static const String prices_big_shakara_invalid = "يجب إضافة سعر الشكارة";
+  static const String prices_ton_invalid = "يجب إضافة سعر للطن";
   static const String prices_vegetable_name_hint = "اسم الثمار";
-  static const String prices_small_shakara_hint = "عدد الشكاير الكبيرة";
-  static const String prices_big_shakara_hint = "عدد الشكاير الصغيرة";
-  static const String prices_ton_hint = "عدد الأطنان";
+  static const String prices_small_shakara_hint = "سعر الشكاير الكبيرة";
+  static const String prices_big_shakara_hint = "سعر الشكاير الصغيرة";
+  static const String prices_ton_hint = "سعر الطن";
+  static const String prices_vegetable_name = "اسم الثمار: ";
+  static const String prices_small_shakara = "سعر الشكاير الكبيرة: ";
+  static const String prices_big_shakara = "سعر الشكاير الصغيرة: ";
+  static const String prices_ton = "عدد الأطنان: ";
 
   // Error handler
   static const String badRequestError = "طلب غير صالح. حاول مرة أخرى لاحقًا";
