@@ -7,6 +7,7 @@ import 'package:testt/data/services/api_service.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_controller.dart';
+import 'package:testt/presentation/main/prices/prices_controller.dart';
 import 'package:testt/presentation/main/reports/reports_controller.dart';
 
 import '../data/network/dio_factory.dart';
@@ -57,4 +58,8 @@ Future<void> initAppModule() async {
   // Reports Controller
   instance.registerLazySingleton<ReportsController>(
           () => Get.put(ReportsController(instance<ApiService>())));
+
+  // Prices Controller
+  instance.registerLazySingleton<PricesController>(
+          () => Get.put(PricesController(instance<ApiService>())));
 }

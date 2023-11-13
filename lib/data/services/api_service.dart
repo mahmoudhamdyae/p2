@@ -4,6 +4,7 @@ import 'dart:core';
 import 'package:testt/model/fridge.dart';
 import 'package:http/http.dart' as http;
 import 'package:testt/model/masrofat.dart';
+import 'package:testt/model/price.dart';
 import '../../app/app_prefs.dart';
 import '../../app/constants.dart';
 import '../../presentation/resources/strings_manager.dart';
@@ -22,6 +23,12 @@ abstract class ApiService {
   Future updateMasrof(int masrofId, int amount, String description);
   Future<Masrofat> showMasrof(int masrofId);
   Future delMasrof(int masrofId);
+
+  Future<List<Price>> getPrices(); // price get
+  Future addPrice(Price price); // price post
+  Future updatePrice(Price price); // price/1/edit put
+  Future delPrice(Price price); // price/1/delete del
+  Future<Price> showPrice(int id); // price/1/show get
 }
 
 class ApiServiceImpl implements ApiService {
@@ -236,6 +243,98 @@ class ApiServiceImpl implements ApiService {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}expense/$masrofId/edit?amount=$amount&description=$description";
+    final response = await http.put(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future addPrice(Price price) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}price";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future delPrice(Price price) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}price/${price.id}/delete";
+    final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future<List<Price>> getPrices() async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}price";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    List<Price> prices = [];
+    for (var singlePrice in responseData["prices"]) {
+      Price price = Price.fromJson(singlePrice);
+      prices.add(price);
+    }
+    return prices;
+  }
+
+  @override
+  Future<Price> showPrice(int id) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}price/$id/delete";
+    final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    return Price.fromJson(responseData["price"]);
+  }
+
+  @override
+  Future updatePrice(Price price) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}price/${price.id}/edit?vegetableName=${price.vegetableName}&ton=${price.ton}&small_shakara=${price.small_shakara}&big_shakara=${price.big_shakara}";
     final response = await http.put(
         Uri.parse(url),
         headers: {
