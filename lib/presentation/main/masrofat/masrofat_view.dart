@@ -47,7 +47,7 @@ class MasrofatView extends StatelessWidget {
           if (controller.masrofat.value.isEmpty) {
             return emptyScreen(context, "لا يوجد مصروفات");
           } else {
-            return ListView.builder(
+            return /*ListView.builder(
               itemCount: controller.masrofat.value.length,
               itemBuilder: (context, index) {
                 final item = controller.masrofat.value[index];
@@ -127,7 +127,98 @@ class MasrofatView extends StatelessWidget {
                   ),
                 );
               },
-            );
+            )*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+              DataTable(
+                columns: [
+                  DataColumn(
+                      label: Text(
+                        AppStrings.mablagh,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 23,
+                        ),
+                      )
+                  ),
+                  DataColumn(
+                      label: Text(
+                        AppStrings.desc,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 23,
+                        ),
+                      )
+                  ),
+                  DataColumn(
+                      label: Text(
+                        AppStrings.date,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 23,
+                        ),
+                      )
+                  ),
+                ],
+                rows: controller.masrofat.value.map((item) => DataRow(
+                  cells: [
+                    DataCell(
+                        Text(
+                          item.amount,
+                          style: const TextStyle(
+                            color: Colors.black45,
+                            fontSize: 14,
+                          ),
+                        )
+                    ),
+                    DataCell(
+                        Text(
+                          item.description,
+                          style: const TextStyle(
+                            color: Colors.black45,
+                            fontSize: 14,
+                          ),
+                        )
+                    ),
+                    DataCell(
+                        Text(
+                          item.date,
+                          style: const TextStyle(
+                            color: Colors.black45,
+                            fontSize: 14,
+                          ),
+                        )
+                    ),
+                  ],
+                )).toList(),
+              )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              ;
           }
         }
       }),

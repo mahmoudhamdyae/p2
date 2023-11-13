@@ -72,6 +72,10 @@ class AppStrings {
   static const String edit_masrof_button = "تعديل";
   static const String amount = "الكمية: ";
   static const String description = "الوصف: ";
+  static const String mablagh = "المبلغ";
+  static const String desc = "تفاصيل";
+  static const String date = "التاريخ";
+  static const String sum = "الإجمالى";
 
   // Error handler
   static const String badRequestError = "طلب غير صالح. حاول مرة أخرى لاحقًا";
