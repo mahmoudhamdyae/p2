@@ -259,7 +259,7 @@ class ApiServiceImpl implements ApiService {
   Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}price?vegetableName=$vegetableName&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
+    String url = "${Constants.baseUrl}price?vegetable_name=$vegetableName&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
     final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -268,6 +268,7 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
+    print("======== respo ${response.body}");
     _checkServer(response);
     await json.decode(response.body);
   }
