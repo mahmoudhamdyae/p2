@@ -77,6 +77,12 @@ class AppStrings {
   static const String date = "التاريخ";
   static const String sum = "الإجمالى";
 
+  // Settings
+  static const String fridges_button = "الثلاجات";
+  static const String prices_button = "قائمة الأسعار";
+  static const String personal_data_button = "البيانات الشخصية";
+  static const String users_button = "المستخدمين";
+
   // Error handler
   static const String badRequestError = "طلب غير صالح. حاول مرة أخرى لاحقًا";
   static const String noContent = "لا يوجد محتوى";

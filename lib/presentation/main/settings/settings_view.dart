@@ -25,7 +25,7 @@ class SettingsView extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                // عملاء
+                // الثلاجات
                 Expanded(
                   child: GestureDetector(
                     onTap: () => {
@@ -50,14 +50,14 @@ class SettingsView extends StatelessWidget {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.people,
+                              Icon(Icons.kitchen,
                                   size: 65,
                                   color: Theme.of(context).primaryColor),
                               const SizedBox(
                                 width: AppSize.s32,
                               ),
                               Text(
-                                AppStrings.clients_button,
+                                AppStrings.fridges_button,
                                 style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontSize: 25,
@@ -71,7 +71,7 @@ class SettingsView extends StatelessWidget {
                 const SizedBox(
                   height: AppSize.s32,
                 ),
-                // مصروفات
+                // قائمة الأسعار
                 Expanded(
                   child: GestureDetector(
                     onTap: () => {
@@ -96,14 +96,14 @@ class SettingsView extends StatelessWidget {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.attach_money,
+                              Icon(Icons.list,
                                   size: 65,
                                   color: Theme.of(context).primaryColor),
                               const SizedBox(
                                 width: AppSize.s32,
                               ),
                               Text(
-                                AppStrings.masrofat_button,
+                                AppStrings.prices_button,
                                 style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontSize: 25,
@@ -117,7 +117,7 @@ class SettingsView extends StatelessWidget {
                 const SizedBox(
                   height: AppSize.s32,
                 ),
-                // تقارير
+                // البيانات الشخصية
                 Expanded(
                   child: GestureDetector(
                     onTap: () => {
@@ -142,13 +142,13 @@ class SettingsView extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.bar_chart,
+                            Icon(Icons.person,
                                 size: 65, color: Theme.of(context).primaryColor),
                             const SizedBox(
                               width: AppSize.s32,
                             ),
                             Text(
-                              AppStrings.reports_button,
+                              AppStrings.personal_data_button,
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 25,
@@ -163,7 +163,7 @@ class SettingsView extends StatelessWidget {
                 const SizedBox(
                   height: AppSize.s32,
                 ),
-                // إعدادات
+                // المستخدمين
                 Expanded(
                   child: GestureDetector(
                     onTap: () => {
@@ -188,13 +188,13 @@ class SettingsView extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.settings,
+                            Icon(Icons.people,
                                 size: 65, color: Theme.of(context).primaryColor),
                             const SizedBox(
                               width: AppSize.s32,
                             ),
                             Text(
-                              AppStrings.settings_button,
+                              AppStrings.users_button,
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 25,
