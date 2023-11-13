@@ -47,14 +47,14 @@ class PricesController extends GetxController {
     }
   }
 
-  Future updatePrice(Price price) async {
+  Future updatePrice(int id, String vegetableName, int smallShakara, int bigShakara, int ton) async {
     try {
       isLoading.value = true;
       error.value = '';
-      await _apiService.updatePrice(price).then((value) {
+      await _apiService.updatePrice(id, vegetableName, smallShakara, bigShakara, ton).then((value) {
         prices.value = prices.value.map((newPrice) {
-          if (newPrice.id == price.id) {
-            return Price(price.vegetableName, price.ton, price.small_shakara, price.big_shakara, price.user_id, price.id);
+          if (newPrice.id == id) {
+            return Price(vegetableName, ton.toString(), smallShakara.toString(), bigShakara.toString(), -1, id);
           } else {
             return newPrice;
           }
