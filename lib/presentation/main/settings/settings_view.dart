@@ -29,7 +29,7 @@ class SettingsView extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () => {
-                      Navigator.pushNamed(context, Routes.clientsRoute)
+                      Navigator.pushNamed(context, Routes.fridgesRoute)
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -75,7 +75,7 @@ class SettingsView extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () => {
-                      Navigator.pushNamed(context, Routes.masrofatRoute)
+                      Navigator.pushNamed(context, Routes.pricesRoute)
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -121,7 +121,7 @@ class SettingsView extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () => {
-                      Navigator.pushNamed(context, Routes.reportsRoute)
+                      // Navigator.pushNamed(context, Routes.reportsRoute)
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -167,7 +167,7 @@ class SettingsView extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () => {
-                      Navigator.pushNamed(context, Routes.settingsRoute)
+                      // Navigator.pushNamed(context, Routes.settingsRoute)
                     },
                     child: Container(
                       decoration: BoxDecoration(
