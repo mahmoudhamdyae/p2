@@ -8,6 +8,8 @@ const String prefsKeyOnboardingScreenViewed =
     "PREFS_KEY_ONBOARDING_SCREEN_VIEWED";
 const String prefsKeyIsUserLoggedIn = "PREFS_KEY_IS_USER_LOGGED_IN";
 const String prefsKeyToken = "PREFS_KEY_TOKEN_IN";
+const String prefsKeyIsActive = "PREFS_KEY_IS_ACTIVE";
+const String prefsKeyIsAdmin = "PREFS_KEY_IS_ADMIN";
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -15,13 +17,6 @@ class AppPreferences {
   AppPreferences(this._sharedPreferences);
 
   Future<String> getAppLanguage() async {
-    // String? language = _sharedPreferences.getString(prefsKeyLang);
-    // if (language != null && language.isNotEmpty) {
-    //   return language;
-    // } else {
-    //   // Return default lang
-    //   return LanguageType.english.getValue();
-    // }
     return LanguageType.arabic.getValue();
   }
 
@@ -69,5 +64,21 @@ class AppPreferences {
 
   Future<String> getToken() async {
     return _sharedPreferences.getString(prefsKeyToken) ?? "";
+  }
+
+  Future<void> setIsActive(bool isActive) async {
+    _sharedPreferences.setBool(prefsKeyIsActive, isActive);
+  }
+
+  Future<bool> getIsActive() async {
+    return _sharedPreferences.getBool(prefsKeyIsActive) ?? false;
+  }
+
+  Future<void> setIsAdmin(bool isAdmin) async {
+    _sharedPreferences.setBool(prefsKeyIsAdmin, isAdmin);
+  }
+
+  Future<bool> getIsAdmin() async {
+    return _sharedPreferences.getBool(prefsKeyIsAdmin) ?? false;
   }
 }

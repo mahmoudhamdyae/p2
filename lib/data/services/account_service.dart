@@ -50,6 +50,10 @@ class AccountServiceImpl implements AccountService {
       throw Exception("رقم الهاتف أو كلمة المرور خاطئة");
     }
     _appPreferences.setToken(responseData["access_token"]);
+    bool isActive = responseData["user"]["active"] == "1";
+    bool isAdmin = responseData["user"]["admin"] == "1";
+    _appPreferences.setIsActive(isActive);
+    _appPreferences.setIsAdmin(isAdmin);
   }
 
   @override
