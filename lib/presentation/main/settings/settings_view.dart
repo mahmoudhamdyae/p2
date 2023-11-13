@@ -206,7 +206,7 @@ class Users extends StatelessWidget {
               child: GestureDetector(
                 onTap: () =>
                 {
-                  // Navigator.pushNamed(context, Routes.settingsRoute)
+                  Navigator.pushNamed(context, Routes.usersRoute)
                 },
                 child: Container(
                   decoration: BoxDecoration(
