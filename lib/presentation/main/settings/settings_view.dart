@@ -134,7 +134,7 @@ class SettingsView extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () =>
                       {
-                        // Navigator.pushNamed(context, Routes.reportsRoute)
+                        Navigator.pushNamed(context, Routes.personalDataRoute)
                       },
                       child: Container(
                         decoration: BoxDecoration(
