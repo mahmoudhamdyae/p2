@@ -129,24 +129,10 @@ class MasrofatView extends StatelessWidget {
                 );
               },
             )*/
-
-
-
-
-
-
-
-
-
-
-
-
-
               SizedBox(
                 width: double.infinity,
                 child: PaginatedDataTable(
-                  header: Text('Your Table Header'),
-                  rowsPerPage: 10, // Adjust the number of rows per page as needed
+                  rowsPerPage: (controller.masrofat.length < 10) ? controller.masrofat.length : 10,
                   columns: [
                     DataColumn(
                         label: Text(
@@ -178,76 +164,13 @@ class MasrofatView extends StatelessWidget {
                   ],
                   source: YourDataTableSource(data: controller.masrofat.value),
                 )
-              )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              ;
+              );
           }
         }
       }),
     );
   }
 }
-
-
-
-
-
-
-
-
-/*
-columns: [
-                      DataColumn(
-                          label: Text(
-                            AppStrings.mablagh,
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 23,
-                            ),
-                          )
-                      ),
-                      DataColumn(
-                          label: Text(
-                            AppStrings.desc,
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 23,
-                            ),
-                          )
-                      ),
-                      DataColumn(
-                          label: Text(
-                            AppStrings.date,
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 23,
-                            ),
-                          )
-                      ),
-                    ],
-
-
-* */
-
-
-
-
-
-
 
 class YourDataTableSource extends DataTableSource {
   final List<Masrofat> data;
