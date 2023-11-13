@@ -141,67 +141,70 @@ class MasrofatView extends StatelessWidget {
 
 
 
-              DataTable(
-                columns: [
-                  DataColumn(
-                      label: Text(
-                        AppStrings.mablagh,
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 23,
-                        ),
-                      )
-                  ),
-                  DataColumn(
-                      label: Text(
-                        AppStrings.desc,
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 23,
-                        ),
-                      )
-                  ),
-                  DataColumn(
-                      label: Text(
-                        AppStrings.date,
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 23,
-                        ),
-                      )
-                  ),
-                ],
-                rows: controller.masrofat.value.map((item) => DataRow(
-                  cells: [
-                    DataCell(
-                        Text(
-                          item.amount,
-                          style: const TextStyle(
-                            color: Colors.black45,
-                            fontSize: 14,
+              SizedBox(
+                width: double.infinity,
+                child: DataTable(
+                  columns: [
+                    DataColumn(
+                        label: Text(
+                          AppStrings.mablagh,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 23,
                           ),
                         )
                     ),
-                    DataCell(
-                        Text(
-                          item.description,
-                          style: const TextStyle(
-                            color: Colors.black45,
-                            fontSize: 14,
+                    DataColumn(
+                        label: Text(
+                          AppStrings.desc,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 23,
                           ),
                         )
                     ),
-                    DataCell(
-                        Text(
-                          item.date,
-                          style: const TextStyle(
-                            color: Colors.black45,
-                            fontSize: 14,
+                    DataColumn(
+                        label: Text(
+                          AppStrings.date,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 23,
                           ),
                         )
                     ),
                   ],
-                )).toList(),
+                  rows: controller.masrofat.value.map((item) => DataRow(
+                    cells: [
+                      DataCell(
+                          Text(
+                            item.amount,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 14,
+                            ),
+                          )
+                      ),
+                      DataCell(
+                          Text(
+                            item.description,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 14,
+                            ),
+                          )
+                      ),
+                      DataCell(
+                          Text(
+                            item.date,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 14,
+                            ),
+                          )
+                      ),
+                    ],
+                  )).toList(),
+                ),
               )
 
 
