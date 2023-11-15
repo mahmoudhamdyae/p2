@@ -367,7 +367,6 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
-    print("=========da ${PersonalData.fromJson(responseData).name}");
     return PersonalData.fromJson(responseData);
   }
 }
