@@ -35,7 +35,7 @@ class UsersView extends StatelessWidget {
                 await controller.getAllUsers();
               });
         } else {
-          if (controller.users.value.isEmpty || controller.users.value == List<AllUsers>.empty()) {
+          if (controller.users.value.isEmpty) {
             return emptyScreen(context, "لا يوجد عملاء");
           } else {
             return Column(
