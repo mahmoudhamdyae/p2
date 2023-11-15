@@ -48,7 +48,6 @@ class _RegisterViewState extends State<RegisterView> {
             .then((userCredential) {
               _accountService.logIn(numberController.text, passController.text).then((value) {
                 _appPreferences.setUserLoggedIn();
-                print("===========token ${_appPreferences.getToken()}");
                 Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
               });
         });

@@ -32,6 +32,7 @@ abstract class ApiService {
   Future<Price> showPrice(int id);
 
   Future<PersonalData> getPersonalData();
+  Future updatePersonalData(String name, String phone, String password, String confirmPassword);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -368,5 +369,22 @@ class ApiServiceImpl implements ApiService {
     _checkServer(response);
     final responseData = await json.decode(response.body);
     return PersonalData.fromJson(responseData);
+  }
+
+  @override
+  Future updatePersonalData(String name, String phone, String password, String confirmPassword) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}auth/update?name=$name&phone=$phone&password=$password&password_confirmation=$confirmPassword";
+    final response = await http.put(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
   }
 }
