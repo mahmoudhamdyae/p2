@@ -82,7 +82,7 @@ class PricesList extends StatelessWidget {
                                 Column(
                                   children: [
                                     Text(
-                                        item.name,
+                                      item.name,
                                       style: TextStyle(
                                         color: Theme.of(context).primaryColor,
                                         fontSize: 23,
