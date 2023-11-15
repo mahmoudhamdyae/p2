@@ -33,63 +33,82 @@ class PersonalDataView extends StatelessWidget {
                   await controller.getPersonalData();
                 });
           } else {
-            return Padding(
-              padding: const EdgeInsets.all(AppPadding.p16),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "name",
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: AppSize.s24
+            return Column(
+              children: [
+                Expanded(child: Container()),
+                Padding(
+                  padding: const EdgeInsets.all(AppPadding.p16),
+                  child: Card(
+                    elevation: AppSize.s8,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(AppPadding.p16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "اسم المستخدم: ",
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: AppSize.s24
+                                ),
+                              ),
+                              Text(
+                                controller.personalData.value.name,
+                                style: const TextStyle(
+                                    fontSize: AppSize.s24
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Text(
-                        controller.personalData.value.name,
-                        style: const TextStyle(
-                            fontSize: AppSize.s24
+                        const SizedBox(
+                          height: AppSize.s16,
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.all(AppPadding.p16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  "رقم الهاتف: ",
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: AppSize.s24
+                                ),
+                              ),
+                              Text(
+                                controller.personalData.value.phone,
+                                style: const TextStyle(
+                                    fontSize: AppSize.s24
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                  const SizedBox(
-                    height: AppSize.s16,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                          "phone",
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: AppSize.s24
-                        ),
-                      ),
-                      Text(
-                        controller.personalData.value.phone,
-                        style: const TextStyle(
-                            fontSize: AppSize.s24
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: AppSize.s16,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
+                ),
+                Expanded(child: Container()),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(AppPadding.p16),
+                      child: ElevatedButton(
                           onPressed: () {
                             Navigator.pushNamed(context, Routes.editPersonalDataRoute);
                           },
                           child: const Text("تعديل البيانات")
                       ),
-                    ],
-                  )
-                ],
-              ),
+                    ),
+                  ],
+                )
+              ],
             );
           }
         }));
