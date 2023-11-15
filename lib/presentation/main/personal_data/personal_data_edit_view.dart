@@ -40,11 +40,11 @@ class PersonalDataEditView extends StatelessWidget {
            return Obx(() {
              if (controller.isLoading.value) {
                return StateRenderer(
-                   stateRendererType: StateRendererType.popupLoadingState,
+                   stateRendererType: StateRendererType.fullScreenLoadingState,
                    retryActionFunction: () {});
              } else if (controller.error.value != '') {
                return StateRenderer(
-                   stateRendererType: StateRendererType.popupErrorState,
+                   stateRendererType: StateRendererType.fullScreenErrorState,
                    message: controller.error.value.replaceFirst("Exception: ", ""),
                    retryActionFunction: () async {
                      await controller.getPersonalData();
