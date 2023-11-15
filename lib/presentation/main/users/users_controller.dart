@@ -55,7 +55,7 @@ class UsersController extends GetxController {
       // isLoading.value = true;
       error.value = '';
       await _apiService.searchUser(query).then((value) {
-        print("============= #$value");
+        users.value = value;
         error.value = '';
         isLoading.value = false;
       });
