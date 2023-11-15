@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:testt/app/personal_data.dart';
+import 'package:testt/model/all_users.dart';
 import 'package:testt/model/fridge.dart';
 import 'package:http/http.dart' as http;
 import 'package:testt/model/masrofat.dart';
@@ -33,6 +34,9 @@ abstract class ApiService {
 
   Future<PersonalData> getPersonalData();
   Future updatePersonalData(String name, String phone, String password, String confirmPassword);
+
+  Future<List<AllUsers>> getUsers();
+  Future toggleActive(String userId);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -376,6 +380,46 @@ class ApiServiceImpl implements ApiService {
     await _checkNetwork();
     String url = "${Constants.baseUrl}auth/update?name=$name&phone=$phone&password=$password&password_confirmation=$confirmPassword";
     final response = await http.put(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future<List<AllUsers>> getUsers() async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}users";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    List<AllUsers> users = [];
+    for (var singleUser in responseData["user"]) {
+      AllUsers user = AllUsers.fromJson(singleUser);
+      users.add(user);
+    }
+    return users;
+  }
+
+  @override
+  Future toggleActive(String userId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}active_user/$userId";
+    final response = await http.get(
         Uri.parse(url),
         headers: {
           'content-type': 'application/json;charset=utf-8',

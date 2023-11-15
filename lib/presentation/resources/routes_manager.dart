@@ -5,7 +5,7 @@ import 'package:testt/presentation/main/personal_data/personal_data_view.dart';
 import 'package:testt/presentation/main/prices/prices_view.dart';
 import 'package:testt/presentation/main/reports/reports_view.dart';
 import 'package:testt/presentation/main/settings/settings_view.dart';
-import 'package:testt/presentation/main/users/user_view.dart';
+import 'package:testt/presentation/main/users/users_view.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 
 import '../auth/login/login_view.dart';
@@ -57,7 +57,7 @@ class RouteGenerator {
       case Routes.personalDataRoute:
         return MaterialPageRoute(builder: (_) => PersonalDataView());
       case Routes.usersRoute:
-        return MaterialPageRoute(builder: (_) => const UsersView());
+        return MaterialPageRoute(builder: (_) => UsersView());
       default:
         return unDefinedRoute();
     }
