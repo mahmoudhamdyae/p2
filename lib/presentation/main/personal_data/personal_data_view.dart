@@ -5,6 +5,7 @@ import 'package:testt/presentation/main/personal_data/personal_data_controller.d
 import 'package:testt/presentation/resources/strings_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
+import '../../resources/values_manager.dart';
 
 class PersonalDataView extends StatelessWidget {
   PersonalDataController controller = instance<PersonalDataController>();
@@ -31,16 +32,63 @@ class PersonalDataView extends StatelessWidget {
                   await controller.getPersonalData();
                 });
           } else {
-            return Column(
-              children: [
-                Text("name"),
-                Text(controller.personalData.value.name),
-                Text("phone"),
-                Text(controller.personalData.value.phone),
-                Text("active"),
-                Text(controller.personalData.value.active.toString()),
-                ElevatedButton(onPressed: () {}, child: Text("تعديل البيانات"))
-              ],
+            return Padding(
+              padding: const EdgeInsets.all(AppPadding.p16),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "name",
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: AppSize.s24
+                        ),
+                      ),
+                      Text(
+                        controller.personalData.value.name,
+                        style: const TextStyle(
+                            fontSize: AppSize.s24
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: AppSize.s16,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                          "phone",
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: AppSize.s24
+                        ),
+                      ),
+                      Text(
+                        controller.personalData.value.phone,
+                        style: const TextStyle(
+                            fontSize: AppSize.s24
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: AppSize.s16,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+
+                          },
+                          child: Text("تعديل البيانات")
+                      ),
+                    ],
+                  )
+                ],
+              ),
             );
           }
         }));
