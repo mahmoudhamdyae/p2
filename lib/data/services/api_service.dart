@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:core';
 
+import 'package:testt/app/personal_data.dart';
 import 'package:testt/model/fridge.dart';
 import 'package:http/http.dart' as http;
 import 'package:testt/model/masrofat.dart';
@@ -24,11 +25,13 @@ abstract class ApiService {
   Future<Masrofat> showMasrof(int masrofId);
   Future delMasrof(int masrofId);
 
-  Future<List<Price>> getPrices(); // price get
-  Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton); // price post
-  Future updatePrice(int id, String vegetableName, int smallShakara, int bigShakara, int ton); // price/1/edit put
-  Future delPrice(Price price); // price/1/delete del
-  Future<Price> showPrice(int id); // price/1/show get
+  Future<List<Price>> getPrices();
+  Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton);
+  Future updatePrice(int id, String vegetableName, int smallShakara, int bigShakara, int ton);
+  Future delPrice(Price price);
+  Future<Price> showPrice(int id);
+
+  Future<PersonalData> getPersonalData();
 }
 
 class ApiServiceImpl implements ApiService {
@@ -347,5 +350,24 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     await json.decode(response.body);
+  }
+
+  @override
+  Future<PersonalData> getPersonalData() async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}user";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    print("=========da ${PersonalData.fromJson(responseData).name}");
+    return PersonalData.fromJson(responseData);
   }
 }

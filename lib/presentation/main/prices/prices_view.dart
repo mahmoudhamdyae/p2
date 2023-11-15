@@ -2,7 +2,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testt/app/di.dart';
-import 'package:testt/presentation/main/fridges/dialogs/add_ambar_dialog.dart';
 import 'package:testt/presentation/main/prices/prices_controller.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 import 'package:testt/presentation/resources/values_manager.dart';

@@ -54,7 +54,7 @@ class RouteGenerator {
       case Routes.reportsRoute:
         return MaterialPageRoute(builder: (_) => ReportsView());
       case Routes.personalDataRoute:
-        return MaterialPageRoute(builder: (_) => const PersonalDataView());
+        return MaterialPageRoute(builder: (_) => PersonalDataView());
       case Routes.usersRoute:
         return MaterialPageRoute(builder: (_) => const UsersView());
       default:
