@@ -37,6 +37,7 @@ abstract class ApiService {
 
   Future<List<AllUsers>> getUsers();
   Future toggleActive(String userId);
+  Future<List<AllUsers>> searchUser(String query);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -429,5 +430,28 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     await json.decode(response.body);
+  }
+
+  @override
+  Future<List<AllUsers>> searchUser(String query) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}user/search?query=$query";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    List<AllUsers> users = [];
+    for (var singleUser in responseData["results"]) {
+      AllUsers user = AllUsers.fromJson(singleUser);
+      users.add(user);
+    }
+    return users;
   }
 }

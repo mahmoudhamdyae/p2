@@ -38,70 +38,80 @@ class UsersView extends StatelessWidget {
           if (controller.users.value.isEmpty || controller.users.value == List<AllUsers>.empty()) {
             return emptyScreen(context, "لا يوجد عملاء");
           } else {
-            return ListView.builder(
-                itemCount: controller.users.value.length,
-                itemBuilder: (context, index) {
-                  final item = controller.users.value[index];
-              return Padding(
-                padding: EdgeInsets.all(AppPadding.p8),
-                child: Card(
-                elevation: AppPadding.p8,
-                child: Padding(
-                  padding: EdgeInsets.all(AppPadding.p16),
-                  child: Row(
-                    children: [
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                  "اسم المستخدم: ",
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 20,
-                                  )
-                              ),
-                              Text(
-                                item.name,
-                                style: const TextStyle(
-                                  fontSize: 15,
+            return Column(
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      controller.search("m");
+                    }, child: const Text("بحث")),
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: controller.users.value.length,
+                      itemBuilder: (context, index) {
+                        final item = controller.users.value[index];
+                    return Padding(
+                      padding: const EdgeInsets.all(AppPadding.p8),
+                      child: Card(
+                      elevation: AppPadding.p8,
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppPadding.p16),
+                        child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                        "اسم المستخدم: ",
+                                        style: TextStyle(
+                                          color: Theme.of(context).primaryColor,
+                                          fontSize: 20,
+                                        )
+                                    ),
+                                    Text(
+                                      item.name,
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                      ),
+                                    )
+                                  ]
                                 ),
-                              )
-                            ]
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                  "رقم الهاتف: ",
-                                  style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 20,
-                                  )
-                              ),
-                              Text(
-                                item.phone,
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                ),
-                              )
-                            ],
-                          )
-                        ],
+                                Row(
+                                  children: [
+                                    Text(
+                                        "رقم الهاتف: ",
+                                        style: TextStyle(
+                                          color: Theme.of(context).primaryColor,
+                                          fontSize: 20,
+                                        )
+                                    ),
+                                    Text(
+                                      item.phone,
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            Expanded(child: Container()),
+                            ElevatedButton(
+                                onPressed: () => {
+                                  controller.toggleActive(item.id.toString())
+                                },
+                                child: Text(
+                                    item.active == 0 ? "تفعيل" : "إلغاء تفعيل"
+                                )
+                            )
+                          ],
+                        ),
                       ),
-                      Expanded(child: Container()),
-                      ElevatedButton(
-                          onPressed: () => {
-                            controller.toggleActive(item.id.toString())
-                          },
-                          child: Text(
-                              item.active == 0 ? "تفعيل" : "إلغاء تفعيل"
-                          )
-                      )
-                    ],
+                    ),
+                    );},
                   ),
                 ),
-              ),
-              );},
+              ],
             );
           }
         }
