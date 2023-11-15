@@ -13,7 +13,7 @@ class UsersController extends GetxController {
 
   Future getAllUsers() async {
     try {
-      isLoading.value = true;
+      // isLoading.value = true;
       users.value = List<AllUsers>.empty();
       error.value = '';
       await _apiService.getUsers().then((value) {
@@ -30,12 +30,11 @@ class UsersController extends GetxController {
 
   Future toggleActive(String userId) async {
     try {
-      isLoading.value = true;
-      users.value = List<AllUsers>.empty();
+      // isLoading.value = true;
       error.value = '';
       await _apiService.toggleActive(userId).then((value) {
         users.value = users.value.map((user) {
-        if (user.id == userId) {
+        if (user.id.toString() == userId) {
           final active = user.active == 0 ? 1 : 0;
           return AllUsers(user.id, user.name, user.phone, active);
       } else {
@@ -47,7 +46,6 @@ class UsersController extends GetxController {
       });
     } on Exception catch (e) {
       error.value = e.toString();
-      users.value = List<AllUsers>.empty();
       isLoading.value = false;
     }
   }
