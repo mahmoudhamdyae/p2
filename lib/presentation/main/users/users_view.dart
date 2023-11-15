@@ -13,6 +13,7 @@ class UsersView extends StatelessWidget {
   UsersView({super.key});
 
   final UsersController controller = instance<UsersController>();
+  TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,21 @@ class UsersView extends StatelessWidget {
           } else {
             return Column(
               children: [
+                TextField(
+                  controller: searchController,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      hintText: "بحث",
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1)
+                      )
+                  ),
+                  onChanged: (String query) {
+                    controller.search(query);
+                  },
+                ),
                 ElevatedButton(
                     onPressed: () {
                       controller.search("6");
