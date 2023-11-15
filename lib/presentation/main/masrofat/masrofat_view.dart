@@ -44,7 +44,7 @@ class MasrofatView extends StatelessWidget {
                 await controller.getMasrofat();
               });
         } else {
-          if (controller.masrofat.value.isEmpty) {
+          if (controller.masrofat.value.isEmpty || controller.masrofat.value == List<Masrofat>.empty()) {
             return emptyScreen(context, "لا يوجد مصروفات");
           } else {
             return

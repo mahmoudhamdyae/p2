@@ -181,13 +181,12 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
-    print("=========res data sunm ${responseData["sum"]}");
     List<Masrofat> masrofat = [];
     for (var singleMasrof in responseData["expense"]) {
       Masrofat masrof = Masrofat.fromJson(singleMasrof);
       masrofat.add(masrof);
     }
-    return (masrofat, responseData["sum"] as int);
+    return (masrofat, responseData["sum"] as int? ?? 0);
   }
 
   @override
