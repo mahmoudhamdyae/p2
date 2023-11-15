@@ -54,7 +54,15 @@ class _MainViewState extends State<MainView> {
             if (snapshot.data == true) {
               return const MainContent();
             } else {
-              return const Text("لا يمكن الدخول");
+              return const Center(
+                  child: Text(
+                      "هذا الحساب غير مفعل\nبرجاء التواصل مع مالك التطبيق",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: AppSize.s16
+                    ),
+                  )
+              );
             }
           } else {
             return Container();
