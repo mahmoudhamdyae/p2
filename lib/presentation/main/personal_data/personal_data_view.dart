@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/presentation/main/personal_data/personal_data_controller.dart';
+import 'package:testt/presentation/resources/routes_manager.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
@@ -81,9 +82,9 @@ class PersonalDataView extends StatelessWidget {
                     children: [
                       ElevatedButton(
                           onPressed: () {
-
+                            Navigator.pushNamed(context, Routes.editPersonalDataRoute);
                           },
-                          child: Text("تعديل البيانات")
+                          child: const Text("تعديل البيانات")
                       ),
                     ],
                   )

@@ -12,6 +12,7 @@ import '../auth/login/login_view.dart';
 import '../auth/register/register_view.dart';
 import '../main/fridges/fridges_view.dart';
 import '../main/main_view.dart';
+import '../main/personal_data/personal_data_edit_view.dart';
 import '../splash/splash_view.dart';
 
 class Routes {
@@ -27,6 +28,7 @@ class Routes {
   static const String clientsRoute = "/clients";
   static const String reportsRoute = "/reports";
   static const String personalDataRoute = "/personal_data";
+  static const String editPersonalDataRoute = "/edit_personal_data";
   static const String usersRoute = "/users";
 }
 
@@ -57,6 +59,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => PersonalDataView());
       case Routes.usersRoute:
         return MaterialPageRoute(builder: (_) => const UsersView());
+      case Routes.editPersonalDataRoute:
+        return MaterialPageRoute(builder: (_) => PersonalDataEditView());
       default:
         return unDefinedRoute();
     }
