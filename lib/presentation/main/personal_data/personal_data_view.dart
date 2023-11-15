@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/presentation/main/personal_data/personal_data_controller.dart';
-import 'package:testt/presentation/resources/routes_manager.dart';
+import 'package:testt/presentation/main/personal_data/personal_data_edit_view.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
@@ -101,7 +101,8 @@ class PersonalDataView extends StatelessWidget {
                       padding: const EdgeInsets.all(AppPadding.p16),
                       child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, Routes.editPersonalDataRoute);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => PersonalDataEditView(userName: controller.personalData.value.name)));
                           },
                           child: const Text("تعديل البيانات")
                       ),

@@ -12,7 +12,8 @@ import '../../common/state_renderer/state_renderer.dart';
 import '../../resources/strings_manager.dart';
 
 class PersonalDataEditView extends StatelessWidget {
-  PersonalDataEditView({super.key});
+  final String userName;
+  PersonalDataEditView({super.key, required this.userName});
 
   PersonalDataController controller = instance<PersonalDataController>();
   TextEditingController nameController = TextEditingController();
@@ -32,9 +33,10 @@ class PersonalDataEditView extends StatelessWidget {
         future: _sharedPreferences.getUser(),
         builder: (BuildContext context, AsyncSnapshot<SharedUser> snapshot) {
           if (snapshot.hasData) {
-            nameController.text = snapshot.data?.userName ?? "";
+            nameController.text = userName;
             numberController.text = snapshot.data?.number ?? "";
             passController.text = snapshot.data?.password ?? "";
+            confirmPassController.text = snapshot.data?.password ?? "";
            return Obx(() {
              if (controller.isLoading.value) {
                return StateRenderer(
