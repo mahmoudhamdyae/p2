@@ -36,6 +36,8 @@ class PersonalDataController extends GetxController {
       isLoading.value = true;
       error.value = '';
       await _apiService.updatePersonalData(name, phone, password, confirmPassword).then((value) {
+        personalData.value.name = name;
+        personalData.value.phone = phone;
         error.value = '';
         isLoading.value = false;
       });

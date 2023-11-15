@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:testt/app/app_prefs.dart';
 import 'package:testt/presentation/main/personal_data/personal_data_controller.dart';
+import 'package:testt/presentation/resources/routes_manager.dart';
 import 'package:testt/presentation/resources/values_manager.dart';
 
 import '../../../app/di.dart';
@@ -31,6 +32,9 @@ class PersonalDataEditView extends StatelessWidget {
         future: _sharedPreferences.getUser(),
         builder: (BuildContext context, AsyncSnapshot<SharedUser> snapshot) {
           if (snapshot.hasData) {
+            nameController.text = snapshot.data?.userName ?? "";
+            numberController.text = snapshot.data?.number ?? "";
+            passController.text = snapshot.data?.password ?? "";
            return Obx(() {
              if (controller.isLoading.value) {
                return StateRenderer(
@@ -148,7 +152,9 @@ class PersonalDataEditView extends StatelessWidget {
                            height: AppSize.s40,
                            child: ElevatedButton(
                              onPressed: () async {
-                               await controller.updatePersonalData(nameController.text, numberController.text, passController.text, confirmPassController.text);
+                               await controller.updatePersonalData(nameController.text, numberController.text, passController.text, confirmPassController.text).then((value) => {
+                                 Navigator.pop(context)
+                               });
                              },
                              child: Text(
                                "تعديل البيانات",
