@@ -47,7 +47,20 @@ class _MainViewState extends State<MainView> {
               })
         ],
       ),
-      body: const MainContent(),
+      body: FutureBuilder(
+        future: _appPreferences.getIsActive(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data == true) {
+              return const MainContent();
+            } else {
+              return const Text("لا يمكن الدخول");
+            }
+          } else {
+            return Container();
+          }
+        },
+      ),
     );
   }
 }

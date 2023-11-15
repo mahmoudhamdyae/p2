@@ -75,7 +75,8 @@ class AppPreferences {
   }
 
   Future<bool> getIsActive() async {
-    return _sharedPreferences.getBool(prefsKeyIsActive) ?? false;
+    final s =  _sharedPreferences.getBool(prefsKeyIsActive) ?? false;
+    return s;
   }
 
   Future<void> setIsAdmin(bool isAdmin) async {
