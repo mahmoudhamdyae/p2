@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../model/shared_user.dart';
 import '../presentation/resources/language_manager.dart';
 
 const String prefsKeyLang = "PREFS_KEY_LANG";
@@ -10,6 +11,9 @@ const String prefsKeyIsUserLoggedIn = "PREFS_KEY_IS_USER_LOGGED_IN";
 const String prefsKeyToken = "PREFS_KEY_TOKEN_IN";
 const String prefsKeyIsActive = "PREFS_KEY_IS_ACTIVE";
 const String prefsKeyIsAdmin = "PREFS_KEY_IS_ADMIN";
+const String prefsKeyUserName = "PREFS_KEY_USER_NAME";
+const String prefsKeyNumber = "PREFS_KEY_NUMBER";
+const String prefsKeyPassword = "PREFS_KEY_PASSWORD";
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -80,5 +84,19 @@ class AppPreferences {
 
   Future<bool> getIsAdmin() async {
     return _sharedPreferences.getBool(prefsKeyIsAdmin) ?? false;
+  }
+
+  Future<void> saveUser(SharedUser sharedUser) async {
+    _sharedPreferences.setString(prefsKeyUserName, sharedUser.userName);
+    _sharedPreferences.setString(prefsKeyNumber, sharedUser.number);
+    _sharedPreferences.setString(prefsKeyPassword, sharedUser.password);
+  }
+
+  Future<SharedUser> getUser() async {
+    final name =  _sharedPreferences.getString(prefsKeyUserName) ?? "";
+    final number = _sharedPreferences.getString(prefsKeyNumber) ?? "";
+    final password =  _sharedPreferences.getString(prefsKeyPassword) ?? "";
+
+    return SharedUser(name, number, password);
   }
 }

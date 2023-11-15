@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:testt/app/constants.dart';
+import 'package:testt/model/shared_user.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 
 import '../../app/app_prefs.dart';
@@ -9,7 +10,7 @@ import '../network/network_info.dart';
 
 abstract class AccountService {
   Future signUp(String userName, String password, String repeatedPassword, String phone);
-  Future logIn(String phone, String password);
+  Future logIn(String phone, String password, {String userName});
   Future signOut();
 }
 
@@ -39,7 +40,7 @@ class AccountServiceImpl implements AccountService {
   }
 
   @override
-  Future logIn(String phone, String password)  async {
+  Future logIn(String phone, String password, {String userName = ""})  async {
     await _checkNetwork();
     String url = "${Constants.baseUrl}auth/login?&password=$password&phone=$phone";
     final response = await http.post(Uri.parse(url));
@@ -54,6 +55,7 @@ class AccountServiceImpl implements AccountService {
     bool isAdmin = responseData["user"]["admin"] == "1";
     _appPreferences.setIsActive(isActive);
     _appPreferences.setIsAdmin(isAdmin);
+    _appPreferences.saveUser(SharedUser("", phone, password));
   }
 
   @override

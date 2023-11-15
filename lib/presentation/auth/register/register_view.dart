@@ -46,7 +46,7 @@ class _RegisterViewState extends State<RegisterView> {
         showLoading(context);
         await _accountService.signUp(nameController.text, passController.text, confirmPassController.text, numberController.text)
             .then((userCredential) {
-              _accountService.logIn(numberController.text, passController.text).then((value) {
+              _accountService.logIn(numberController.text, passController.text, userName: nameController.text).then((value) {
                 _appPreferences.setUserLoggedIn();
                 Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
               });
