@@ -419,7 +419,7 @@ class ApiServiceImpl implements ApiService {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}active_user/$userId";
-    final response = await http.get(
+    final response = await http.put(
         Uri.parse(url),
         headers: {
           'content-type': 'application/json;charset=utf-8',

@@ -48,41 +48,54 @@ class UsersView extends StatelessWidget {
                 elevation: AppPadding.p8,
                 child: Padding(
                   padding: EdgeInsets.all(AppPadding.p16),
-                  child: Column(
+                  child: Row(
                     children: [
-                      Row(
+                      Column(
                         children: [
-                          Text(
-                              "اسم المستخدم: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 20,
+                          Row(
+                            children: [
+                              Text(
+                                  "اسم المستخدم: ",
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 20,
+                                  )
+                              ),
+                              Text(
+                                item.name,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                ),
                               )
+                            ]
                           ),
-                          Text(
-                            item.name,
-                            style: const TextStyle(
-                              fontSize: 15,
-                            ),
-                          )
-                        ]
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                              "رقم الهاتف: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 20,
+                          Row(
+                            children: [
+                              Text(
+                                  "رقم الهاتف: ",
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 20,
+                                  )
+                              ),
+                              Text(
+                                item.phone,
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                ),
                               )
-                          ),
-                          Text(
-                            item.phone,
-                            style: const TextStyle(
-                              fontSize: 15,
-                            ),
+                            ],
                           )
                         ],
+                      ),
+                      Expanded(child: Container()),
+                      ElevatedButton(
+                          onPressed: () => {
+                            controller.toggleActive(item.id.toString())
+                          },
+                          child: Text(
+                              item.active == 0 ? "تفعيل" : "إلغاء تفعيل"
+                          )
                       )
                     ],
                   ),
