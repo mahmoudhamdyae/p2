@@ -89,6 +89,7 @@ flutter:
     - assets/images/change_lang_ic.svg
     - assets/images/logout_ic.svg
     - assets/images/settings_right_arrow_ic.svg
+    - assets/images/background_image.jpg
     - assets/json/loading.json
     - assets/json/error.json
     - assets/json/empty.json

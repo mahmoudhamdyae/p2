@@ -6,6 +6,7 @@ import 'package:testt/presentation/resources/values_manager.dart';
 import '../../app/app_prefs.dart';
 import '../../app/di.dart';
 import '../../data/services/account_service.dart';
+import '../resources/assets_manager.dart';
 import '../resources/routes_manager.dart';
 
 class MainView extends StatefulWidget {
@@ -47,51 +48,59 @@ class _MainViewState extends State<MainView> {
               })
         ],
       ),
-      body: FutureBuilder(
-        future: _appPreferences.getIsActive(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data == true) {
-              return const MainContent();
+      body: Stack(
+          fit: StackFit.expand,
+          children: [
+          Image.asset(
+            ImageAssets.backgroundImage, // Replace with your image path
+            fit: BoxFit.fill,
+          ),
+          FutureBuilder(
+          future: _appPreferences.getIsActive(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data == true) {
+                return const MainContent();
+              } else {
+                return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                            "هذا الحساب غير مفعل\nبرجاء التواصل معنا من خلال",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: AppSize.s24
+                          ),
+                        ),
+                        const SizedBox(
+                          height: AppSize.s16,
+                        ),
+                        const Text(
+                          "مكالمات & واتساب:",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: AppSize.s24
+                          ),
+                        ),
+                        Text(
+                          "01080760364",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: AppSize.s24
+                          ),
+                        ),
+                      ],
+                    )
+                );
+              }
             } else {
-              return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                          "هذا الحساب غير مفعل\nبرجاء التواصل معنا من خلال",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: AppSize.s24
-                        ),
-                      ),
-                      const SizedBox(
-                        height: AppSize.s16,
-                      ),
-                      const Text(
-                        "مكالمات & واتساب:",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: AppSize.s24
-                        ),
-                      ),
-                      Text(
-                        "01080760364",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: AppSize.s24
-                        ),
-                      ),
-                    ],
-                  )
-              );
+              return Container();
             }
-          } else {
-            return Container();
-          }
-        },
-      ),
+          },
+        ),
+      ]),
     );
   }
 }
@@ -126,7 +135,7 @@ class _MainContentState extends State<MainContent> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppSize.s16),
-                      color: Colors.white,
+                      color: Colors.white.withOpacity(.8),
                       boxShadow: [
                         BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -172,7 +181,7 @@ class _MainContentState extends State<MainContent> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppSize.s16),
-                      color: Colors.white,
+                      color: Colors.white.withOpacity(.8),
                       boxShadow: [
                         BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -224,7 +233,7 @@ class _MainContentState extends State<MainContent> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppSize.s16),
-                      color: Colors.white,
+                      color: Colors.white.withOpacity(.8),
                       boxShadow: [
                         BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -270,7 +279,7 @@ class _MainContentState extends State<MainContent> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppSize.s16),
-                      color: Colors.white,
+                      color: Colors.white.withOpacity(.8),
                       boxShadow: [
                         BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
