@@ -8,7 +8,6 @@ import 'package:testt/presentation/resources/strings_manager.dart';
 import 'package:testt/presentation/resources/values_manager.dart';
 
 import '../../../common/state_renderer/state_renderer.dart';
-import '../../../component/empty.dart';
 
 class ViewFridgeView extends StatelessWidget {
   FridgesController controller = instance<FridgesController>();
@@ -134,11 +133,44 @@ class ViewFridgeView extends StatelessWidget {
                                             right: AppPadding.p16,
                                             left: AppPadding.p16
                                         ),
-                                        child: Text(
-                                          controller.fridge.value.ambers[index].name,
-                                          style: const TextStyle(
-                                              fontSize: AppSize.s24
-                                          ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              controller.fridge.value.ambers[index].name,
+                                              style: const TextStyle(
+                                                  fontSize: AppSize.s24
+                                              ),
+                                            ),
+                                            Expanded(child: Container()),
+                                            IconButton(
+                                              onPressed: () async {
+                                                controller.updateAmber(controller.fridge.value.ambers[index].id);
+                                              },
+                                              icon: const Icon(
+                                                Icons.edit,
+                                                color: Colors.black38,
+                                              ),
+                                            ),
+                                            IconButton(
+                                              onPressed: () async {
+                                                return AwesomeDialog(
+                                                    btnCancelText: "الغاء",
+                                                    btnOkText: "حذف",
+                                                    context: context,
+                                                    dialogType: DialogType.noHeader,
+                                                    title: "حذف العنبر",
+                                                    desc: "هل أنت متأكد من حذف ${controller.fridge.value.ambers[index].name} ؟",
+                                                    btnCancelOnPress: () {},
+                                                    btnOkOnPress: () async {
+                                                      await controller.delAmber(controller.fridge.value.ambers[index]);
+                                                    }).show();
+                                              },
+                                              icon: const Icon(
+                                                Icons.delete,
+                                                color: Colors.black38,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),

@@ -19,6 +19,8 @@ abstract class ApiService {
   Future updateFridge(int id, String name);
   Future<Fridge> showFridge(int id);
   Future addAmber(int fridgeId, String anbarName);
+  Future delAmber(int amberId);
+  Future updateAmber(int amberId);
 
   Future<(List<Masrofat>, int)> getMasrofat();
   Future addMasrof(int amount, String description);
@@ -454,5 +456,39 @@ class ApiServiceImpl implements ApiService {
       users.add(user);
     }
     return users;
+  }
+
+  @override
+  Future delAmber(int amberId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}amber/$amberId/delete";
+    final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future updateAmber(int amberId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}amber/$amberId/edit";
+    final response = await http.put(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
   }
 }

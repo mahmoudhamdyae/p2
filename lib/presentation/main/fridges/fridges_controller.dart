@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:testt/model/amber.dart';
 
 import '../../../data/services/api_service.dart';
 import '../../../model/fridge.dart';
@@ -112,6 +113,35 @@ class FridgesController extends GetxController {
       error.value = '';
       await _apiService.showFridge(fridgeId).then((fridgeApi) {
         fridge.value = fridgeApi;
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> delAmber(Amber amber) async {
+    try {
+      // isLoading.value = true;
+      // error.value = '';
+      await _apiService.delAmber(amber.id).then((value) {
+        showFridge(fridge.value.id);
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> updateAmber(int amberId) async {
+    try {
+      // isLoading.value = true;
+      // error.value = '';
+      await _apiService.updateAmber(amberId).then((value) {
         error.value = '';
         isLoading.value = false;
       });
