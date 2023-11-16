@@ -53,6 +53,7 @@ class MasrofatView extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: PaginatedDataTable(
+                      columnSpacing: 10,
                       rowsPerPage: (controller.masrofat.length < 10) ? controller.masrofat.length : 10,
                       columns: [
                         DataColumn(
@@ -60,7 +61,7 @@ class MasrofatView extends StatelessWidget {
                               AppStrings.mablagh,
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
-                                fontSize: 23,
+                                fontSize: 22,
                               ),
                             )
                         ),
@@ -69,7 +70,7 @@ class MasrofatView extends StatelessWidget {
                               AppStrings.desc,
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
-                                fontSize: 23,
+                                fontSize: 22,
                               ),
                             )
                         ),
@@ -78,7 +79,7 @@ class MasrofatView extends StatelessWidget {
                               AppStrings.date,
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
-                                fontSize: 23,
+                                fontSize: 22,
                               ),
                             )
                         ),
