@@ -80,7 +80,7 @@ class CustomDialog extends StatelessWidget {
                   }
                 }
               },
-              child: const Text(AppStrings.add_fridge_button),
+              child: const Text("إضافة العنبر"),
             ),
           ],
         ),
