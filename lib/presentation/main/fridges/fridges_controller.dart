@@ -124,7 +124,7 @@ class FridgesController extends GetxController {
 
   Future<void> delAmber(Amber amber) async {
     try {
-      // isLoading.value = true;
+      isLoading.value = true;
       // error.value = '';
       await _apiService.delAmber(amber.id).then((value) {
         showFridge(fridge.value.id);
