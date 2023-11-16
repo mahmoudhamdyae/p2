@@ -21,114 +21,120 @@ class UsersView extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AppStrings.users_button),
       ),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return StateRenderer(
-              stateRendererType: StateRendererType.fullScreenLoadingState,
-              retryActionFunction: () {});
-        } else if (controller.error.value != '') {
-          return StateRenderer(
-              stateRendererType: StateRendererType.fullScreenErrorState,
-              message: controller.error.value.replaceFirst(
-                  "Exception: ", ""),
-              retryActionFunction: () async {
-                await controller.getAllUsers();
-              });
-        } else {
-          if (controller.users.value.isEmpty) {
-            return emptyScreen(context, "لا يوجد عملاء");
-          } else {
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(AppPadding.p8),
-                  child: TextField(
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.text,
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.search),
-                        hintText: "بحث",
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1)
-                        )
-                    ),
-                    onChanged: (String query) {
-                      controller.search(query);
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                      itemCount: controller.users.value.length,
-                      itemBuilder: (context, index) {
-                        final item = controller.users.value[index];
-                    return Padding(
-                      padding: const EdgeInsets.all(AppPadding.p8),
-                      child: Card(
-                      elevation: AppPadding.p8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(AppPadding.p16),
-                        child: Row(
-                          children: [
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                        "اسم المستخدم: ",
-                                        style: TextStyle(
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 20,
-                                        )
-                                    ),
-                                    Text(
-                                      item.name,
-                                      style: const TextStyle(
-                                        fontSize: 15,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p8),
+            child: TextField(
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: "بحث",
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 1)
+                  )
+              ),
+              onChanged: (String query) {
+                controller.search(query);
+              },
+            ),
+          ),
+          Expanded(
+            child: Obx(() {
+              if (controller.isLoading.value) {
+                return StateRenderer(
+                    stateRendererType: StateRendererType.fullScreenLoadingState,
+                    retryActionFunction: () {});
+              } else if (controller.error.value != '') {
+                return StateRenderer(
+                    stateRendererType: StateRendererType.fullScreenErrorState,
+                    message: controller.error.value.replaceFirst(
+                        "Exception: ", ""),
+                    retryActionFunction: () async {
+                      await controller.getAllUsers();
+                    });
+              } else {
+                if (controller.users.value.isEmpty) {
+                  return emptyScreen(context, "لا يوجد عملاء");
+                } else {
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                            itemCount: controller.users.value.length,
+                            itemBuilder: (context, index) {
+                              final item = controller.users.value[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(AppPadding.p8),
+                            child: Card(
+                            elevation: AppPadding.p8,
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppPadding.p16),
+                              child: Row(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                              "اسم المستخدم: ",
+                                              style: TextStyle(
+                                                color: Theme.of(context).primaryColor,
+                                                fontSize: 20,
+                                              )
+                                          ),
+                                          Text(
+                                            item.name,
+                                            style: const TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          )
+                                        ]
                                       ),
-                                    )
-                                  ]
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                        "رقم الهاتف: ",
-                                        style: TextStyle(
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 20,
-                                        )
-                                    ),
-                                    Text(
-                                      item.phone,
-                                      style: const TextStyle(
-                                        fontSize: 15,
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
+                                      Row(
+                                        children: [
+                                          Text(
+                                              "رقم الهاتف: ",
+                                              style: TextStyle(
+                                                color: Theme.of(context).primaryColor,
+                                                fontSize: 20,
+                                              )
+                                          ),
+                                          Text(
+                                            item.phone,
+                                            style: const TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Expanded(child: Container()),
+                                  ElevatedButton(
+                                      onPressed: () => {
+                                        controller.toggleActive(item.id.toString())
+                                      },
+                                      child: Text(
+                                          item.active == 0 ? "تفعيل" : "إلغاء تفعيل"
+                                      )
+                                  )
+                                ],
+                              ),
                             ),
-                            Expanded(child: Container()),
-                            ElevatedButton(
-                                onPressed: () => {
-                                  controller.toggleActive(item.id.toString())
-                                },
-                                child: Text(
-                                    item.active == 0 ? "تفعيل" : "إلغاء تفعيل"
-                                )
-                            )
-                          ],
+                          ),
+                          );},
                         ),
                       ),
-                    ),
-                    );},
-                  ),
-                ),
-              ],
-            );
-          }
-        }
-      }),
+                    ],
+                  );
+                }
+              }
+            }),
+          ),
+        ],
+      ),
     );
   }
 }
