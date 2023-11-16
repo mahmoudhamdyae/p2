@@ -92,10 +92,10 @@ class AppStrings {
   static const String prices_small_shakara_hint = "سعر الشكاير الكبيرة";
   static const String prices_big_shakara_hint = "سعر الشكاير الصغيرة";
   static const String prices_ton_hint = "سعر الطن";
-  static const String prices_vegetable_name = "اسم الثمار: ";
+  static const String prices_vegetable_name = "النوع: ";
   static const String prices_small_shakara = "سعر الشكاير الكبيرة: ";
   static const String prices_big_shakara = "سعر الشكاير الصغيرة: ";
-  static const String prices_ton = "عدد الأطنان: ";
+  static const String prices_ton = "سعر الطن: ";
 
   // Error handler
   static const String badRequestError = "طلب غير صالح. حاول مرة أخرى لاحقًا";
