@@ -436,7 +436,7 @@ class ApiServiceImpl implements ApiService {
   Future<List<AllUsers>> searchUser(String query) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}user/search?query=$query";
+    String url = "${Constants.baseUrl}user/search?keyword=$query";
     final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -447,8 +447,9 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
+    print("========= $responseData");
     List<AllUsers> users = [];
-    for (var singleUser in responseData["results"]) {
+    for (var singleUser in responseData["users"]) {
       AllUsers user = AllUsers.fromJson(singleUser);
       users.add(user);
     }
