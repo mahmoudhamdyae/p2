@@ -54,13 +54,36 @@ class _MainViewState extends State<MainView> {
             if (snapshot.data == true) {
               return const MainContent();
             } else {
-              return const Center(
-                  child: Text(
-                      "هذا الحساب غير مفعل\nبرجاء التواصل مع مالك التطبيق",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: AppSize.s16
-                    ),
+              return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                          "هذا الحساب غير مفعل\nبرجاء التواصل معنا من خلال",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: AppSize.s24
+                        ),
+                      ),
+                      const SizedBox(
+                        height: AppSize.s16,
+                      ),
+                      const Text(
+                        "مكالمات & واتساب:",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: AppSize.s24
+                        ),
+                      ),
+                      Text(
+                        "01080760364",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: AppSize.s24
+                        ),
+                      ),
+                    ],
                   )
               );
             }
