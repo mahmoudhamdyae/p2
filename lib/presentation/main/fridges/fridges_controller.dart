@@ -129,7 +129,7 @@ class FridgesController extends GetxController {
       await _apiService.delAmber(amber.id).then((value) {
         showFridge(fridge.value.id);
         error.value = '';
-        isLoading.value = false;
+        // isLoading.value = false;
       });
     } on Exception catch (e) {
       error.value = e.toString();
