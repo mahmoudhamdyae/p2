@@ -95,43 +95,138 @@ class MasrofatView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: PaginatedDataTable(
-                            arrowHeadColor: Theme.of(context).primaryColor,
-                            columnSpacing: 10,
-                            rowsPerPage: (controller.masrofat.length < 10) ? controller.masrofat.length : 10,
-                            columns: [
-                              DataColumn(
-                                  label: Text(
-                                    AppStrings.mablagh,
-                                    style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontSize: 22,
-                                    ),
-                                  )
-                              ),
-                              DataColumn(
-                                  label: Text(
+                        Row(
+                          children: [
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: AppPadding.p8),
+                  child: Center(
+                    child: Text(
+                    AppStrings.mablagh,
+                    style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 20,
+                    ),),
+                  ),
+                ),
+              ),
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: const EdgeInsets.all(AppPadding.p8),
+                                child: Center(
+                                  child: Text(
                                     AppStrings.desc,
                                     style: TextStyle(
                                       color: Theme.of(context).primaryColor,
-                                      fontSize: 22,
+                                      fontSize: 20,
                                     ),
-                                  )
+                                  ),
+                                ),
                               ),
-                              DataColumn(
-                                  label: Text(
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.all(AppPadding.p8),
+                                child: Center(
+                                  child: Text(
                                     AppStrings.date,
                                     style: TextStyle(
                                       color: Theme.of(context).primaryColor,
-                                      fontSize: 22,
+                                      fontSize: 20,
                                     ),
-                                  )
+                                  ),
+                                ),
                               ),
-                            ],
-                            source: YourDataTableSource(data: controller.masrofat.value, context: context, controller: controller),
-                          )
+                            ),
+
+
+                          ],
+                        ),
+
+
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: controller.masrofat.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(AppPadding.p8),
+                                child: Card(
+                                  elevation: AppSize.s8,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(AppPadding.p8),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(AppPadding.p8),
+                                              child: Text(controller.masrofat[index].amount, style: const TextStyle(
+                                                color: Colors.black45,
+                                                fontSize: 16,
+                                              ),),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(AppPadding.p8),
+                                              child: Text(controller.masrofat[index].description, style: const TextStyle(
+                                                color: Colors.black45,
+                                                fontSize: 16,
+                                              ),),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 3,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(AppPadding.p8),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Text(controller.masrofat[index].date, style: const TextStyle(
+                                                    color: Colors.black45,
+                                                    fontSize: 16,
+                                                  ),),
+                                                  IconButton(
+                                                    onPressed: () async {
+                                                      return AwesomeDialog(
+                                                          btnCancelText: "الغاء",
+                                                          btnOkText: "حذف",
+                                                          context: context,
+                                                          dialogType: DialogType.noHeader,
+                                                          title: "حذف",
+                                                          desc: "هل أنت متأكد من حذف ${controller.masrofat[index].description} ؟",
+                                                          btnCancelOnPress: () {},
+                                                          btnOkOnPress: () async {
+                                                            await controller.delMasrof(controller.masrofat[index].id);
+                                                            await controller.getMasrofat();
+                                                          }).show();
+                                                    },
+                                                    icon: const Icon(
+                                                      Icons.delete,
+                                                      color: Colors.black38,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         )
                       ],
                     );
@@ -145,7 +240,7 @@ class MasrofatView extends StatelessWidget {
   }
 }
 
-class YourDataTableSource extends DataTableSource {
+/*class YourDataTableSource extends DataTableSource {
   final BuildContext context;
   final MasrofatController controller;
   final List<Masrofat> data;
@@ -226,4 +321,4 @@ class YourDataTableSource extends DataTableSource {
 
   @override
   int get selectedRowCount => 0;
-}
+}*/
