@@ -12,6 +12,13 @@ class Clients2View extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        child: const Icon(Icons.add),
+        onPressed: () {
+          //
+        },
+      ),
       appBar: AppBar(
         title: const Text("عملاء"),
       ),
@@ -19,9 +26,10 @@ class Clients2View extends StatelessWidget {
         padding: const EdgeInsets.all(AppPadding.p32),
         child: Column(
           children: [
-            Expanded(child: Container()),
+            Expanded(flex: 1, child: Container()),
             // أفراد
             Expanded(
+              flex: 1,
               child: GestureDetector(
                 onTap: () =>
                 {
@@ -79,6 +87,7 @@ class Clients2View extends StatelessWidget {
             ),
             // التجار
             Expanded(
+              flex: 1,
               child: GestureDetector(
                 onTap: () =>
                 {
@@ -136,6 +145,7 @@ class Clients2View extends StatelessWidget {
             ),
             // كل العملاء
             Expanded(
+              flex: 1,
               child: GestureDetector(
                 onTap: () =>
                 {
@@ -188,7 +198,7 @@ class Clients2View extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(child: Container()),
+            Expanded(flex: 2, child: Container()),
           ],
         ),
       ),
