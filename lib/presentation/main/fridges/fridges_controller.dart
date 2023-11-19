@@ -145,8 +145,9 @@ class FridgesController extends GetxController {
         fridge.value.ambers.map((e) {
           if (e.id == amberId) e.name = amberName;
         });
-        error.value = '';
-        isLoading.value = false;
+        print("============== ${fridge.value.name}");
+        // error.value = '';
+        // isLoading.value = false;
       });
     } on Exception catch (e) {
       error.value = e.toString();

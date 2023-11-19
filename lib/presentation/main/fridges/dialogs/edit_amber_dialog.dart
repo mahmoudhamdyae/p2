@@ -8,19 +8,20 @@ import '../../../component/error.dart';
 import '../../../resources/strings_manager.dart';
 import '../fridges_controller.dart';
 
-void showEditAmberDialog(BuildContext context, Amber amber) {
+void showEditAmberDialog(BuildContext context, Amber amber, String fridgeId) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return CustomDialog(amber: amber);
+      return CustomDialog(amber: amber, fridgeId: fridgeId,);
     },
   );
 }
 
 class CustomDialog extends StatefulWidget {
   final Amber amber;
+  final String fridgeId;
 
-  const CustomDialog({super.key, required this.amber});
+  const CustomDialog({super.key, required this.amber, required this.fridgeId});
 
   @override
   State<CustomDialog> createState() => _CustomDialogState();
@@ -87,11 +88,11 @@ class _CustomDialogState extends State<CustomDialog> {
                   formData.save();
                   try {
                     showLoading(context);
-                    await controller.updateAmber(widget.amber.id, widget.amber.name)
+                    await controller.updateAmber(widget.amber.id, nameController.text)
                         .then((userCredential) {
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
-                      // controller.getFridges();
+                      controller.showFridge(int.parse(widget.fridgeId));
                     });
                   } on Exception catch (e) {
                     Navigator.of(context).pop();

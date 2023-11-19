@@ -145,7 +145,7 @@ class ViewFridgeView extends StatelessWidget {
                                             Expanded(child: Container()),
                                             IconButton(
                                               onPressed: () {
-                                                showEditAmberDialog(context, controller.fridge.value.ambers[index]);
+                                                showEditAmberDialog(context, controller.fridge.value.ambers[index], controller.fridge.value.id.toString());
                                               },
                                               icon: const Icon(
                                                 Icons.edit,
