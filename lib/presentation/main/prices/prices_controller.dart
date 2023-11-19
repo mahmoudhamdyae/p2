@@ -31,6 +31,9 @@ class PricesController extends GetxController {
   }
 
   Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton) async {
+    if (prices.value.any((element) => element.vegetableName == vegetableName)) {
+      throw Exception("هذا الاسم مستخدم من قبل");
+    }
     try {
       isLoading.value = true;
       error.value = '';

@@ -137,11 +137,14 @@ class FridgesController extends GetxController {
     }
   }
 
-  Future<void> updateAmber(int amberId) async {
+  Future<void> updateAmber(int amberId, String amberName) async {
     try {
       // isLoading.value = true;
       // error.value = '';
-      await _apiService.updateAmber(amberId).then((value) {
+      await _apiService.updateAmber(amberId, amberName).then((value) {
+        fridge.value.ambers.map((e) {
+          if (e.id == amberId) e.name = amberName;
+        });
         error.value = '';
         isLoading.value = false;
       });

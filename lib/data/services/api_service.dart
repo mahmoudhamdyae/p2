@@ -20,13 +20,14 @@ abstract class ApiService {
   Future<Fridge> showFridge(int id);
   Future addAmber(int fridgeId, String anbarName);
   Future delAmber(int amberId);
-  Future updateAmber(int amberId);
+  Future updateAmber(int amberId, String amberName);
 
   Future<(List<Masrofat>, int)> getMasrofat();
   Future addMasrof(int amount, String description);
   Future updateMasrof(int masrofId, int amount, String description);
   Future<Masrofat> showMasrof(int masrofId);
   Future delMasrof(int masrofId);
+  Future<List<Masrofat>> searchMasrofat(String query);
 
   Future<List<Price>> getPrices();
   Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton);
@@ -266,6 +267,30 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
+  Future<List<Masrofat>> searchMasrofat(String query) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}expense/search?keyword=$query";;;;;;;;;;;
+    final response = await http.post(//////////////
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    print("========= $responseData");
+    List<Masrofat> masrofat = [];
+    for (var singleMasrof in responseData["expense"]) {;;;;;;;;
+      Masrofat masrof = Masrofat.fromJson(singleMasrof);
+      masrofat.add(masrof);
+    }
+    return masrofat;
+  }
+
+  @override
   Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
@@ -295,7 +320,6 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
-    print("========= ddd ${response.body}");
     _checkServer(response);
     await json.decode(response.body);
   }
@@ -313,7 +337,6 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
-    print("======== respo ${response.body}");
     _checkServer(response);
     final responseData = await json.decode(response.body);
     List<Price> prices = [];
@@ -476,10 +499,10 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future updateAmber(int amberId) async {
+  Future updateAmber(int amberId, String amberName) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}amber/$amberId/edit";
+    String url = "${Constants.baseUrl}amber/$amberId/edit?name=$amberName";
     final response = await http.put(
         Uri.parse(url),
         headers: {
@@ -489,6 +512,7 @@ class ApiServiceImpl implements ApiService {
         }
     );
     _checkServer(response);
-    await json.decode(response.body);
+    final responseData = await json.decode(response.body);
+    print("============== $responseData");
   }
 }

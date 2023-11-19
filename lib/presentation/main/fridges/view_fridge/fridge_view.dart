@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/model/fridge.dart';
+import 'package:testt/presentation/main/fridges/dialogs/edit_amber_dialog.dart';
 import 'package:testt/presentation/main/fridges/fridges_controller.dart';
 import 'package:testt/presentation/resources/strings_manager.dart';
 import 'package:testt/presentation/resources/values_manager.dart';
@@ -143,8 +144,8 @@ class ViewFridgeView extends StatelessWidget {
                                             ),
                                             Expanded(child: Container()),
                                             IconButton(
-                                              onPressed: () async {
-                                                controller.updateAmber(controller.fridge.value.ambers[index].id);
+                                              onPressed: () {
+                                                showEditAmberDialog(context, controller.fridge.value.ambers[index]);
                                               },
                                               icon: const Icon(
                                                 Icons.edit,

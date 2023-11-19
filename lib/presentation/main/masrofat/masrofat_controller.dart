@@ -99,4 +99,19 @@ class MasrofatController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future search(String query) async {
+    try {
+      // isLoading.value = true;
+      error.value = '';
+      await _apiService.searchMasrofat(query).then((value) {
+        masrofat.value = value;
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      isLoading.value = false;
+    }
+  }
 }

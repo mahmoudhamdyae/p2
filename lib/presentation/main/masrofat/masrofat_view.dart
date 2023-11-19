@@ -30,93 +30,116 @@ class MasrofatView extends StatelessWidget {
           onPressed: () {
             showAddMasrofDialog(context);
           }),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return StateRenderer(
-              stateRendererType: StateRendererType.fullScreenLoadingState,
-              retryActionFunction: () {});
-        } else if (controller.error.value != '') {
-          return StateRenderer(
-              stateRendererType: StateRendererType.fullScreenErrorState,
-              message: controller.error.value.replaceFirst(
-                  "Exception: ", ""),
-              retryActionFunction: () async {
-                await controller.getMasrofat();
-              });
-        } else {
-          if (controller.masrofat.value.isEmpty || controller.masrofat.value == List<Masrofat>.empty()) {
-            return emptyScreen(context, "لا يوجد مصروفات");
-          } else {
-            return
-              Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: PaginatedDataTable(
-                      columnSpacing: 10,
-                      rowsPerPage: (controller.masrofat.length < 10) ? controller.masrofat.length : 10,
-                      columns: [
-                        DataColumn(
-                            label: Text(
-                              AppStrings.mablagh,
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 22,
-                              ),
-                            )
-                        ),
-                        DataColumn(
-                            label: Text(
-                              AppStrings.desc,
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 22,
-                              ),
-                            )
-                        ),
-                        DataColumn(
-                            label: Text(
-                              AppStrings.date,
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 22,
-                              ),
-                            )
-                        ),
-                      ],
-                      source: YourDataTableSource(data: controller.masrofat.value, context: context, controller: controller),
-                    )
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(AppPadding.p16),
-                        child: Text(
-                          "الإجمالى: ",
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 23,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(AppPadding.p16),
-                        child: Text(
-                          controller.sum.toString(),
-                          style: const TextStyle(
-                            color: Colors.black45,
-                            fontSize: 23,
-                          ),
-                        ),
-                      ),
-                    ],
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p8),
+            child: TextField(
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: "بحث",
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 1)
                   )
-                ],
-              );
-          }
-        }
-      }),
+              ),
+              onChanged: (String query) {
+                controller.search(query);
+              },
+            ),
+          ),
+          Expanded(
+            child: Obx(() {
+              if (controller.isLoading.value) {
+                return StateRenderer(
+                    stateRendererType: StateRendererType.fullScreenLoadingState,
+                    retryActionFunction: () {});
+              } else if (controller.error.value != '') {
+                return StateRenderer(
+                    stateRendererType: StateRendererType.fullScreenErrorState,
+                    message: controller.error.value.replaceFirst(
+                        "Exception: ", ""),
+                    retryActionFunction: () async {
+                      await controller.getMasrofat();
+                    });
+              } else {
+                if (controller.masrofat.value.isEmpty || controller.masrofat.value == List<Masrofat>.empty()) {
+                  return emptyScreen(context, "لا يوجد مصروفات");
+                } else {
+                  return
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(AppPadding.p16),
+                              child: Text(
+                                "الإجمالى: ",
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 23,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(AppPadding.p16),
+                              child: Text(
+                                controller.sum.toString(),
+                                style: const TextStyle(
+                                  color: Colors.black45,
+                                  fontSize: 23,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: PaginatedDataTable(
+                            columnSpacing: 10,
+                            rowsPerPage: (controller.masrofat.length < 10) ? controller.masrofat.length : 10,
+                            columns: [
+                              DataColumn(
+                                  label: Text(
+                                    AppStrings.mablagh,
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: 22,
+                                    ),
+                                  )
+                              ),
+                              DataColumn(
+                                  label: Text(
+                                    AppStrings.desc,
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: 22,
+                                    ),
+                                  )
+                              ),
+                              DataColumn(
+                                  label: Text(
+                                    AppStrings.date,
+                                    style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: 22,
+                                    ),
+                                  )
+                              ),
+                            ],
+                            source: YourDataTableSource(data: controller.masrofat.value, context: context, controller: controller),
+                          )
+                        )
+                      ],
+                    );
+                }
+              }
+            }),
+          ),
+        ],
+      ),
     );
   }
 }
