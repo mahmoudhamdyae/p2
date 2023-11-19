@@ -32,96 +32,146 @@ class SettingsView extends StatelessWidget {
               right: AppPadding.p32,
             ),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    // الثلاجات
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () =>
-                        {
-                          Navigator.pushNamed(context, Routes.fridgesRoute)
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSize.s16),
-                            color: Colors.white.withOpacity(.8),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: const Offset(0, 3)
-                              ),
-                            ],
-                          ),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: double.infinity,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.kitchen,
-                                      size: 65,
-                                      color: Theme
-                                          .of(context)
-                                          .primaryColor),
-                                  const SizedBox(
-                                    width: AppSize.s32,
-                                  ),
-                                  Text(
-                                    AppStrings.fridges_button,
-                                    style: TextStyle(
-                                      color: Theme
-                                          .of(context)
-                                          .primaryColor,
-                                      fontSize: 25,
+                Expanded(
+                  child: Column(
+                    children: [
+                      // الثلاجات
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () =>
+                          {
+                            Navigator.pushNamed(context, Routes.fridgesRoute)
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(AppSize.s16),
+                              color: Colors.white.withOpacity(.8),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: const Offset(0, 3)
+                                ),
+                              ],
+                            ),
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: double.infinity,
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.kitchen,
+                                        size: 65,
+                                        color: Theme
+                                            .of(context)
+                                            .primaryColor),
+                                    const SizedBox(
+                                      width: AppSize.s32,
                                     ),
-                                  ),
-                                ]),
+                                    Text(
+                                      AppStrings.fridges_button,
+                                      style: TextStyle(
+                                        color: Theme
+                                            .of(context)
+                                            .primaryColor,
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                  ]),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.s32,
-                    ),
-                    // قائمة الأسعار
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () =>
-                        {
-                          Navigator.pushNamed(context, Routes.pricesRoute)
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSize.s16),
-                            color: Colors.white.withOpacity(.8),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: const Offset(0, 3)
-                              ),
-                            ],
+                      const SizedBox(
+                        height: AppSize.s32,
+                      ),
+                      // قائمة الأسعار
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () =>
+                          {
+                            Navigator.pushNamed(context, Routes.pricesRoute)
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(AppSize.s16),
+                              color: Colors.white.withOpacity(.8),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: const Offset(0, 3)
+                                ),
+                              ],
+                            ),
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: double.infinity,
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.list,
+                                        size: 65,
+                                        color: Theme
+                                            .of(context)
+                                            .primaryColor),
+                                    const SizedBox(
+                                      width: AppSize.s32,
+                                    ),
+                                    Text(
+                                      AppStrings.prices_button,
+                                      style: TextStyle(
+                                        color: Theme
+                                            .of(context)
+                                            .primaryColor,
+                                        fontSize: 25,
+                                      ),
+                                    )
+                                  ]),
+                            ),
                           ),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: double.infinity,
-                            child: Row(
+                        ),
+                      ),
+                      const SizedBox(
+                        height: AppSize.s32,
+                      ),
+                      // البيانات الشخصية
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () =>
+                          {
+                            Navigator.pushNamed(context, Routes.personalDataRoute)
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(AppSize.s16),
+                              color: Colors.white.withOpacity(.8),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: const Offset(0, 3)
+                                ),
+                              ],
+                            ),
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: double.infinity,
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.list,
-                                      size: 65,
-                                      color: Theme
+                                  Icon(Icons.person,
+                                      size: 65, color: Theme
                                           .of(context)
                                           .primaryColor),
                                   const SizedBox(
                                     width: AppSize.s32,
                                   ),
                                   Text(
-                                    AppStrings.prices_button,
+                                    AppStrings.personal_data_button,
                                     style: TextStyle(
                                       color: Theme
                                           .of(context)
@@ -129,70 +179,20 @@ class SettingsView extends StatelessWidget {
                                       fontSize: 25,
                                     ),
                                   )
-                                ]),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.s32,
-                    ),
-                    // البيانات الشخصية
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () =>
-                        {
-                          Navigator.pushNamed(context, Routes.personalDataRoute)
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSize.s16),
-                            color: Colors.white.withOpacity(.8),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: const Offset(0, 3)
+                                ],
                               ),
-                            ],
-                          ),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.person,
-                                    size: 65, color: Theme
-                                        .of(context)
-                                        .primaryColor),
-                                const SizedBox(
-                                  width: AppSize.s32,
-                                ),
-                                Text(
-                                  AppStrings.personal_data_button,
-                                  style: TextStyle(
-                                    color: Theme
-                                        .of(context)
-                                        .primaryColor,
-                                    fontSize: 25,
-                                  ),
-                                )
-                              ],
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.s32,
-                    ),
-                    // المستخدمين
-                    Users(),
-                  ],
+                      const SizedBox(
+                        height: AppSize.s32,
+                      ),
+                      // المستخدمين
+                      Users(),
+                    ],
+                  ),
                 ),
-              ),
             ]),
           )],
         )

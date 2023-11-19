@@ -28,7 +28,7 @@ class ClientsView extends StatelessWidget {
             child: GestureDetector(
               onTap: () =>
               {
-                // Navigator.pushNamed(context, Routes.fridgesRoute)
+                Navigator.pushNamed(context, Routes.clients2Route)
               },
               child: Container(
                 decoration: BoxDecoration(

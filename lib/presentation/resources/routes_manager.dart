@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testt/presentation/main/clients/clients2_view.dart';
 import 'package:testt/presentation/main/clients/clients_view.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_view.dart';
 import 'package:testt/presentation/main/personal_data/personal_data_view.dart';
@@ -26,6 +27,7 @@ class Routes {
   static const String addFridgeRoute = "/add_fridge";
   static const String pricesRoute = "/prices";
   static const String clientsRoute = "/clients";
+  static const String clients2Route = "/clients2";
   static const String reportsRoute = "/reports";
   static const String personalDataRoute = "/personal_data";
   static const String usersRoute = "/users";
@@ -58,6 +60,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => PersonalDataView());
       case Routes.usersRoute:
         return MaterialPageRoute(builder: (_) => UsersView());
+      case Routes.clients2Route:
+        return MaterialPageRoute(builder: (_) => Clients2View());
       default:
         return unDefinedRoute();
     }
