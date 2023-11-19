@@ -98,6 +98,7 @@ class MasrofatView extends StatelessWidget {
                         SizedBox(
                           width: double.infinity,
                           child: PaginatedDataTable(
+                            arrowHeadColor: Theme.of(context).primaryColor,
                             columnSpacing: 10,
                             rowsPerPage: (controller.masrofat.length < 10) ? controller.masrofat.length : 10,
                             columns: [
