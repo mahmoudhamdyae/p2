@@ -1,16 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:testt/app/di.dart';
-import 'package:testt/presentation/main/clients/clients_controller.dart';
 
-class Clients2View extends StatelessWidget {
-  Clients2View({super.key});
+import '../../../app/di.dart';
+import 'clients_controller.dart';
+
+class PeriodsView extends StatelessWidget {
+  PeriodsView({super.key});
   final ClientsController controller = instance<ClientsController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("عملاء"),
+        title: const Text("الفترات"),
       ),
       body: Placeholder(),
     );
