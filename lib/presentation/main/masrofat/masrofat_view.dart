@@ -40,10 +40,7 @@ class MasrofatView extends StatelessWidget {
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.search),
                   hintText: "بحث",
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 1)
-                  )
-              ),
+                  border: OutlineInputBorder(borderSide: BorderSide(width: 1))),
               onChanged: (String query) {
                 controller.search(query);
               },
@@ -58,189 +55,214 @@ class MasrofatView extends StatelessWidget {
               } else if (controller.error.value != '') {
                 return StateRenderer(
                     stateRendererType: StateRendererType.fullScreenErrorState,
-                    message: controller.error.value.replaceFirst(
-                        "Exception: ", ""),
+                    message:
+                        controller.error.value.replaceFirst("Exception: ", ""),
                     retryActionFunction: () async {
                       await controller.getMasrofat();
                     });
               } else {
-                if (controller.masrofat.value.isEmpty || controller.masrofat.value == List<Masrofat>.empty()) {
+                if (controller.masrofat.value.isEmpty ||
+                    controller.masrofat.value == List<Masrofat>.empty()) {
                   return emptyScreen(context, "لا يوجد مصروفات");
                 } else {
-                  return
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(AppPadding.p16),
-                              child: Text(
-                                "الإجمالى: ",
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 23,
-                                ),
+                  return Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(AppPadding.p16),
+                            child: Text(
+                              "الإجمالى: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(AppPadding.p16),
-                              child: Text(
-                                controller.sum.toString(),
-                                style: const TextStyle(
-                                  color: Colors.black45,
-                                  fontSize: 23,
-                                ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(AppPadding.p16),
+                            child: Text(
+                              controller.sum.toString(),
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 23,
                               ),
                             ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: AppPadding.p8),
-                  child: Center(
-                    child: Text(
-                    AppStrings.mablagh,
-                    style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 20,
-                    ),),
-                  ),
-                ),
-              ),
-                            Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: const EdgeInsets.all(AppPadding.p8),
-                                child: Center(
-                                  child: Text(
-                                    AppStrings.desc,
-                                    style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontSize: 20,
-                                    ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(right: AppPadding.p8),
+                              child: Center(
+                                child: Text(
+                                  AppStrings.mablagh,
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 20,
                                   ),
                                 ),
                               ),
                             ),
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: const EdgeInsets.all(AppPadding.p8),
-                                child: Center(
-                                  child: Text(
-                                    AppStrings.date,
-                                    style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
-                                      fontSize: 20,
-                                    ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppPadding.p8),
+                              child: Center(
+                                child: Text(
+                                  AppStrings.desc,
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 20,
                                   ),
                                 ),
                               ),
                             ),
-
-
-                          ],
-                        ),
-
-
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: controller.masrofat.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(
-                                    right: AppPadding.p8,
-                                    left: AppPadding.p8,
-                                    top: 5,
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppPadding.p8),
+                              child: Center(
+                                child: Text(
+                                  AppStrings.date,
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 20,
+                                  ),
                                 ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Masrofat masrof = controller.masrofat[index];
-                                    showEditMasrofDialog(context, masrof);
-                                  },
-                                  child: Card(
-                                    color: Color(0xFFf6f6f6),
-                                    // elevation: AppSize.s8,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            flex: 1,
-                                            child: Center(
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(AppPadding.p8),
-                                                child: Text(controller.masrofat[index].amount, style: const TextStyle(
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: controller.masrofat.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                right: AppPadding.p8,
+                                left: AppPadding.p8,
+                                top: 5,
+                              ),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Masrofat masrof = controller.masrofat[index];
+                                  showEditMasrofDialog(context, masrof);
+                                },
+                                child: Card(
+                                  color: Color(0xFFf6f6f6),
+                                  // elevation: AppSize.s8,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(
+                                                  AppPadding.p8),
+                                              child: Text(
+                                                controller
+                                                    .masrofat[index].amount,
+                                                style: const TextStyle(
                                                   color: Colors.black87,
                                                   fontSize: 16,
-                                                ),),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 2,
-                                            child: Center(
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(AppPadding.p8),
-                                                child: Text(controller.masrofat[index].description, style: const TextStyle(
-                                                  color: Colors.black87,
-                                                  fontSize: 16,
-                                                ),),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 3,
-                                            child: Center(
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(AppPadding.p8),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(controller.masrofat[index].date, style: const TextStyle(
-                                                      color: Colors.black87,
-                                                      fontSize: 16,
-                                                    ),),
-                                                    IconButton(
-                                                      onPressed: () async {
-                                                        return AwesomeDialog(
-                                                            btnCancelText: "الغاء",
-                                                            btnOkText: "حذف",
-                                                            context: context,
-                                                            dialogType: DialogType.noHeader,
-                                                            title: "حذف",
-                                                            desc: "هل أنت متأكد من حذف ${controller.masrofat[index].description} ؟",
-                                                            btnCancelOnPress: () {},
-                                                            btnOkOnPress: () async {
-                                                              await controller.delMasrof(controller.masrofat[index].id);
-                                                              await controller.getMasrofat();
-                                                            }).show();
-                                                      },
-                                                      icon: const Icon(
-                                                        Icons.delete,
-                                                        color: Colors.black38,
-                                                      ),
-                                                    )
-                                                  ],
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(
+                                                  AppPadding.p8),
+                                              child: Text(
+                                                controller.masrofat[index]
+                                                    .description,
+                                                style: const TextStyle(
+                                                  color: Colors.black87,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 3,
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(
+                                                  AppPadding.p8),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    controller
+                                                        .masrofat[index].date,
+                                                    style: const TextStyle(
+                                                      color: Colors.black87,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                  IconButton(
+                                                    onPressed: () async {
+                                                      return AwesomeDialog(
+                                                          btnCancelText:
+                                                              "الغاء",
+                                                          btnOkText: "حذف",
+                                                          context: context,
+                                                          dialogType: DialogType
+                                                              .noHeader,
+                                                          title: "حذف",
+                                                          desc:
+                                                              "هل أنت متأكد من حذف ${controller.masrofat[index].description} ؟",
+                                                          btnCancelOnPress:
+                                                              () {},
+                                                          btnOkOnPress:
+                                                              () async {
+                                                            await controller
+                                                                .delMasrof(
+                                                                    controller
+                                                                        .masrofat[
+                                                                            index]
+                                                                        .id);
+                                                            await controller
+                                                                .getMasrofat();
+                                                          }).show();
+                                                    },
+                                                    icon: const Icon(
+                                                      Icons.delete,
+                                                      color: Colors.black38,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              );
-                            },
-                          ),
-                        )
-                      ],
-                    );
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  );
                 }
               }
             }),
@@ -250,86 +272,3 @@ class MasrofatView extends StatelessWidget {
     );
   }
 }
-
-/*class YourDataTableSource extends DataTableSource {
-  final BuildContext context;
-  final MasrofatController controller;
-  final List<Masrofat> data;
-
-  YourDataTableSource({required this.context, required this.data, required this.controller});
-
-  @override
-  DataRow? getRow(int index) {
-    if (index >= data.length) {
-      return null;
-    }
-    final item = data[index];
-    return DataRow(
-      onLongPress: () {
-        showEditMasrofDialog(context, item);
-      },
-      cells: [
-        DataCell(
-            Text(
-              item.amount,
-              style: const TextStyle(
-                color: Colors.black45,
-                fontSize: 14,
-              ),
-            )
-        ),
-        DataCell(
-            Text(
-              item.description,
-              style: const TextStyle(
-                color: Colors.black45,
-                fontSize: 14,
-              ),
-            )
-        ),
-        DataCell(
-            Row(
-              children: [
-                Text(
-                  item.date,
-                  style: const TextStyle(
-                    color: Colors.black45,
-                    fontSize: 14,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () async {
-                    return AwesomeDialog(
-                        btnCancelText: "الغاء",
-                        btnOkText: "حذف",
-                        context: context,
-                        dialogType: DialogType.noHeader,
-                        title: "حذف",
-                        desc: "هل أنت متأكد من حذف ${item.description} ؟",
-                        btnCancelOnPress: () {},
-                        btnOkOnPress: () async {
-                          await controller.delMasrof(item.id);
-                          await controller.getMasrofat();
-                        }).show();
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Colors.black38,
-                  ),
-                )
-              ],
-            )
-        ),
-      ],
-    );
-  }
-
-  @override
-  bool get isRowCountApproximate => false;
-
-  @override
-  int get rowCount => data.length;
-
-  @override
-  int get selectedRowCount => 0;
-}*/
