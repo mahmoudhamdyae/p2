@@ -82,7 +82,7 @@ class Clients2View extends StatelessWidget {
               child: GestureDetector(
                 onTap: () =>
                 {
-                  Navigator.pushNamed(context, Routes.periodsRoute)
+                  // Navigator.pushNamed(context, Routes.clients2Route)
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -101,25 +101,31 @@ class Clients2View extends StatelessWidget {
                     width: double.infinity,
                     height: double.infinity,
                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.schedule_sharp,
-                              size: 65,
-                              color: Theme
-                                  .of(context)
-                                  .primaryColor),
-                          const SizedBox(
-                            width: AppSize.s32,
-                          ),
-                          Text(
-                            "التجار",
-                            style: TextStyle(
-                              color: Theme
-                                  .of(context)
-                                  .primaryColor,
-                              fontSize: 25,
+                          Expanded(child: Container()),
+                          Padding(
+                            padding: const EdgeInsets.only(right: AppPadding.p8),
+                            child: Text(
+                              "التجار",
+                              style: TextStyle(
+                                color: Theme
+                                    .of(context)
+                                    .primaryColor,
+                                fontSize: 32,
+                              ),
                             ),
-                          )
+                          ),
+                          Expanded(child: Container()),
+                          Expanded(child: Container()),
+                          Padding(
+                            padding: const EdgeInsets.only(left: AppPadding.p8),
+                            child: Icon(Icons.arrow_forward_ios,
+                                size: 38,
+                                color: Theme
+                                    .of(context)
+                                    .primaryColor),
+                          ),
+
                         ]),
                   ),
                 ),
@@ -133,7 +139,7 @@ class Clients2View extends StatelessWidget {
               child: GestureDetector(
                 onTap: () =>
                 {
-                  // Navigator.pushNamed(context, Routes.periodsRoute)
+                  // Navigator.pushNamed(context, Routes.clients2Route)
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -152,25 +158,31 @@ class Clients2View extends StatelessWidget {
                     width: double.infinity,
                     height: double.infinity,
                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.schedule_sharp,
-                              size: 65,
-                              color: Theme
-                                  .of(context)
-                                  .primaryColor),
-                          const SizedBox(
-                            width: AppSize.s32,
-                          ),
-                          Text(
-                            "كل العملاء",
-                            style: TextStyle(
-                              color: Theme
-                                  .of(context)
-                                  .primaryColor,
-                              fontSize: 25,
+                          Expanded(child: Container()),
+                          Padding(
+                            padding: const EdgeInsets.only(right: AppPadding.p8),
+                            child: Text(
+                              "كل العملاء",
+                              style: TextStyle(
+                                color: Theme
+                                    .of(context)
+                                    .primaryColor,
+                                fontSize: 32,
+                              ),
                             ),
-                          )
+                          ),
+                          Expanded(child: Container()),
+                          Expanded(child: Container()),
+                          Padding(
+                            padding: const EdgeInsets.only(left: AppPadding.p8),
+                            child: Icon(Icons.arrow_forward_ios,
+                                size: 38,
+                                color: Theme
+                                    .of(context)
+                                    .primaryColor),
+                          ),
+
                         ]),
                   ),
                 ),
