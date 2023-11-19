@@ -64,7 +64,7 @@ class AppStrings {
   // Masrofat
   static const String masrofat = "مصروفات";
   static const String add_masrouf = "إضافة";
-  static const String amount_hint = "الكمية";
+  static const String amount_hint = "المبلغ";
   static const String description_hint = "الوصف";
   static const String amount_masrouf_invalid = "يجب إضافة الكمية";
   static const String description_masrouf_invalid = "يجب إضافة الوصف";
