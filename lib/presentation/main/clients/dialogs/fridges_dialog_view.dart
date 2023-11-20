@@ -26,39 +26,42 @@ class CustomDialog extends StatelessWidget {
     return Dialog(
       child: Container(
         padding: const EdgeInsets.all(16),
-        child: Obx(() {
-          if (controller.isLoading.value) {
-            return StateRenderer(
-                stateRendererType: StateRendererType.fullScreenLoadingState,
-                retryActionFunction: () {});
-          } else if (controller.error.value != '') {
-            return StateRenderer(
-                stateRendererType: StateRendererType.fullScreenErrorState,
-                message: controller.error.value.replaceFirst("Exception: ", ""),
-                retryActionFunction: () async {
-                  await controller.getPrices();
-                });
-          } else {
-            if (controller.fridges.value.isEmpty) {
-              return emptyScreen(context, "لا يوجد ثلاجات");
-            } else {
-              return ListView.builder(
-                  itemCount: controller.fridges.value.length,
-                  itemBuilder: (context, index) {
-                    final item = controller.fridges.value[index];
-                    return GestureDetector(
-                      onTap: () {
-                        controller.setFridge(item);
-                        Navigator.of(context).pop();
-                      },
-                      child: ListTile(
-                        title: Text(item.name),
-                      ),
-                    );
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.6,
+          child: Obx(() {
+            if (controller.isLoading.value) {
+              return StateRenderer(
+                  stateRendererType: StateRendererType.fullScreenLoadingState,
+                  retryActionFunction: () {});
+            } else if (controller.error.value != '') {
+              return StateRenderer(
+                  stateRendererType: StateRendererType.fullScreenErrorState,
+                  message: controller.error.value.replaceFirst("Exception: ", ""),
+                  retryActionFunction: () async {
+                    await controller.getPrices();
                   });
+            } else {
+              if (controller.fridges.value.isEmpty) {
+                return emptyScreen(context, "لا يوجد ثلاجات");
+              } else {
+                return ListView.builder(
+                    itemCount: controller.fridges.value.length,
+                    itemBuilder: (context, index) {
+                      final item = controller.fridges.value[index];
+                      return GestureDetector(
+                        onTap: () {
+                          controller.setFridge(item);
+                          Navigator.of(context).pop();
+                        },
+                        child: ListTile(
+                          title: Text(item.name),
+                        ),
+                      );
+                    });
+              }
             }
-          }
-        })
+          }),
+        )
         ,
       ),
     );
