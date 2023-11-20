@@ -92,6 +92,18 @@ class AddClient extends StatelessWidget {
                                     borderSide: BorderSide(width: 1))),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DropdownMenu<String>(
+                            initialSelection: ["person", "dealer"].first,
+                            onSelected: (String? value) {
+                              controller.setStatus(value ?? "person");
+                            },
+                            dropdownMenuEntries: ["person", "dealer"].map<DropdownMenuEntry<String>>((String value) {
+                              return DropdownMenuEntry<String>(value: value, label: value);
+                            }).toList(),
+                          ),
+                        )
                       ],
                     ),
                   ),

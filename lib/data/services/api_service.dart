@@ -639,7 +639,6 @@ class ApiServiceImpl implements ApiService {
 
   @override
   Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status) async {
-// person dealer
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";

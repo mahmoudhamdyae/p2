@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:get/get.dart';
 import 'package:testt/data/services/api_service.dart';
 import 'package:testt/model/amber.dart';
@@ -20,6 +22,8 @@ class ClientsController extends GetxController {
 
   RxList<Price> prices = List<Price>.empty().obs;
   Rx<Price> price = Price("", "-1", "-1", "-1", -1, -1).obs;
+
+  Rx<String> status = "person".obs;
 
   Rx<bool> isLoading = true.obs;
   Rx<String> error = ''.obs;
@@ -89,6 +93,10 @@ class ClientsController extends GetxController {
 
   setPrice(Price newPrice) {
     price.value = newPrice;
+  }
+
+  setStatus(String newStatus) {
+    status.value = newStatus;
   }
 
   Future addClient(String name, String phone, String address, String status) async {
