@@ -28,6 +28,13 @@ class AddClient extends StatelessWidget {
                 elevation: 8,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
+                  child: Container(),
+                ),
+              ),
+              Card(
+                elevation: 8,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       Padding(
@@ -111,7 +118,7 @@ class AddClient extends StatelessWidget {
                               "") {
                             showError(context, "يجب إضافة نوع");
                           } else {
-                            controller.addClient();
+                            controller.addClient("", "", "", "");
                           }
                         },
                         child: const Text("إضافة عميل"))

@@ -91,7 +91,26 @@ class ClientsController extends GetxController {
     price.value = newPrice;
   }
 
-  addClient() {
-
+  Future addClient(String name, String phone, String address, String status) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.addClient(
+          amber.value.id.toString(),
+          fridge.value.id.toString(),
+          price.value.id.toString(),
+          term.value.id.toString(),
+          name,
+          phone,
+          address,
+          status
+      ).then((value) {
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      isLoading.value = false;
+    }
   }
 }

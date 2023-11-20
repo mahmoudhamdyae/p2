@@ -49,6 +49,7 @@ abstract class ApiService {
   Future<Term> showTerm(String termId);
   Future delTerm(String termId);
   Future<List<Term>> searchTerm(String query);
+  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -634,5 +635,23 @@ class ApiServiceImpl implements ApiService {
       terms.add(term);
     }
     return terms;
+  }
+
+  @override
+  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status) async {
+// person dealer
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
   }
 }
