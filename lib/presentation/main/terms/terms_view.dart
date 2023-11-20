@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:testt/presentation/main/terms/terms_controller.dart';
 
 import '../../../app/di.dart';
-import 'clients_controller.dart';
+import '../clients/clients_controller.dart';
 
-class PeriodsView extends StatelessWidget {
-  PeriodsView({super.key});
-  final ClientsController controller = instance<ClientsController>();
+class TermsView extends StatelessWidget {
+  TermsView({super.key});
+  final TermsController controller = instance<TermsController>();
 
   @override
   Widget build(BuildContext context) {

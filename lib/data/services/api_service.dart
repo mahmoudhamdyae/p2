@@ -7,6 +7,7 @@ import 'package:testt/model/fridge.dart';
 import 'package:http/http.dart' as http;
 import 'package:testt/model/masrofat.dart';
 import 'package:testt/model/price.dart';
+import 'package:testt/model/term.dart';
 import '../../app/app_prefs.dart';
 import '../../app/constants.dart';
 import '../../presentation/resources/strings_manager.dart';
@@ -41,6 +42,12 @@ abstract class ApiService {
   Future<List<AllUsers>> getUsers();
   Future toggleActive(String userId);
   Future<List<AllUsers>> searchUser(String query);
+
+  Future<List<Term>> getTerms();
+  Future addTerm(String name, String start, String end);
+  Future updateTerm(String termId, String name, String start, String end);
+  Future<Term> showTerm(String termId);
+  Future delTerm(String termId);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -501,6 +508,98 @@ class ApiServiceImpl implements ApiService {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}amber/$amberId/edit?name=$amberName";
+    final response = await http.put(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future addTerm(String name, String start, String end) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}term";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future delTerm(String termId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}term/$termId/delete";
+    final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future<List<Term>> getTerms() async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}term";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    List<Term> terms = [];
+    for (var singleTerm in responseData["terms"]) {
+      Term term = Term.fromJson(singleTerm);
+      terms.add(term);
+    }
+    return terms;
+  }
+
+  @override
+  Future<Term> showTerm(String termId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}term/$termId/show";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    return Term.fromJson(responseData["term"]);
+  }
+
+  @override
+  Future updateTerm(String termId, String name, String start, String end) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}term/$termId/edit?name=$name&start=$start&end=$end";
     final response = await http.put(
         Uri.parse(url),
         headers: {

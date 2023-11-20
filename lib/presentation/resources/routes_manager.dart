@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testt/presentation/main/clients/clients2_view.dart';
 import 'package:testt/presentation/main/clients/clients_view.dart';
-import 'package:testt/presentation/main/clients/periods_view.dart';
+import 'package:testt/presentation/main/terms/terms_view.dart';
 import 'package:testt/presentation/main/masrofat/masrofat_view.dart';
 import 'package:testt/presentation/main/personal_data/personal_data_view.dart';
 import 'package:testt/presentation/main/prices/prices_view.dart';
@@ -65,7 +65,7 @@ class RouteGenerator {
       case Routes.clients2Route:
         return MaterialPageRoute(builder: (_) => Clients2View());
       case Routes.periodsRoute:
-        return MaterialPageRoute(builder: (_) => PeriodsView());
+        return MaterialPageRoute(builder: (_) => TermsView());
       default:
         return unDefinedRoute();
     }

@@ -10,6 +10,7 @@ import 'package:testt/presentation/main/masrofat/masrofat_controller.dart';
 import 'package:testt/presentation/main/personal_data/personal_data_controller.dart';
 import 'package:testt/presentation/main/prices/prices_controller.dart';
 import 'package:testt/presentation/main/reports/reports_controller.dart';
+import 'package:testt/presentation/main/terms/terms_controller.dart';
 import 'package:testt/presentation/main/users/users_controller.dart';
 
 import '../data/network/dio_factory.dart';
@@ -72,4 +73,8 @@ Future<void> initAppModule() async {
   // Users Controller
   instance.registerLazySingleton<UsersController>(
           () => Get.put(UsersController(instance<ApiService>())));
+
+  // Terms Controller
+  instance.registerLazySingleton<TermsController>(
+          () => Get.put(TermsController(instance<ApiService>())));
 }

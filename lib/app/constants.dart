@@ -1,5 +1,5 @@
 class Constants {
-  static const String baseUrl = "https://aab1-196-153-195-122.ngrok-free.app/api/";
+  static const String baseUrl = "https://deec-196-150-143-241.ngrok-free.app/api/";
   static const String empty = "";
   static const String token = "SEND TOKEN HERE";
   static const int zero = 0;
