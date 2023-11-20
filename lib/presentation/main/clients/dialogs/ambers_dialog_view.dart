@@ -28,6 +28,7 @@ class CustomDialog extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.6,
+          width: MediaQuery.of(context).size.width * 0.6,
           child: Obx(() {
             if (controller.isLoading.value) {
               return StateRenderer(
