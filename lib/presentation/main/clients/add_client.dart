@@ -86,7 +86,7 @@ class AddClient extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Text("اختر سعر"),
+                      Text("اختر النوع من قائمة الأسعار"),
                       Expanded(child: Container()),
                       Text(controller.price.value.vegetableName)
                     ],
