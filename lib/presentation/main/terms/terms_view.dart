@@ -40,107 +40,165 @@ class TermsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.getTerms();
-    return Obx(() {
-      if (controller.isLoading.value) {
-        return StateRenderer(
-            stateRendererType: StateRendererType.fullScreenLoadingState,
-            retryActionFunction: () {});
-      } else if (controller.error.value != '') {
-        return StateRenderer(
-            stateRendererType: StateRendererType.fullScreenErrorState,
-            message: controller.error.value.replaceFirst(
-                "Exception: ", ""),
-            retryActionFunction: () async {
-              await controller.getTerms();
-            });
-      } else {
-        if (controller.terms.value.isEmpty) {
-          return emptyScreen(context, "لا يوجد فترات");
-        } else {
-          return ListView.builder(
-            itemCount: controller.terms.value.length,
-            itemBuilder: (context, index) {
-              final item = controller.terms.value[index];
-
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ViewTermView(term: item)));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(AppPadding.p8),
-                  child: Card(
-                    elevation: AppPadding.p8,
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppPadding.p16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "اسم الفترة: ${item.name}",
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 23,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: AppSize.s12,
-                              ),
-                              Text(
-                                "بداية الفترة: ${item.start}\nنهاية الفترة: ${item.end}",
-                                style: const TextStyle(
-                                  color: Colors.black38,
-                                  fontSize: 14,
-                                ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: () async {
-                                  showEditTermDialog(context, item);
-                                },
-                                icon: const Icon(
-                                  Icons.edit,
-                                  color: Colors.black38,
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () async {
-                                  return AwesomeDialog(
-                                      btnCancelText: "الغاء",
-                                      btnOkText: "حذف",
-                                      context: context,
-                                      dialogType: DialogType.noHeader,
-                                      title: "حذف الفترة",
-                                      desc: "هل أنت متأكد من حذف هذه الفترة ؟",
-                                      btnCancelOnPress: () {},
-                                      btnOkOnPress: () async {
-                                        await controller.delTerm(item);
-                                      }).show();
-                                },
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.black38,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              );
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p8),
+          child: TextField(
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.text,
+            decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                hintText: "بحث",
+                border: OutlineInputBorder(borderSide: BorderSide(width: 1))),
+            onChanged: (String query) {
+              controller.search(query);
             },
-          );
-        }
-      }
-    });
+          ),
+        ),
+        Expanded(
+          child: Obx(() {
+            if (controller.isLoading.value) {
+              return StateRenderer(
+                  stateRendererType: StateRendererType.fullScreenLoadingState,
+                  retryActionFunction: () {});
+            } else if (controller.error.value != '') {
+              return StateRenderer(
+                  stateRendererType: StateRendererType.fullScreenErrorState,
+                  message: controller.error.value.replaceFirst(
+                      "Exception: ", ""),
+                  retryActionFunction: () async {
+                    await controller.getTerms();
+                  });
+            } else {
+              if (controller.terms.value.isEmpty) {
+                return emptyScreen(context, "لا يوجد فترات");
+              } else {
+                return ListView.builder(
+                  itemCount: controller.terms.value.length,
+                  itemBuilder: (context, index) {
+                    final item = controller.terms.value[index];
+
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ViewTermView(term: item)));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppPadding.p8),
+                        child: Card(
+                          elevation: AppPadding.p8,
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppPadding.p16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      color: Theme.of(context).primaryColor,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(AppPadding.p8),
+                                        child: Text(
+                                          "اسم الفترة: ${item.name}",
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                              fontSize: 20
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: AppSize.s12,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "بداية الفترة: ",
+                                          style: TextStyle(
+                                            color: Theme.of(context).primaryColor,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        Text(
+                                          item.start,
+                                          style: const TextStyle(
+                                            color: Colors.black38,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: AppSize.s8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "نهاية الفترة: ",
+                                          style: TextStyle(
+                                            color: Theme.of(context).primaryColor,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        Text(
+                                          item.end,
+                                          style: const TextStyle(
+                                            color: Colors.black38,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () async {
+                                        showEditTermDialog(context, item);
+                                      },
+                                      icon: const Icon(
+                                        Icons.edit,
+                                        color: Colors.black38,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed: () async {
+                                        return AwesomeDialog(
+                                            btnCancelText: "الغاء",
+                                            btnOkText: "حذف",
+                                            context: context,
+                                            dialogType: DialogType.noHeader,
+                                            title: "حذف الفترة",
+                                            desc: "هل أنت متأكد من حذف هذه الفترة ؟",
+                                            btnCancelOnPress: () {},
+                                            btnOkOnPress: () async {
+                                              await controller.delTerm(item);
+                                            }).show();
+                                      },
+                                      icon: const Icon(
+                                        Icons.delete,
+                                        color: Colors.black38,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }
+            }
+          }),
+        ),
+      ],
+    );
   }
 }

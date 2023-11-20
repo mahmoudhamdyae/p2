@@ -48,6 +48,7 @@ abstract class ApiService {
   Future updateTerm(String termId, String name, String start, String end);
   Future<Term> showTerm(String termId);
   Future delTerm(String termId);
+  Future<List<Term>> searchTerm(String query);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -277,8 +278,8 @@ class ApiServiceImpl implements ApiService {
   Future<List<Masrofat>> searchMasrofat(String query) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}expense/search?keyword=$query";;;;;;;;;;;
-    final response = await http.post(//////////////
+    String url = "${Constants.baseUrl}expense/search?keyword=$query";
+    final response = await http.post(
         Uri.parse(url),
         headers: {
           'content-type': 'application/json;charset=utf-8',
@@ -610,5 +611,28 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     await json.decode(response.body);
+  }
+
+  @override
+  Future<List<Term>> searchTerm(String query) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}term/search?keyword=$query";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    List<Term> terms = [];
+    for (var singleTerm in responseData["term"]) {
+      Term term = Term.fromJson(singleTerm);
+      terms.add(term);
+    }
+    return terms;
   }
 }

@@ -98,4 +98,19 @@ class TermsController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  void search(String query) async {
+    try {
+      // isLoading.value = true;
+      error.value = '';
+      await _apiService.searchTerm(query).then((value) {
+        terms.value = value;
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      isLoading.value = false;
+    }
+  }
 }
