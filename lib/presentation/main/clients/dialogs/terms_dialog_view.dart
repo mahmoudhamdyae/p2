@@ -45,8 +45,11 @@ class CustomDialog extends StatelessWidget {
               if (controller.terms.value.isEmpty) {
                 return emptyScreen(context, "لا يوجد فترات");
               } else {
-                return ListView.builder(
+                return ListView.separated(
                     itemCount: controller.terms.value.length,
+                    separatorBuilder: (context, index) {
+                      return const Divider();
+                    },
                     itemBuilder: (context, index) {
                       final item = controller.terms.value[index];
                       return GestureDetector(

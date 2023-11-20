@@ -45,18 +45,19 @@ class CustomDialog extends StatelessWidget {
               if (controller.fridges.value.isEmpty) {
                 return emptyScreen(context, "لا يوجد ثلاجات");
               } else {
-                return ListView.builder(
+                return ListView.separated(
                     itemCount: controller.fridges.value.length,
+                    separatorBuilder: (context, index) {
+                      return const Divider();
+                    },
                     itemBuilder: (context, index) {
                       final item = controller.fridges.value[index];
-                      return GestureDetector(
+                      return ListTile(
+                        title: Text(item.name),
                         onTap: () {
                           controller.setFridge(item);
                           Navigator.of(context).pop();
                         },
-                        child: ListTile(
-                          title: Text(item.name),
-                        ),
                       );
                     });
               }

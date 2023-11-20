@@ -45,8 +45,11 @@ class CustomDialog extends StatelessWidget {
               if (controller.fridge.value.ambers.isEmpty) {
                 return emptyScreen(context, "لا يوجد عنابر");
               } else {
-                return ListView.builder(
+                return ListView.separated(
                     itemCount: controller.fridge.value.ambers.length,
+                    separatorBuilder: (context, index) {
+                      return const Divider();
+                    },
                     itemBuilder: (context, index) {
                       final item = controller.fridge.value.ambers[index];
                       return GestureDetector(
