@@ -93,6 +93,27 @@ class AddClient extends StatelessWidget {
                   ),
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        if (controller.fridge.value.name == "") {
+                          showError(context, "يجب إضافة ثلاجة");
+                        } else if (controller.amber.value.name == "") {
+                          showError(context, "يجب إضافة عنبر");
+                        } else if (controller.term.value.name == "") {
+                          showError(context, "يجب إضافة فترة");
+                        } else if (controller.price.value.vegetableName == "") {
+                          showError(context, "يجب إضافة نوع");
+                        } else {
+                          controller.addClient();
+                        }
+                        },
+                      child: const Text("إضافة عميل")
+                  )
+                ],
+              )
             ],
           ),
         );

@@ -90,4 +90,8 @@ class ClientsController extends GetxController {
   setPrice(Price newPrice) {
     price.value = newPrice;
   }
+
+  addClient() {
+
+  }
 }
