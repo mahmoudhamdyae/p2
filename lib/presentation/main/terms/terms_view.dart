@@ -77,9 +77,10 @@ class TermsList extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                item.name,
+                                "اسم الفترة: ${item.name}",
                                 style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontSize: 23,
@@ -89,7 +90,7 @@ class TermsList extends StatelessWidget {
                                 height: AppSize.s12,
                               ),
                               Text(
-                                item.start,
+                                "بداية الفترة: ${item.start}\nنهاية الفترة: ${item.end}",
                                 style: const TextStyle(
                                   color: Colors.black38,
                                   fontSize: 14,
