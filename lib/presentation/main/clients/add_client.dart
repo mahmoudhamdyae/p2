@@ -8,10 +8,16 @@ import 'package:testt/presentation/main/clients/dialogs/fridges_dialog_view.dart
 import 'package:testt/presentation/main/clients/dialogs/prices_dialog_view.dart';
 import 'package:testt/presentation/main/clients/dialogs/terms_dialog_view.dart';
 
+import '../../resources/values_manager.dart';
+
 class AddClient extends StatelessWidget {
   AddClient({super.key});
 
   final ClientsController controller = instance<ClientsController>();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,67 @@ class AddClient extends StatelessWidget {
                 elevation: 8,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(),
+                  child: Form(
+                    key: formState,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(AppPadding.p8),
+                          child: TextFormField(
+                            controller: nameController,
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.text,
+                            validator: (val) {
+                              if (val == null || val.isEmpty) {
+                                return "يحب إضافة اسم للعميل";
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                                hintText: "اسم العميل",
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(width: 1))),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(AppPadding.p8),
+                          child: TextFormField(
+                            controller: phoneController,
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.number,
+                            validator: (val) {
+                              if (val == null || val.isEmpty) {
+                                return "يحب إضافة رقم الهاتف";
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                                hintText: "رقم الهاتف",
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(width: 1))),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(AppPadding.p8),
+                          child: TextFormField(
+                            controller: addressController,
+                            textInputAction: TextInputAction.done,
+                            keyboardType: TextInputType.text,
+                            validator: (val) {
+                              if (val == null || val.isEmpty) {
+                                return "يحب إضافة عنوان العميل";
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                                hintText: "عنوان العميل",
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(width: 1))),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               Card(
@@ -108,17 +174,22 @@ class AddClient extends StatelessWidget {
                   children: [
                     ElevatedButton(
                         onPressed: () {
-                          if (controller.fridge.value.name == "") {
-                            showError(context, "يجب إضافة ثلاجة");
-                          } else if (controller.amber.value.name == "") {
-                            showError(context, "يجب إضافة عنبر");
-                          } else if (controller.term.value.name == "") {
-                            showError(context, "يجب إضافة فترة");
-                          } else if (controller.price.value.vegetableName ==
-                              "") {
-                            showError(context, "يجب إضافة نوع");
-                          } else {
-                            controller.addClient("", "", "", "");
+                          var formData = formState.currentState;
+                          if (formData!.validate()) {
+                            formData.save();
+
+                            if (controller.fridge.value.name == "") {
+                              showError(context, "يجب إضافة ثلاجة");
+                            } else if (controller.amber.value.name == "") {
+                              showError(context, "يجب إضافة عنبر");
+                            } else if (controller.term.value.name == "") {
+                              showError(context, "يجب إضافة فترة");
+                            } else if (controller.price.value.vegetableName ==
+                                "") {
+                              showError(context, "يجب إضافة نوع");
+                            } else {
+                              controller.addClient(nameController.text, phoneController.text, addressController.text, "");
+                            }
                           }
                         },
                         child: const Text("إضافة عميل"))
