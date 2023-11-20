@@ -47,6 +47,9 @@ class TermsController extends GetxController {
   }
 
   Future<void> addTerm(String name, String start, String end) async {
+    if (terms.value.any((element) => element.name == name)) {
+      throw Exception("هذا الاسم مستخدم من قبل");
+    }
     try {
       isLoading.value = true;
       error.value = '';
