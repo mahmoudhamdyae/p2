@@ -6,7 +6,6 @@ import 'package:testt/presentation/resources/values_manager.dart';
 import '../../../../app/di.dart';
 import '../../../component/alert.dart';
 import '../../../component/error.dart';
-import '../../../resources/strings_manager.dart';
 
 void showAddTermDialog(BuildContext context) {
   showDialog(
