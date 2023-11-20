@@ -17,57 +17,72 @@ class AddClient extends StatelessWidget {
       appBar: AppBar(
         title: const Text("إضافة عميل"),
       ),
-      body: Column(
-        children: [
-          GestureDetector(
-            onTap: () {
-              showFridgesDialog(context);
-            },
-            child: Row(
-              children: [
-                Text("اختر ثلاجة"),
-                Expanded(child: Container()),
-                Text(controller.fridge.value.name)
-              ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  showFridgesDialog(context);
+                },
+                child: Row(
+                  children: [
+                    Text("اختر ثلاجة"),
+                    Expanded(child: Container()),
+                    Text(controller.fridge.value.name)
+                  ],
+                ),
+              ),
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              showAmbersDialog(context);
-            },
-            child: Row(
-              children: [
-                Text("اختر عنبر"),
-                Expanded(child: Container()),
-                Text(controller.fridge.value.name)
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  showAmbersDialog(context);
+                },
+                child: Row(
+                  children: [
+                    Text("اختر عنبر"),
+                    Expanded(child: Container()),
+                    Text(controller.amber.value.name)
+                  ],
+                ),
+              ),
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              showTermsDialog(context);
-            },
-            child: Row(
-              children: [
-                Text("اختر فترة"),
-                Expanded(child: Container()),
-                Text(controller.fridge.value.name)
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  showTermsDialog(context);
+                },
+                child: Row(
+                  children: [
+                    Text("اختر فترة"),
+                    Expanded(child: Container()),
+                    Text(controller.term.value.name)
+                  ],
+                ),
+              ),
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              showPricesDialog(context);
-            },
-            child: Row(
-              children: [
-                Text("اختر سعر"),
-                Expanded(child: Container()),
-                Text(controller.fridge.value.name)
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  showPricesDialog(context);
+                },
+                child: Row(
+                  children: [
+                    Text("اختر سعر"),
+                    Expanded(child: Container()),
+                    Text(controller.price.value.vegetableName)
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

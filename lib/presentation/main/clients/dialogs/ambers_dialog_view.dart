@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../app/di.dart';
+import '../clients_controller.dart';
+
 void showAmbersDialog(BuildContext context) {
   showDialog(
     context: context,
@@ -10,7 +13,9 @@ void showAmbersDialog(BuildContext context) {
 }
 
 class CustomDialog extends StatelessWidget {
-  const CustomDialog({super.key});
+  CustomDialog({super.key});
+
+  final ClientsController controller = instance<ClientsController>();
 
   @override
   Widget build(BuildContext context) {
