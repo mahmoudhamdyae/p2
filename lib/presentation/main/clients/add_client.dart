@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testt/app/di.dart';
-import 'package:testt/presentation/common/state_renderer/state_renderer.dart';
 import 'package:testt/presentation/component/error.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
 import 'package:testt/presentation/main/clients/dialogs/ambers_dialog_view.dart';
@@ -25,94 +24,99 @@ class AddClient extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    showFridgesDialog(context);
-                  },
-                  child: Row(
+              Card(
+                elevation: 8,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
                     children: [
-                      Text("اختر ثلاجة"),
-                      Expanded(child: Container()),
-                      Text(controller.fridge.value.name)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  showFridgesDialog(context);
+                                },
+                                child: const Text("اختر ثلاجة")),
+                            Expanded(child: Container()),
+                            Text(controller.fridge.value.name, style: const TextStyle(fontSize: 16))
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  if (controller.fridge.value.name == "") {
+                                    showError(context, "اختر ثلاجة أولا");
+                                  } else {
+                                    showAmbersDialog(context);
+                                  }
+                                },
+                                child: const Text("اختر عنبر")),
+                            Expanded(child: Container()),
+                            Text(controller.amber.value.name, style: const TextStyle(fontSize: 16))
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  showTermsDialog(context);
+                                },
+                                child: const Text("اختر فترة")),
+                            Expanded(child: Container()),
+                            Text(controller.term.value.name, style: const TextStyle(fontSize: 16))
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  showPricesDialog(context);
+                                },
+                                child: const Text("اختر النوع من قائمة الأسعار")),
+                            Expanded(child: Container()),
+                            Text(controller.price.value.vegetableName, style: const TextStyle(fontSize: 16))
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    if (controller.fridge.value.name == "") {
-                      showError(context, "اختر ثلاجة أولا");
-                      // StateRenderer(
-                      //     stateRendererType: StateRendererType.fullScreenErrorState,
-                      //     message: "اختر ثلاجة أولا",
-                      //     retryActionFunction: () {});
-                    } else {
-                      showAmbersDialog(context);
-                    }
-                  },
-                  child: Row(
-                    children: [
-                      Text("اختر عنبر"),
-                      Expanded(child: Container()),
-                      Text(controller.amber.value.name)
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    showTermsDialog(context);
-                  },
-                  child: Row(
-                    children: [
-                      Text("اختر فترة"),
-                      Expanded(child: Container()),
-                      Text(controller.term.value.name)
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    showPricesDialog(context);
-                  },
-                  child: Row(
-                    children: [
-                      Text("اختر النوع من قائمة الأسعار"),
-                      Expanded(child: Container()),
-                      Text(controller.price.value.vegetableName)
-                    ],
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        if (controller.fridge.value.name == "") {
-                          showError(context, "يجب إضافة ثلاجة");
-                        } else if (controller.amber.value.name == "") {
-                          showError(context, "يجب إضافة عنبر");
-                        } else if (controller.term.value.name == "") {
-                          showError(context, "يجب إضافة فترة");
-                        } else if (controller.price.value.vegetableName == "") {
-                          showError(context, "يجب إضافة نوع");
-                        } else {
-                          controller.addClient();
-                        }
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {
+                          if (controller.fridge.value.name == "") {
+                            showError(context, "يجب إضافة ثلاجة");
+                          } else if (controller.amber.value.name == "") {
+                            showError(context, "يجب إضافة عنبر");
+                          } else if (controller.term.value.name == "") {
+                            showError(context, "يجب إضافة فترة");
+                          } else if (controller.price.value.vegetableName ==
+                              "") {
+                            showError(context, "يجب إضافة نوع");
+                          } else {
+                            controller.addClient();
+                          }
                         },
-                      child: const Text("إضافة عميل")
-                  )
-                ],
+                        child: const Text("إضافة عميل"))
+                  ],
+                ),
               )
             ],
           ),
