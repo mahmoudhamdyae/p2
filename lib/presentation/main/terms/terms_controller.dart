@@ -30,7 +30,7 @@ class TermsController extends GetxController {
     }
   }
 
-  Future<void> delFridge(Term term) async {
+  Future<void> delTerm(Term term) async {
     try {
       isLoading.value = true;
       error.value = '';

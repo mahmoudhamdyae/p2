@@ -524,7 +524,7 @@ class ApiServiceImpl implements ApiService {
   Future addTerm(String name, String start, String end) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}term";
+    String url = "${Constants.baseUrl}term?name=$name&start=$start&end=$end";
     final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -559,7 +559,7 @@ class ApiServiceImpl implements ApiService {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}term";
-    final response = await http.post(
+    final response = await http.get(
         Uri.parse(url),
         headers: {
           'content-type': 'application/json;charset=utf-8',
