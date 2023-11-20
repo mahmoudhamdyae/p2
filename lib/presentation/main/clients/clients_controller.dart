@@ -13,7 +13,7 @@ class ClientsController extends GetxController {
 
   RxList<Fridge> fridges = List<Fridge>.empty().obs;
   Rx<Fridge> fridge = Fridge(0, "", "", -1, Owner(""), []).obs;
-  Rx<Amber> amber = Amber(0, "", "", -1, Owner("")).obs;
+  Rx<Amber> amber = Amber(-1, "", "", -1, Owner("")).obs;
 
   RxList<Term> terms = List<Term>.empty().obs;
   Rx<Term> term = Term(-1, "", "", "", -1).obs;

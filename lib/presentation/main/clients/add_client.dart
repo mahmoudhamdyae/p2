@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testt/app/di.dart';
+import 'package:testt/presentation/common/state_renderer/state_renderer.dart';
+import 'package:testt/presentation/component/error.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
 import 'package:testt/presentation/main/clients/dialogs/ambers_dialog_view.dart';
 import 'package:testt/presentation/main/clients/dialogs/fridges_dialog_view.dart';
@@ -42,7 +44,15 @@ class AddClient extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
-                    showAmbersDialog(context);
+                    if (controller.fridge.value.name == "") {
+                      showError(context, "اختر ثلاجة أولا");
+                      // StateRenderer(
+                      //     stateRendererType: StateRendererType.fullScreenErrorState,
+                      //     message: "اختر ثلاجة أولا",
+                      //     retryActionFunction: () {});
+                    } else {
+                      showAmbersDialog(context);
+                    }
                   },
                   child: Row(
                     children: [
