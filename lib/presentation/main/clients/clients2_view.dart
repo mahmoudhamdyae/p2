@@ -16,7 +16,7 @@ class Clients2View extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         child: const Icon(Icons.add),
         onPressed: () {
-          //
+          Navigator.pushNamed(context, Routes.addClientRoute);
         },
       ),
       appBar: AppBar(
