@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
 import 'package:testt/presentation/main/clients/dialogs/ambers_dialog_view.dart';
@@ -17,73 +18,75 @@ class AddClient extends StatelessWidget {
       appBar: AppBar(
         title: const Text("إضافة عميل"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () {
-                  showFridgesDialog(context);
-                },
-                child: Row(
-                  children: [
-                    Text("اختر ثلاجة"),
-                    Expanded(child: Container()),
-                    Text(controller.fridge.value.name)
-                  ],
+      body: Obx(() {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    showFridgesDialog(context);
+                  },
+                  child: Row(
+                    children: [
+                      Text("اختر ثلاجة"),
+                      Expanded(child: Container()),
+                      Text(controller.fridge.value.name)
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () {
-                  showAmbersDialog(context);
-                },
-                child: Row(
-                  children: [
-                    Text("اختر عنبر"),
-                    Expanded(child: Container()),
-                    Text(controller.amber.value.name)
-                  ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    showAmbersDialog(context);
+                  },
+                  child: Row(
+                    children: [
+                      Text("اختر عنبر"),
+                      Expanded(child: Container()),
+                      Text(controller.amber.value.name)
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () {
-                  showTermsDialog(context);
-                },
-                child: Row(
-                  children: [
-                    Text("اختر فترة"),
-                    Expanded(child: Container()),
-                    Text(controller.term.value.name)
-                  ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    showTermsDialog(context);
+                  },
+                  child: Row(
+                    children: [
+                      Text("اختر فترة"),
+                      Expanded(child: Container()),
+                      Text(controller.term.value.name)
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () {
-                  showPricesDialog(context);
-                },
-                child: Row(
-                  children: [
-                    Text("اختر سعر"),
-                    Expanded(child: Container()),
-                    Text(controller.price.value.vegetableName)
-                  ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    showPricesDialog(context);
+                  },
+                  child: Row(
+                    children: [
+                      Text("اختر سعر"),
+                      Expanded(child: Container()),
+                      Text(controller.price.value.vegetableName)
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
