@@ -97,9 +97,13 @@ class AddClient extends StatelessWidget {
                           child: DropdownMenu<String>(
                             initialSelection: ["person", "dealer"].first,
                             onSelected: (String? value) {
-                              controller.setStatus(value ?? "person");
+                              if (value == "تاجر") {
+                                controller.setStatus("dealer");
+                              } else {
+                                controller.setStatus("person");
+                              }
                             },
-                            dropdownMenuEntries: ["person", "dealer"].map<DropdownMenuEntry<String>>((String value) {
+                            dropdownMenuEntries: ["فرد", "تاجر"].map<DropdownMenuEntry<String>>((String value) {
                               return DropdownMenuEntry<String>(value: value, label: value);
                             }).toList(),
                           ),
