@@ -92,25 +92,21 @@ class AddClient extends StatelessWidget {
                                     borderSide: BorderSide(width: 1))),
                           ),
                         ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: DropdownMenu<String>(
-                                initialSelection: "فرد",
-                                onSelected: (String? value) {
-                                  if (value == "تاجر") {
-                                    controller.setStatus("dealer");
-                                  } else {
-                                    controller.setStatus("person");
-                                  }
-                                },
-                                dropdownMenuEntries: ["فرد", "تاجر"].map<DropdownMenuEntry<String>>((String value) {
-                                  return DropdownMenuEntry<String>(value: value, label: value);
-                                }).toList(),
-                              ),
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DropdownMenu<String>(
+                            initialSelection: "فرد",
+                            onSelected: (String? value) {
+                              if (value == "تاجر") {
+                                controller.setStatus("dealer");
+                              } else {
+                                controller.setStatus("person");
+                              }
+                            },
+                            dropdownMenuEntries: ["فرد", "تاجر"].map<DropdownMenuEntry<String>>((String value) {
+                              return DropdownMenuEntry<String>(value: value, label: value);
+                            }).toList(),
+                          ),
                         )
                       ],
                     ),
