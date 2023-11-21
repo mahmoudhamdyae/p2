@@ -64,6 +64,7 @@ class CustomDialog extends StatelessWidget {
                                 },
                                 child: ListTile(
                                   title: Text(item.name),
+                                  subtitle: Text("بداية الفترة: ${item.start}    نهاية الفترة ${item.end}"),
                                 ),
                               );
                             }),
