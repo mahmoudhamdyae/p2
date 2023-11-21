@@ -5,6 +5,7 @@ import '../../../../app/di.dart';
 import '../../../common/state_renderer/state_renderer.dart';
 import '../../../component/empty.dart';
 import '../clients_controller.dart';
+import 'add_fridge_dialog.dart';
 
 void showFridgesDialog(BuildContext context) {
   showDialog(
@@ -37,7 +38,8 @@ class CustomDialog extends StatelessWidget {
             } else if (controller.error.value != '') {
               return StateRenderer(
                   stateRendererType: StateRendererType.fullScreenErrorState,
-                  message: controller.error.value.replaceFirst("Exception: ", ""),
+                  message:
+                      controller.error.value.replaceFirst("Exception: ", ""),
                   retryActionFunction: () async {
                     await controller.getPrices();
                   });
@@ -45,26 +47,33 @@ class CustomDialog extends StatelessWidget {
               if (controller.fridges.value.isEmpty) {
                 return emptyScreen(context, "لا يوجد ثلاجات");
               } else {
-                return ListView.separated(
-                    itemCount: controller.fridges.value.length,
-                    separatorBuilder: (context, index) {
-                      return const Divider();
-                    },
-                    itemBuilder: (context, index) {
-                      final item = controller.fridges.value[index];
-                      return ListTile(
-                        title: Text(item.name),
-                        onTap: () {
-                          controller.setFridge(item);
-                          Navigator.of(context).pop();
-                        },
-                      );
-                    });
+                return Column(
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                          itemCount: controller.fridges.value.length,
+                          separatorBuilder: (context, index) {
+                            return const Divider();
+                          },
+                          itemBuilder: (context, index) {
+                            final item = controller.fridges.value[index];
+                            return ListTile(
+                              title: Text(item.name),
+                              onTap: () {
+                                controller.setFridge(item);
+                                Navigator.of(context).pop();
+                              },
+                            );
+                          }),
+                    ),
+                    Expanded(child: Container()),
+                    ElevatedButton(onPressed: () { showAddFridgeDialog(context); }, child: const Text("إضافة ثلاجة"))
+                  ],
+                );
               }
             }
           }),
-        )
-        ,
+        ),
       ),
     );
   }
