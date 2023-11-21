@@ -120,11 +120,29 @@ class ClientsController extends GetxController {
       ).then((value) {
         error.value = '';
         isLoading.value = false;
+        clearAll();
       });
     } on Exception catch (e) {
       error.value = e.toString();
       isLoading.value = false;
     }
+  }
+
+  clearAll() {
+    fridges = List<Fridge>.empty().obs;
+    fridge = Fridge(0, "", "", -1, Owner(""), []).obs;
+    amber = Amber(-1, "", "", -1, Owner("")).obs;
+
+    terms = List<Term>.empty().obs;
+    term = Term(-1, "", "", "", -1).obs;
+
+    prices = List<Price>.empty().obs;
+    price = Price("", "-1", "-1", "-1", -1, -1).obs;
+
+    status = "person".obs;
+
+    wayNumber = 0.obs;
+    fixedPrice = 0.obs;
   }
 
   setFirstWay(String price) {
