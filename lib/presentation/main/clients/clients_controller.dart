@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:get/get.dart';
 import 'package:testt/data/services/api_service.dart';
 import 'package:testt/model/amber.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../model/fridge.dart';
 import '../../../model/price.dart';
@@ -166,6 +167,26 @@ class ClientsController extends GetxController {
       error.value = e.toString();
       terms.value = List<Term>.empty();
       isLoading.value = false;
+    }
+  }
+
+  Future addPrice(String vegetableName, int smallShakara, int bigShakara, int ton) async {
+    if (prices.value.any((element) => element.vegetableName == vegetableName)) {
+      throw Exception("هذا الاسم مستخدم من قبل");
+    }
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.addPrice(vegetableName, smallShakara, bigShakara, ton).then((value) {
+        prices.value.add(Price("", "-1", "-1", "-1", -1, int.parse(const Uuid().v4.toString())));
+        error.value = '';
+        isLoading.value = false;
+        getPrices();
+      });
+    } on Exception catch (e) {
+      // error.value = e.toString();
+      isLoading.value = false;
+      getPrices();
     }
   }
 }
