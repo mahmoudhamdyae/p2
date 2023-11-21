@@ -49,7 +49,7 @@ abstract class ApiService {
   Future<Term> showTerm(String termId);
   Future delTerm(String termId);
   Future<List<Term>> searchTerm(String query);
-  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status);
+  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -638,10 +638,11 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status) async {
+  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
+    print("======= status ==== $status");
+    String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status&price_all=$price";
     final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -650,7 +651,8 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
-    _checkServer(response);
-    await json.decode(response.body);
+    // _checkServer(response);
+    final responseData = await json.decode(response.body);
+    print("============ $responseData");
   }
 }

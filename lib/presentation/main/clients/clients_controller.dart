@@ -25,6 +25,9 @@ class ClientsController extends GetxController {
 
   Rx<String> status = "person".obs;
 
+  Rx<int> wayNumber = 0.obs;
+  Rx<int> fixedPrice = 0.obs;
+
   Rx<bool> isLoading = true.obs;
   Rx<String> error = ''.obs;
 
@@ -99,7 +102,7 @@ class ClientsController extends GetxController {
     status.value = newStatus;
   }
 
-  Future addClient(String name, String phone, String address, String status) async {
+  Future addClient(String name, String phone, String address) async {
     try {
       isLoading.value = true;
       error.value = '';
@@ -111,14 +114,23 @@ class ClientsController extends GetxController {
           name,
           phone,
           address,
-          status
+          status.value,
+          wayNumber.value,
+          fixedPrice.value
       ).then((value) {
         error.value = '';
         isLoading.value = false;
+        print("==========success");
       });
     } on Exception catch (e) {
       error.value = e.toString();
       isLoading.value = false;
+      print("==========error $e");
     }
+  }
+
+  setFirstWay(String price) {
+    wayNumber.value = 1;
+    fixedPrice.value = int.parse(price);
   }
 }

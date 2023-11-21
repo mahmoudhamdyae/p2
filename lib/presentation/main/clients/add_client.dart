@@ -4,6 +4,7 @@ import 'package:testt/app/di.dart';
 import 'package:testt/presentation/component/error.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
 import 'package:testt/presentation/main/clients/dialogs/ambers_dialog_view.dart';
+import 'package:testt/presentation/main/clients/dialogs/choose_price_dialog_view.dart';
 import 'package:testt/presentation/main/clients/dialogs/fridges_dialog_view.dart';
 import 'package:testt/presentation/main/clients/dialogs/prices_dialog_view.dart';
 import 'package:testt/presentation/main/clients/dialogs/terms_dialog_view.dart';
@@ -183,34 +184,44 @@ class AddClient extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {
-                          var formData = formState.currentState;
-                          if (formData!.validate()) {
-                            formData.save();
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        showChoosePriceDialogDialog(context);
+                      }, child: const Text("حساب السعر")
+                  )
+                ],
+              ),
+              Expanded(child: Container()),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        var formData = formState.currentState;
+                        if (formData!.validate()) {
+                          formData.save();
 
-                            if (controller.fridge.value.name == "") {
-                              showError(context, "يجب إضافة ثلاجة");
-                            } else if (controller.amber.value.name == "") {
-                              showError(context, "يجب إضافة عنبر");
-                            } else if (controller.term.value.name == "") {
-                              showError(context, "يجب إضافة فترة");
-                            } else if (controller.price.value.vegetableName ==
-                                "") {
-                              showError(context, "يجب إضافة نوع");
-                            } else {
-                              controller.addClient(nameController.text, phoneController.text, addressController.text, "");
-                            }
+                          if (controller.fridge.value.name == "") {
+                            showError(context, "يجب إضافة ثلاجة");
+                          } else if (controller.amber.value.name == "") {
+                            showError(context, "يجب إضافة عنبر");
+                          } else if (controller.term.value.name == "") {
+                            showError(context, "يجب إضافة فترة");
+                          } else if (controller.price.value.vegetableName == "") {
+                            showError(context, "يجب إضافة نوع");
+                          } else if (controller.wayNumber.value == 0) {
+                            showError(context, "يجب إضافة طريقة تحديد السعر");
+                          } else {
+                            print("==========clicked");
+                            controller.addClient(nameController.text, phoneController.text, addressController.text);
                           }
-                        },
-                        child: const Text("إضافة عميل"))
-                  ],
-                ),
+                        }
+                      },
+                      child: const Text("إضافة عميل"))
+                ],
               )
             ],
           ),
