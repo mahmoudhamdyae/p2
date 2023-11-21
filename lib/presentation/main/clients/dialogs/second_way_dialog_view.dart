@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testt/presentation/component/error.dart';
 
 import '../../../../app/di.dart';
 import '../clients_controller.dart';
@@ -16,8 +17,9 @@ class CustomDialog extends StatelessWidget {
   CustomDialog({super.key});
 
   final ClientsController controller = instance<ClientsController>();
-  TextEditingController priceController = TextEditingController();
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  TextEditingController tonController = TextEditingController();
+  TextEditingController smallShakaraController = TextEditingController();
+  TextEditingController bigShakaraController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +32,38 @@ class CustomDialog extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Form(
-                key: formState,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: priceController,
+                  controller: tonController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                      hintText: "عدد الأطنان",
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1))),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: smallShakaraController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                      hintText: "عدد الشكاير الصغيرة",
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1))),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: bigShakaraController,
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.number,
-                  validator: (val) {
-                    if (val == null || val.isEmpty) {
-                      return "يحب إدخال سعر";
-                    }
-                    return null;
-                  },
                   decoration: const InputDecoration(
-                      hintText: "السعر",
+                      hintText: "عدد الشكاير الكبيرة",
                       border: OutlineInputBorder(
                           borderSide: BorderSide(width: 1))),
                 ),
@@ -70,12 +90,12 @@ class CustomDialog extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       onPressed: () async {
-                        var formData = formState.currentState;
-                        if (formData!.validate()) {
-                          formData.save();
-                          controller.setSecondWay(priceController.text);
+                        if (tonController.text != "" || smallShakaraController.text != "" || bigShakaraController.text != "") {
+                          controller.setSecondWay(tonController.text, smallShakaraController.text, bigShakaraController.text);
                           Navigator.of(context).pop();
                           Navigator.of(context).pop();
+                        } else {
+                          showError(context, "يجب ادخال خانة واحدة على الأقل");
                         }
                       },
                       child: const Text("تأكيد"),

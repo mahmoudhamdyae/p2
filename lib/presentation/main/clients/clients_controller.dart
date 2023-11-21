@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 import 'package:testt/data/services/api_service.dart';
 import 'package:testt/model/amber.dart';
@@ -28,6 +26,9 @@ class ClientsController extends GetxController {
 
   Rx<int> wayNumber = 0.obs;
   Rx<int> fixedPrice = 0.obs;
+  Rx<int> ton = 0.obs;
+  Rx<int> smallShakara = 0.obs;
+  Rx<int> bigShakara = 0.obs;
 
   Rx<bool> isLoading = true.obs;
   Rx<String> error = ''.obs;
@@ -117,7 +118,10 @@ class ClientsController extends GetxController {
           address,
           status.value,
           wayNumber.value,
-          fixedPrice.value
+          fixedPrice.value,
+          ton.value.toString(),
+          smallShakara.value.toString(),
+          bigShakara.value.toString()
       ).then((value) {
         error.value = '';
         isLoading.value = false;
@@ -144,6 +148,9 @@ class ClientsController extends GetxController {
 
     wayNumber = 0.obs;
     fixedPrice = 0.obs;
+    ton = 0.obs;
+    smallShakara = 0.obs;
+    bigShakara = 0.obs;
   }
 
   setFirstWay(String price) {
@@ -151,9 +158,14 @@ class ClientsController extends GetxController {
     fixedPrice.value = int.parse(price);
   }
 
-  setSecondWay(String price) {
+  setSecondWay(String newTon, String newSmallShakara, String newBigShakara) {
     wayNumber.value = 2;
-    fixedPrice.value = int.parse(price);
+    if (newTon == "") newTon = "0";
+    if (newSmallShakara == "") newSmallShakara = "0";
+    if (newBigShakara == "") newBigShakara = "0";
+    ton.value = int.parse(newTon);
+    smallShakara.value = int.parse(newSmallShakara);
+    bigShakara.value = int.parse(newBigShakara);
   }
 
   setThirdWay(String price) {
