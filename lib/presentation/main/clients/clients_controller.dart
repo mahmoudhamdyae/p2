@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:testt/data/services/api_service.dart';
 import 'package:testt/model/amber.dart';
-import 'package:uuid/uuid.dart';
+import 'package:testt/model/client.dart';
 
 import '../../../model/fridge.dart';
 import '../../../model/price.dart';
@@ -11,6 +11,9 @@ class ClientsController extends GetxController {
   final ApiService _apiService;
 
   ClientsController(this._apiService);
+
+  RxList<Client> clients = List<Client>.empty().obs;
+  Rx<int> sum = 0.obs;
 
   RxList<Fridge> fridges = List<Fridge>.empty().obs;
   Rx<Fridge> fridge = Fridge(0, "", "", -1, Owner(""), []).obs;
@@ -192,10 +195,7 @@ class ClientsController extends GetxController {
       isLoading.value = true;
       error.value = '';
       await _apiService.addTerm(name, start, end).then((value) {
-        // terms.value.add(Term(-1, name, start, end, -1));
         getTerms();
-        // error.value = '';
-        // isLoading.value = false;
       });
     } on Exception catch (e) {
       error.value = e.toString();
@@ -212,16 +212,27 @@ class ClientsController extends GetxController {
       isLoading.value = true;
       error.value = '';
       await _apiService.addPrice(vegetableName, smallShakara, bigShakara, ton).then((value) {
-        // prices.value.add(Price("", "-1", "-1", "-1", -1, int.parse(const Uuid().v4.toString())));
-        getPrices();
-        error.value = '';
-        isLoading.value = false;
         getPrices();
       });
-    } on Exception catch (e) {
-      // error.value = e.toString();
+    } on Exception {
       isLoading.value = false;
       getPrices();
+    }
+  }
+
+  Future getClients() async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.getClients().then((value) {
+        clients.value = value.$1;
+        sum.value = value.$2;
+        isLoading.value = false;
+        error.value = '';
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
     }
   }
 }

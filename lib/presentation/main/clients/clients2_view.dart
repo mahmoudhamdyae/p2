@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
+import 'package:testt/presentation/main/clients/view_client_view.dart';
 
 import '../../resources/routes_manager.dart';
 import '../../resources/values_manager.dart';
@@ -149,7 +150,8 @@ class Clients2View extends StatelessWidget {
               child: GestureDetector(
                 onTap: () =>
                 {
-                  // Navigator.pushNamed(context, Routes.clients2Route)
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ViewClientView()))
                 },
                 child: Container(
                   decoration: BoxDecoration(

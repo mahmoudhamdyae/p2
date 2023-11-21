@@ -3,6 +3,7 @@ import 'dart:core';
 
 import 'package:testt/app/personal_data.dart';
 import 'package:testt/model/all_users.dart';
+import 'package:testt/model/client.dart';
 import 'package:testt/model/fridge.dart';
 import 'package:http/http.dart' as http;
 import 'package:testt/model/masrofat.dart';
@@ -50,6 +51,7 @@ abstract class ApiService {
   Future delTerm(String termId);
   Future<List<Term>> searchTerm(String query);
   Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
+  Future<(List<Client>, int)> getClients();
 }
 
 class ApiServiceImpl implements ApiService {
@@ -658,8 +660,30 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
-    // _checkServer(response);
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future<(List<Client>, int)> getClients() async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
     final responseData = await json.decode(response.body);
-    print("============ $responseData");
+    List<Client> clients = [];
+    for (var singleClient in responseData["client"]) {
+      Client client = Client.fromJson(singleClient);
+      clients.add(client);
+    }
+    return (clients, responseData["total"] as int? ?? 0);
   }
 }
