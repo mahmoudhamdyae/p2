@@ -70,7 +70,7 @@ class CustomDialog extends StatelessWidget {
                   }
                 }),
               ),
-              ElevatedButton(onPressed: () { showAddPriceDialog(context); }, child: const Text("إضافة سعر"))
+              ElevatedButton(onPressed: () { showAddPriceDialog(context); }, child: const Text("إضافة قائمة أسعار جديدة"))
             ],
           ),
         )

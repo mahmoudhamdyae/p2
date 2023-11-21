@@ -73,7 +73,7 @@ class CustomDialog extends StatelessWidget {
                   }
                 }),
               ),
-              ElevatedButton(onPressed: () { showAddTermDialog(context); }, child: const Text("إضافة فترة"))
+              ElevatedButton(onPressed: () { showAddTermDialog(context); }, child: const Text("إضافة فترة جديدة"))
             ],
           ),
         )
