@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testt/presentation/main/clients/dialogs/first_way_dialog_view.dart';
+import 'package:testt/presentation/main/clients/dialogs/second_way_dialog_view.dart';
+import 'package:testt/presentation/main/clients/dialogs/third_way_dialog_view.dart';
 
 
 void showChoosePriceDialogDialog(BuildContext context) {
@@ -29,11 +31,11 @@ class CustomDialog extends StatelessWidget {
                 padding: EdgeInsets.all(12.0),
                 child: Text("الطريقة الأولى"),
               )),
-              ElevatedButton(onPressed: () {}, child: const Padding(
+              ElevatedButton(onPressed: () { showSecondWayDialogDialog(context); }, child: const Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Text("الطريقة الثانية"),
               )),
-              ElevatedButton(onPressed: () {}, child: const Padding(
+              ElevatedButton(onPressed: () { showThirdWayDialogDialog(context); }, child: const Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Text("الطريقة الثالثة"),
               )),
