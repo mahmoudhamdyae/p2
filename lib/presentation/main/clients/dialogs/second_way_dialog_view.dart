@@ -73,7 +73,7 @@ class CustomDialog extends StatelessWidget {
                         var formData = formState.currentState;
                         if (formData!.validate()) {
                           formData.save();
-                          controller.setFirstWay(priceController.text);
+                          controller.setSecondWay(priceController.text);
                           Navigator.of(context).pop();
                           Navigator.of(context).pop();
                         }

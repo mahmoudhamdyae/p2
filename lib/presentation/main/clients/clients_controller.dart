@@ -151,6 +151,16 @@ class ClientsController extends GetxController {
     fixedPrice.value = int.parse(price);
   }
 
+  setSecondWay(String price) {
+    wayNumber.value = 2;
+    fixedPrice.value = int.parse(price);
+  }
+
+  setThirdWay(String price) {
+    wayNumber.value = 3;
+    fixedPrice.value = int.parse(price);
+  }
+
   Future<void> addTerm(String name, String start, String end) async {
     if (terms.value.any((element) => element.name == name)) {
       throw Exception("هذا الاسم مستخدم من قبل");
