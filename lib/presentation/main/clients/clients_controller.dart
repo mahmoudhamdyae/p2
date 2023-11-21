@@ -29,6 +29,9 @@ class ClientsController extends GetxController {
   Rx<int> ton = 0.obs;
   Rx<int> smallShakara = 0.obs;
   Rx<int> bigShakara = 0.obs;
+  Rx<int> average = 0.obs;
+  Rx<int> shakayir = 0.obs;
+  Rx<int> priceOne = 0.obs;
 
   Rx<bool> isLoading = true.obs;
   Rx<String> error = ''.obs;
@@ -121,7 +124,10 @@ class ClientsController extends GetxController {
           fixedPrice.value,
           ton.value.toString(),
           smallShakara.value.toString(),
-          bigShakara.value.toString()
+          bigShakara.value.toString(),
+          average.value.toString(),
+          shakayir.value.toString(),
+          priceOne.value.toString()
       ).then((value) {
         error.value = '';
         isLoading.value = false;
@@ -151,6 +157,9 @@ class ClientsController extends GetxController {
     ton = 0.obs;
     smallShakara = 0.obs;
     bigShakara = 0.obs;
+    average = 0.obs;
+    shakayir = 0.obs;
+    priceOne = 0.obs;
   }
 
   setFirstWay(String price) {
@@ -168,9 +177,11 @@ class ClientsController extends GetxController {
     bigShakara.value = int.parse(newBigShakara);
   }
 
-  setThirdWay(String price) {
+  setThirdWay(String newAverage, String newShakayir, String newPriceOne) {
     wayNumber.value = 3;
-    fixedPrice.value = int.parse(price);
+    average.value = int.parse(newAverage);
+    shakayir.value = int.parse(newShakayir);
+    priceOne.value = int.parse(newPriceOne);
   }
 
   Future<void> addTerm(String name, String start, String end) async {

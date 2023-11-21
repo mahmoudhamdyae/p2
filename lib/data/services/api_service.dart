@@ -49,7 +49,7 @@ abstract class ApiService {
   Future<Term> showTerm(String termId);
   Future delTerm(String termId);
   Future<List<Term>> searchTerm(String query);
-  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String small_shakara, String big_shakara);
+  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -638,7 +638,7 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future addClient(amberId, fridgeId, priceId, termId, name, phone, address, status, wayNumber, fixedPrice, ton, smallShakara, bigShakara) async {
+  Future addClient(amberId, fridgeId, priceId, termId, name, phone, address, status, wayNumber, fixedPrice, ton, smallShakara, bigShakara, average, shakayir, priceOne) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
@@ -647,7 +647,7 @@ class ApiServiceImpl implements ApiService {
     } else if(wayNumber == 2) {
       url += "&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
     } else if(wayNumber == 3) {
-      // url += "&price_all=$price";
+      url += "&average=$average&shakayir=$shakayir&price_one=$priceOne";
     }
     final response = await http.post(
         Uri.parse(url),

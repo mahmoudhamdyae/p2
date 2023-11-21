@@ -16,7 +16,9 @@ class CustomDialog extends StatelessWidget {
   CustomDialog({super.key});
 
   final ClientsController controller = instance<ClientsController>();
-  TextEditingController priceController = TextEditingController();
+  TextEditingController averageController = TextEditingController();
+  TextEditingController shakayirController = TextEditingController();
+  TextEditingController priceOneController = TextEditingController();
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
   @override
@@ -32,20 +34,63 @@ class CustomDialog extends StatelessWidget {
             children: [
               Form(
                 key: formState,
-                child: TextFormField(
-                  controller: priceController,
-                  textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.number,
-                  validator: (val) {
-                    if (val == null || val.isEmpty) {
-                      return "يحب إدخال سعر";
-                    }
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                      hintText: "السعر",
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1))),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: averageController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return "يحب إدخال متوسط وزن الشكارة";
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            hintText: "متوسط وزن الشكارة",
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(width: 1))),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: shakayirController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return "يحب إدخال متوسط عدد الشكاير";
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            hintText: "عدد الشكاير",
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(width: 1))),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: priceOneController,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.number,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return "يحب إدخال سعر الشكارة الواحدة";
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            hintText: "سعر الشكارة الواحدة",
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(width: 1))),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 16),
@@ -73,7 +118,7 @@ class CustomDialog extends StatelessWidget {
                         var formData = formState.currentState;
                         if (formData!.validate()) {
                           formData.save();
-                          controller.setThirdWay(priceController.text);
+                          controller.setThirdWay(averageController.text, shakayirController.text, priceOneController.text);
                           Navigator.of(context).pop();
                           Navigator.of(context).pop();
                         }
