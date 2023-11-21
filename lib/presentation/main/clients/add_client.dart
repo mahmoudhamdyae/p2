@@ -9,6 +9,8 @@ import 'package:testt/presentation/main/clients/dialogs/fridges_dialog_view.dart
 import 'package:testt/presentation/main/clients/dialogs/prices_dialog_view.dart';
 import 'package:testt/presentation/main/clients/dialogs/terms_dialog_view.dart';
 
+import '../../common/state_renderer/state_renderer.dart';
+import '../../component/alert.dart';
 import '../../resources/values_manager.dart';
 
 class AddClient extends StatelessWidget {
@@ -215,8 +217,16 @@ class AddClient extends StatelessWidget {
                           } else if (controller.wayNumber.value == 0) {
                             showError(context, "يجب إضافة طريقة تحديد السعر");
                           } else {
-                            print("==========clicked");
-                            controller.addClient(nameController.text, phoneController.text, addressController.text);
+                            showLoading(context);
+                            try {
+                              controller.addClient(nameController.text, phoneController.
+                              text, addressController.text).then((value) {
+                              Navigator.of(context).pop();
+                              Navigator.of(context).pop();
+                            });
+                          } on Exception {
+                            Navigator.of(context).pop();
+                          }
                           }
                         }
                       },

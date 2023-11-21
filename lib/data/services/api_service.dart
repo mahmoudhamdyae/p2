@@ -641,8 +641,14 @@ class ApiServiceImpl implements ApiService {
   Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    print("======= status ==== $status");
-    String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status&price_all=$price";
+    String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
+    if (wayNumber == 1) {
+      url += "&price_all=$price";
+    } else if(wayNumber == 2) {
+      // url += "&price_all=$price";
+    } else if(wayNumber == 3) {
+      // url += "&price_all=$price";
+    }
     final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -652,7 +658,6 @@ class ApiServiceImpl implements ApiService {
         }
     );
     // _checkServer(response);
-    final responseData = await json.decode(response.body);
-    print("============ $responseData");
+    await json.decode(response.body);
   }
 }

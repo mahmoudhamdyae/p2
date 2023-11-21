@@ -120,12 +120,10 @@ class ClientsController extends GetxController {
       ).then((value) {
         error.value = '';
         isLoading.value = false;
-        print("==========success");
       });
     } on Exception catch (e) {
       error.value = e.toString();
       isLoading.value = false;
-      print("==========error $e");
     }
   }
 
