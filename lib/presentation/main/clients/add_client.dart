@@ -181,28 +181,28 @@ class AddClient extends StatelessWidget {
                             Text(controller.price.value.vegetableName, style: const TextStyle(fontSize: 16))
                           ],
                         ),
-                      )
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  showChoosePriceDialogDialog(context);
+                                }, child: const Text("حساب السعر")
+                            ),
+                            Expanded(child: Container()),
+                            Text(
+                                controller.wayNumber.value == 1 ? "الطريقة الأولى" : (controller.wayNumber.value == 2 ? "الطريقة الثانية" : (controller.wayNumber.value == 3 ? "الطريقة الثالثة" : "")),
+                                style: const TextStyle(fontSize: 16)
+                            )
+
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {
-                          showChoosePriceDialogDialog(context);
-                        }, child: const Text("حساب السعر")
-                    ),
-                    Expanded(child: Container()),
-                    Text(
-                        controller.wayNumber.value == 1 ? "الطريقة الأولى" : (controller.wayNumber.value == 2 ? "الطريقة الثانية" : (controller.wayNumber.value == 3 ? "الطريقة الثالثة" : "")),
-                        style: const TextStyle(fontSize: 16)
-                    )
-
-                  ],
                 ),
               ),
               Expanded(child: Container()),
