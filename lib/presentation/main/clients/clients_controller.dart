@@ -150,18 +150,21 @@ class ClientsController extends GetxController {
     fixedPrice.value = int.parse(price);
   }
 
-  Future<void> addFridge(String fridgeName) async {
+  Future<void> addTerm(String name, String start, String end) async {
+    if (terms.value.any((element) => element.name == name)) {
+      throw Exception("هذا الاسم مستخدم من قبل");
+    }
     try {
       isLoading.value = true;
       error.value = '';
-      await _apiService.addFridge(fridgeName).then((value) {
-        fridges.value.add(Fridge(44, fridgeName, "0", 0, Owner(""), []));
+      await _apiService.addTerm(name, start, end).then((value) {
+        terms.value.add(Term(-1, name, start, end, -1));
         error.value = '';
         isLoading.value = false;
       });
     } on Exception catch (e) {
       error.value = e.toString();
-      fridges.value = List<Fridge>.empty();
+      terms.value = List<Term>.empty();
       isLoading.value = false;
     }
   }
