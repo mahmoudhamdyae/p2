@@ -8,7 +8,6 @@ import 'package:testt/presentation/resources/strings_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
-import '../../resources/routes_manager.dart';
 import '../../resources/values_manager.dart';
 
 class ViewClientView extends StatelessWidget {
@@ -22,7 +21,7 @@ class ViewClientView extends StatelessWidget {
     controller.getClients();
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppStrings.clients_button),
+        title: const Text("كل العملاء"),
       ),
       body: Column(
         children: [
