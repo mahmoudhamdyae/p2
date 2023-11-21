@@ -34,7 +34,7 @@ class CustomDialog extends StatelessWidget {
                 child: Text("الطريقة الثانية"),
               )),
               ElevatedButton(onPressed: () {}, child: const Padding(
-                padding: EdgeInsets.all(12  .0),
+                padding: EdgeInsets.all(12.0),
                 child: Text("الطريقة الثالثة"),
               )),
             ],
