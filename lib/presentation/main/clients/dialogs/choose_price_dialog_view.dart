@@ -23,10 +23,20 @@ class CustomDialog extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.6,
           width: MediaQuery.of(context).size.width * 0.6,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ElevatedButton(onPressed: () { showFirstWayDialogDialog(context); }, child: Text("الطريقة الأولى")),
-              ElevatedButton(onPressed: () {}, child: Text("الطريقة الثانية")),
-              ElevatedButton(onPressed: () {}, child: Text("الطريقة الثالثة")),
+              ElevatedButton(onPressed: () { showFirstWayDialogDialog(context); }, child: const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text("الطريقة الأولى"),
+              )),
+              ElevatedButton(onPressed: () {}, child: const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text("الطريقة الثانية"),
+              )),
+              ElevatedButton(onPressed: () {}, child: const Padding(
+                padding: EdgeInsets.all(12  .0),
+                child: Text("الطريقة الثالثة"),
+              )),
             ],
           ),
         )
