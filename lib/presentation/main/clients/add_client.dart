@@ -126,11 +126,16 @@ class AddClient extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  showFridgesDialog(context);
-                                },
-                                child: const Text("اختر ثلاجة")),
+                            SizedBox(
+                              width: 230,
+                              child: Expanded(
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      showFridgesDialog(context);
+                                    },
+                                    child: const Text("اختر ثلاجة")),
+                              ),
+                            ),
                             Expanded(child: Container()),
                             Text(controller.fridge.value.name, style: const TextStyle(fontSize: 16))
                           ],
@@ -140,15 +145,20 @@ class AddClient extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  if (controller.fridge.value.name == "") {
-                                    showError(context, "اختر ثلاجة أولا");
-                                  } else {
-                                    showAmbersDialog(context);
-                                  }
-                                },
-                                child: const Text("اختر عنبر")),
+                            SizedBox(
+                              width: 230,
+                              child: Expanded(
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      if (controller.fridge.value.name == "") {
+                                        showError(context, "اختر ثلاجة أولا");
+                                      } else {
+                                        showAmbersDialog(context);
+                                      }
+                                    },
+                                    child: const Text("اختر عنبر")),
+                              ),
+                            ),
                             Expanded(child: Container()),
                             Text(controller.amber.value.name, style: const TextStyle(fontSize: 16))
                           ],
@@ -158,11 +168,16 @@ class AddClient extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  showTermsDialog(context);
-                                },
-                                child: const Text("اختر فترة")),
+                            SizedBox(
+                              width: 230,
+                              child: Expanded(
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      showTermsDialog(context);
+                                    },
+                                    child: const Text("اختر فترة")),
+                              ),
+                            ),
                             Expanded(child: Container()),
                             Text(controller.term.value.name, style: const TextStyle(fontSize: 16))
                           ],
@@ -172,25 +187,35 @@ class AddClient extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  showPricesDialog(context);
-                                },
-                                child: const Text("اختر النوع من قائمة الأسعار")),
+                            SizedBox(
+                              width: 230,
+                              child: Expanded(
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      showPricesDialog(context);
+                                    },
+                                    child: const Text("اختر النوع من قائمة الأسعار")),
+                              ),
+                            ),
                             Expanded(child: Container()),
                             Text(controller.price.value.vegetableName, style: const TextStyle(fontSize: 16))
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  showChoosePriceDialogDialog(context);
-                                }, child: const Text("حساب السعر")
+                            SizedBox(
+                              width: 230,
+                              child: Expanded(
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      showChoosePriceDialogDialog(context);
+                                    }, child: const Text("حساب السعر")
+                                ),
+                              ),
                             ),
                             Expanded(child: Container()),
                             Text(
