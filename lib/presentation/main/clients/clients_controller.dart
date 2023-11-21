@@ -192,9 +192,10 @@ class ClientsController extends GetxController {
       isLoading.value = true;
       error.value = '';
       await _apiService.addTerm(name, start, end).then((value) {
-        terms.value.add(Term(-1, name, start, end, -1));
-        error.value = '';
-        isLoading.value = false;
+        // terms.value.add(Term(-1, name, start, end, -1));
+        getTerms();
+        // error.value = '';
+        // isLoading.value = false;
       });
     } on Exception catch (e) {
       error.value = e.toString();
@@ -211,7 +212,8 @@ class ClientsController extends GetxController {
       isLoading.value = true;
       error.value = '';
       await _apiService.addPrice(vegetableName, smallShakara, bigShakara, ton).then((value) {
-        prices.value.add(Price("", "-1", "-1", "-1", -1, int.parse(const Uuid().v4.toString())));
+        // prices.value.add(Price("", "-1", "-1", "-1", -1, int.parse(const Uuid().v4.toString())));
+        getPrices();
         error.value = '';
         isLoading.value = false;
         getPrices();
