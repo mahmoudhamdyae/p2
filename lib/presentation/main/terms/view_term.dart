@@ -8,6 +8,7 @@ import 'package:testt/presentation/main/clients/clients_controller.dart';
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
 import '../../resources/values_manager.dart';
+import '../clients/view_client_view.dart';
 
 class ViewTermView extends StatelessWidget {
 
@@ -177,110 +178,72 @@ class ViewTermView extends StatelessWidget {
                                   Client client = controller.clients[index];
                                   // showEditMasrofDialog(context, client);
                                 },
-                                child: Card(
-                                  color: Color(0xFFf6f6f6),
-                                  // elevation: AppSize.s8,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: Center(
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(
-                                                  AppPadding.p8),
-                                              child: Text(
-                                                controller
-                                                    .clients[index].name,
-                                                style: const TextStyle(
-                                                  color: Colors.black87,
-                                                  fontSize: 16,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Client client = controller.clients[index];
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => ViewClientView(client: client)));
+                                  },
+                                  child: Card(
+                                    color: const Color(0xFFf6f6f6),
+                                    // elevation: AppSize.s8,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                    AppPadding.p8),
+                                                child: Text(
+                                                  controller
+                                                      .clients[index].name,
+                                                  style: const TextStyle(
+                                                    color: Colors.black87,
+                                                    fontSize: 16,
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          flex: 2,
-                                          child: Center(
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(
-                                                  AppPadding.p8),
-                                              child: Text(
-                                                controller.clients[index]
-                                                    .phone,
-                                                style: const TextStyle(
-                                                  color: Colors.black87,
-                                                  fontSize: 16,
+                                          Expanded(
+                                            flex: 2,
+                                            child: Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                    AppPadding.p8),
+                                                child: Text(
+                                                  controller.clients[index]
+                                                      .phone,
+                                                  style: const TextStyle(
+                                                    color: Colors.black87,
+                                                    fontSize: 16,
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Center(
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(
-                                                  AppPadding.p8),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    controller
-                                                        .clients[index].vegetableName,
-                                                    style: const TextStyle(
-                                                      color: Colors.black87,
-                                                      fontSize: 16,
-                                                    ),
+                                          Expanded(
+                                            flex: 3,
+                                            child: Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(
+                                                    AppPadding.p8),
+                                                child: Text(
+                                                  controller
+                                                      .clients[index].vegetableName,
+                                                  style: const TextStyle(
+                                                    color: Colors.black87,
+                                                    fontSize: 16,
                                                   ),
-                                                  IconButton(
-                                                    onPressed: () async {
-                                                      return AwesomeDialog(
-                                                          btnCancelText:
-                                                          "الغاء",
-                                                          btnOkText: "حذف",
-                                                          context: context,
-                                                          dialogType: DialogType
-                                                              .noHeader,
-                                                          title: "حذف",
-                                                          desc:
-                                                          "هل أنت متأكد من حذف العميل ؟",
-                                                          btnCancelOnPress:
-                                                              () {},
-                                                          btnOkOnPress: () async {
-                                                            await controller.delClient(controller.clients[index]);
-                                                            controller.getClientsOfTerms(termId);
-                                                          }).show();
-                                                    },
-                                                    icon: const Icon(
-                                                      Icons.delete,
-                                                      color: Colors.black38,
-                                                    ),
-                                                  ),
-                                                  IconButton(
-                                                    onPressed: () {
-                                                      Client client = controller.clients[index];
-                                                      // controller.amber.value = client.amber;
-                                                      // controller.fridge.value = client.fridge;
-                                                      // controller.term.value = client.term;
-                                                      // controller.price.value = client.;
-                                                      // Navigator.of(context).push(MaterialPageRoute(
-                                                      //     builder: (context) => EditClient(name: client.name,phone:  client.phone, address: client.address)));
-                                                    },
-                                                    icon: const Icon(
-                                                      Icons.edit,
-                                                      color: Colors.black38,
-                                                    ),
-                                                  )
-                                                ],
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
