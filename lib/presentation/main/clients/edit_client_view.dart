@@ -9,12 +9,13 @@ import 'package:testt/presentation/main/clients/dialogs/fridges_dialog_view.dart
 import 'package:testt/presentation/main/clients/dialogs/prices_dialog_view.dart';
 import 'package:testt/presentation/main/clients/dialogs/terms_dialog_view.dart';
 
+import '../../../model/client.dart';
 import '../../component/alert.dart';
 import '../../resources/values_manager.dart';
 
 class EditClient extends StatelessWidget {
-  final String clientId, name, phone, address;
-  EditClient({super.key, required this.clientId, required this.name, required this.phone, required this.address});
+  final Client client;
+  EditClient({super.key, required this.client});
 
   final ClientsController controller = instance<ClientsController>();
   TextEditingController nameController = TextEditingController();
@@ -24,9 +25,9 @@ class EditClient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    nameController.text = name;
-    phoneController.text = phone;
-    addressController.text = address;
+    nameController.text = client.name;
+    phoneController.text = client.phone;
+    addressController.text = client.address;
     return Scaffold(
       appBar: AppBar(
         title: const Text("تعدبل عميل"),
@@ -219,17 +220,26 @@ class EditClient extends StatelessWidget {
                               child: Expanded(
                                 child: ElevatedButton(
                                     onPressed: () {
-                                      showChoosePriceDialogDialog(context);
-                                    }, child: const Text("حساب السعر")
+                                    }, child: const Text("السعر الحالى: ")
                                 ),
                               ),
                             ),
-                            Expanded(child: Container()),
+                            const SizedBox(width: 8),
                             Text(
-                                controller.wayNumber.value == 1 ? "الطريقة الأولى" : (controller.wayNumber.value == 2 ? "الطريقة الثانية" : (controller.wayNumber.value == 3 ? "الطريقة الثالثة" : "")),
+                                client.pricaAll,
                                 style: const TextStyle(fontSize: 16)
-                            )
-
+                            ),
+                            Expanded(child: Container()),
+                            SizedBox(
+                              width: 230,
+                              child: Expanded(
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      showChoosePriceDialogDialog(context);
+                                    }, child: const Text("تعديل السعر")
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -257,12 +267,12 @@ class EditClient extends StatelessWidget {
                               showError(context, "يجب إضافة فترة");
                             } else if (controller.price.value.vegetableName == "") {
                               showError(context, "يجب إضافة نوع");
-                            } else if (controller.wayNumber.value == 0) {
+                            } /*else if (controller.wayNumber.value == 0) {
                               showError(context, "يجب إضافة طريقة تحديد السعر");
-                            } else {
+                            }*/ else {
                               showLoading(context);
                               try {
-                                controller.updateClient(clientId, nameController.text, phoneController.
+                                controller.updateClient(client.id.toString(), nameController.text, phoneController.
                                 text, addressController.text).then((value) {
                                   Navigator.of(context).pop();
                                   Navigator.of(context).pop();
