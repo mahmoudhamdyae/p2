@@ -52,6 +52,12 @@ abstract class ApiService {
   Future<List<Term>> searchTerm(String query);
   Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
   Future<(List<Client>, int)> getClients();
+  Future<(List<Client>, int)> getPersons();
+  Future<(List<Client>, int)> getDealers();
+  Future<Client> showClient(String clientId);
+  Future delClient(String clientId);
+  Future<List<Client>> searchClient(String query);
+  Future updateClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -643,7 +649,6 @@ class ApiServiceImpl implements ApiService {
   Future addClient(amberId, fridgeId, priceId, termId, name, phone, address, status, wayNumber, fixedPrice, ton, smallShakara, bigShakara, average, shakayir, priceOne) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    print("======== $termId");
     String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
     if (wayNumber == 1) {
       url += "&price_all=$fixedPrice";
@@ -685,5 +690,133 @@ class ApiServiceImpl implements ApiService {
       clients.add(client);
     }
     return (clients, responseData["total"] as int? ?? 0);
+  }
+
+  @override
+  Future delClient(String clientId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client/$clientId/delete";
+    final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
+  }
+
+  @override
+  Future<(List<Client>, int)> getDealers() async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client/dealers";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    List<Client> clients = [];
+    for (var singleClient in responseData["client"]) {
+      Client client = Client.fromJson(singleClient);
+      clients.add(client);
+    }
+    return (clients, responseData["total"] as int? ?? 0);
+  }
+
+  @override
+  Future<(List<Client>, int)> getPersons() async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client/persons";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    List<Client> clients = [];
+    for (var singleClient in responseData["client"]) {
+      Client client = Client.fromJson(singleClient);
+      clients.add(client);
+    }
+    return (clients, responseData["total"] as int? ?? 0);
+  }
+
+  @override
+  Future<List<Client>> searchClient(String query) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client/search?query=$query";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    List<Client> clients = [];
+    for (var singleClient in responseData["client"]) {
+      Client client = Client.fromJson(singleClient);
+      clients.add(client);
+    }
+    return clients;
+  }
+
+  @override
+  Future<Client> showClient(String clientId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client/$clientId/show";
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    return Client.fromJson(responseData["client"]);
+  }
+
+  @override
+  Future updateClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
+    if (wayNumber == 1) {
+      url += "&price_all=$fixedPrice";
+    } else if(wayNumber == 2) {
+      url += "&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
+    } else if(wayNumber == 3) {
+      url += "&avrage=$average&shakayir=$shakayir&price_one=$priceOne";
+    }
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
   }
 }
