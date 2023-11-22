@@ -16,9 +16,12 @@ class Client {
   int ton;
   int smallShakara;
   int bigShakara;
+  int average;
+  int shakyir;
+  int priceOne;
 
   Client(
-      this.id, this.name, this.phone, this.address, this.vegetableName, this.fridgeName, this.amberName, this.termName, this.fridgeId, this.amberId, this.termId, this.priceId, this.status, this.priceAll, this.ton, this.smallShakara, this.bigShakara
+      this.id, this.name, this.phone, this.address, this.vegetableName, this.fridgeName, this.amberName, this.termName, this.fridgeId, this.amberId, this.termId, this.priceId, this.status, this.priceAll, this.ton, this.smallShakara, this.bigShakara, this.average, this.shakyir, this.priceOne
       );
 
   factory Client.fromJson(Map<String, dynamic> json) {
@@ -40,6 +43,9 @@ class Client {
       json["data"]["ton"] as int? ?? 0,
       json["data"]["small_shakara"] as int? ?? 0,
       json["data"]["big_shakara"] as int? ?? 0,
+      json["data"]["avrage"] as int? ?? 0,
+      json["data"]["shakayir"] as int? ?? 0,
+      json["data"]["price_one"] as int? ?? 0,
     );
   }
 }

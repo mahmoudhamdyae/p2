@@ -180,6 +180,7 @@ class ClientsController extends GetxController {
           shakayir.value.toString(),
           priceOne.value.toString()
       ).then((value) {
+        update();
         error.value = '';
         isLoading.value = false;
         clearAll();
