@@ -229,58 +229,13 @@ class ViewClientsView extends StatelessWidget {
                                             child: Padding(
                                               padding: const EdgeInsets.all(
                                                   AppPadding.p8),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    controller
-                                                        .clients[index].vegetableName,
-                                                    style: const TextStyle(
-                                                      color: Colors.black87,
-                                                      fontSize: 16,
-                                                    ),
-                                                  ),
-                                                  IconButton(
-                                                    onPressed: () async {
-                                                      return AwesomeDialog(
-                                                          btnCancelText:
-                                                          "الغاء",
-                                                          btnOkText: "حذف",
-                                                          context: context,
-                                                          dialogType: DialogType
-                                                              .noHeader,
-                                                          title: "حذف",
-                                                          desc:
-                                                          "هل أنت متأكد من حذف العميل ؟",
-                                                          btnCancelOnPress:
-                                                              () {},
-                                                          btnOkOnPress: () async {
-                                                            await controller.delClient(controller.clients[index]);
-                                                            (kind == 0) ? await controller.getPersons() : (kind == 1) ? await controller.getDealers() : await controller.getClients();
-                                                          }).show();
-                                                    },
-                                                    icon: const Icon(
-                                                      Icons.delete,
-                                                      color: Colors.black38,
-                                                    ),
-                                                  ),
-                                                  IconButton(
-                                                    onPressed: () {
-                                                      Client client = controller.clients[index];
-                                                      // controller.amber.value = client.amber;
-                                                      // controller.fridge.value = client.fridge;
-                                                      // controller.term.value = client.term;
-                                                      // controller.price.value = client.;
-                                                      // Navigator.of(context).push(MaterialPageRoute(
-                                                      //     builder: (context) => EditClient(name: client.name,phone:  client.phone, address: client.address)));
-                                                    },
-                                                    icon: const Icon(
-                                                      Icons.edit,
-                                                      color: Colors.black38,
-                                                    ),
-                                                  )
-                                                ],
+                                              child: Text(
+                                                controller
+                                                    .clients[index].vegetableName,
+                                                style: const TextStyle(
+                                                  color: Colors.black87,
+                                                  fontSize: 16,
+                                                ),
                                               ),
                                             ),
                                           ),
