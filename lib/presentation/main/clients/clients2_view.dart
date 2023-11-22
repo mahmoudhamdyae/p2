@@ -34,7 +34,8 @@ class Clients2View extends StatelessWidget {
               child: GestureDetector(
                 onTap: () =>
                 {
-                  // Navigator.pushNamed(context, Routes.clients2Route)
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ViewClientView(kind: 0,)))
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -92,7 +93,8 @@ class Clients2View extends StatelessWidget {
               child: GestureDetector(
                 onTap: () =>
                 {
-                  // Navigator.pushNamed(context, Routes.clients2Route)
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ViewClientView(kind: 1,)))
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -151,7 +153,7 @@ class Clients2View extends StatelessWidget {
                 onTap: () =>
                 {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ViewClientView()))
+                      builder: (context) => ViewClientView(kind: 2,)))
                 },
                 child: Container(
                   decoration: BoxDecoration(

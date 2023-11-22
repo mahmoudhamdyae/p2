@@ -13,15 +13,16 @@ import '../../resources/values_manager.dart';
 class ViewClientView extends StatelessWidget {
 
   final ClientsController controller = instance<ClientsController>();
+  final int kind;
 
-  ViewClientView({super.key});
+  ViewClientView({super.key, required this.kind});
 
   @override
   Widget build(BuildContext context) {
     controller.getClients();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("كل العملاء"),
+        title: Text(kind == 0 ? "أفراد" : (kind == 1) ? "تجار" : "كل العملاء"),
       ),
       body: Column(
         children: [
