@@ -83,402 +83,401 @@ class ViewClientView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "اسم العميل: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+        child: ListView(children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "اسم العميل: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                            Text(
-                              client.name,
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "رقم الهاتف: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                          ),
+                          Text(
+                            client.name,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
                             ),
-                            Text(
-                              client.phone,
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "العنوان: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "رقم الهاتف: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                            Text(
-                              client.address,
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
+                          ),
+                          Text(
+                            client.phone,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "العنوان: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
+                            ),
+                          ),
+                          Text(
+                            client.address,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "الثلاجة: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "الثلاجة: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                            Text(
-                              client.fridgeName,
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "العنبر: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                          ),
+                          Text(
+                            client.fridgeName,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
                             ),
-                            Text(
-                              client.amberName,
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "نوع الثمار: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "العنبر: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                            Text(
-                              client.vegetableName,
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "الفترة: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                          ),
+                          Text(
+                            client.amberName,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
                             ),
-                            Text(
-                              client.termName,
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "السعر الكلى: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "نوع الثمار: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                            Text(
-                              client.priceAll,
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
+                          ),
+                          Text(
+                            client.vegetableName,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "الفترة: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
+                            ),
+                          ),
+                          Text(
+                            client.termName,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "السعر الكلى: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
+                            ),
+                          ),
+                          Text(
+                            client.priceAll,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            // تفاصيل أخرى الطريقة الثانية
-            client.ton == "0" && client.smallShakara == "0" && client.bigShakara == "0" ? Container() : Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "تفاصيل أخرى ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+          ),
+          // تفاصيل أخرى الطريقة الثانية
+          client.ton == "0" && client.smallShakara == "0" && client.bigShakara == "0" ? Container() : Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "تفاصيل أخرى ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "عدد الأطنان: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "عدد الأطنان: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                            Text(
-                              client.ton.toString(),
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "عدد الشكاير الصغيرة: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                          ),
+                          Text(
+                            client.ton.toString(),
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
                             ),
-                            Text(
-                              client.smallShakara.toString(),
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "عدد الشكاير الكبيرة: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "عدد الشكاير الصغيرة: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                            Text(
-                              client.bigShakara.toString(),
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
+                          ),
+                          Text(
+                            client.smallShakara.toString(),
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "عدد الشكاير الكبيرة: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
+                            ),
+                          ),
+                          Text(
+                            client.bigShakara.toString(),
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            // تفاصيل أخرى الطريقة الثالثة
-            client.average == "0" ? Container() : Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "تفاصيل أخرى ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+          ),
+          // تفاصيل أخرى الطريقة الثالثة
+          client.average == "0" ? Container() : Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "تفاصيل أخرى ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "متوسط وزن الشكارة: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "متوسط وزن الشكارة: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                            Text(
-                              client.average.toString(),
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "عدد الشكاير: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                          ),
+                          Text(
+                            client.average.toString(),
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
                             ),
-                            Text(
-                              client.shakyir.toString(),
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "سعر الشكارة الواحدة: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "عدد الشكاير: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
                             ),
-                            Text(
-                              client.priceOne.toString(),
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 20,
-                              ),
-                            )
-                          ],
-                        ),
+                          ),
+                          Text(
+                            client.shakyir.toString(),
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "سعر الشكارة الواحدة: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
+                            ),
+                          ),
+                          Text(
+                            client.priceOne.toString(),
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Expanded(child: Container()),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: ElevatedButton(
-                onPressed: () {
-                  controller.amber.value.id = client.amberId;
-                  controller.amber.value.name = client.amberName;
-                  controller.fridge.value.id = client.fridgeId;
-                  controller.fridge.value.name = client.fridgeName;
-                  controller.term.value.id = client.termId;
-                  controller.term.value.name = client.termName;
-                  controller.price.value.id = client.priceId;
-                  controller.price.value.vegetableName = client.vegetableName;
-                  showResubscribeDialog(context, client.id.toString());
-                },
-                child: const Text("تجديد الاشتراك"),
-              ),
-            )
-          ],
-        ),
+          ),
+          Expanded(child: Container()),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: ElevatedButton(
+              onPressed: () {
+                controller.amber.value.id = client.amberId;
+                controller.amber.value.name = client.amberName;
+                controller.fridge.value.id = client.fridgeId;
+                controller.fridge.value.name = client.fridgeName;
+                controller.term.value.id = client.termId;
+                controller.term.value.name = client.termName;
+                controller.price.value.id = client.priceId;
+                controller.price.value.vegetableName = client.vegetableName;
+                showResubscribeDialog(context, client.id.toString());
+              },
+              child: const Text("تجديد الاشتراك"),
+            ),
+          )
+        ],
+          ),
       ),
     );
   }

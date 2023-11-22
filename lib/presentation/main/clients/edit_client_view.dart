@@ -233,7 +233,7 @@ class EditClient extends StatelessWidget {
                             ElevatedButton(
                                 onPressed: () {
                                   showFirstWayDialogDialog(context);
-                                }, child: const Text("تعديل السعر")
+                                }, child: const Text("تعديل")
                             ),
                           ],
                         ),
