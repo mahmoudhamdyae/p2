@@ -816,7 +816,7 @@ class ApiServiceImpl implements ApiService {
     } else if(wayNumber == 3) {
       url += "&avrage=$average&shakayir=$shakayir&price_one=$priceOne";
     }
-    final response = await http.post(
+    final response = await http.put(
         Uri.parse(url),
         headers: {
           'content-type': 'application/json;charset=utf-8',
