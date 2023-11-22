@@ -313,4 +313,31 @@ class ClientsController extends GetxController {
       error.value = e.toString();
     }
   }
+
+  Future resubscribe() async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.resubscribe(
+          amber.value.id.toString(),
+          fridge.value.id.toString(),
+          price.value.id.toString(),
+          term.value.id.toString(),
+          wayNumber.value,
+          fixedPrice.value,
+          ton.value.toString(),
+          smallShakara.value.toString(),
+          bigShakara.value.toString(),
+          average.value.toString(),
+          shakayir.value.toString(),
+          priceOne.value.toString()
+      ).then((value) {
+        isLoading.value = false;
+        error.value = '';
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
 }

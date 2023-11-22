@@ -59,6 +59,7 @@ abstract class ApiService {
   Future delClient(String clientId);
   Future<List<Client>> searchClient(String query);
   Future updateClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
+  Future resubscribe(String amberId, String fridgeId, String priceId, String termId, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -847,5 +848,29 @@ class ApiServiceImpl implements ApiService {
       }
     }
     return (clients, responseData["total"] as int? ?? 0);
+  }
+
+  @override
+  Future resubscribe(String amberId, String fridgeId, String priceId, String termId, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client/newterm/$amberId/$fridgeId/$termId/$priceId?term_id=$termId";
+    if (wayNumber == 1) {
+      url += "&price_all=$fixedPrice";
+    } else if(wayNumber == 2) {
+      url += "&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
+    } else if(wayNumber == 3) {
+      url += "&avrage=$average&shakayir=$shakayir&price_one=$priceOne";
+    }
+    final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    await json.decode(response.body);
   }
 }

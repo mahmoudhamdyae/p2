@@ -252,7 +252,23 @@ class ViewClientView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8),
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  showLoading(context);
+                  try {
+                    await controller.resubscribe().then((value) {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.success,
+                          desc: 'تم تجديد الاشتراك',
+                          btnOkOnPress: () { Navigator.of(context).pop(); },
+                      ).show();
+                    });
+                  } on Exception catch (e) {
+                    Navigator.of(context).pop();
+                    showError(context, e.toString());
+                  }
                 },
                 child: const Text("تجديد الاشتراك"),
               ),
