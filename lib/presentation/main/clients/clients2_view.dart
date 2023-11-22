@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
-import 'package:testt/presentation/main/clients/view_client_view.dart';
+import 'package:testt/presentation/main/clients/view_clients_view.dart';
 
 import '../../resources/routes_manager.dart';
 import '../../resources/values_manager.dart';
@@ -35,7 +35,7 @@ class Clients2View extends StatelessWidget {
                 onTap: () =>
                 {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ViewClientView(kind: 0,)))
+                      builder: (context) => ViewClientsView(kind: 0,)))
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -94,7 +94,7 @@ class Clients2View extends StatelessWidget {
                 onTap: () =>
                 {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ViewClientView(kind: 1,)))
+                      builder: (context) => ViewClientsView(kind: 1,)))
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -153,7 +153,7 @@ class Clients2View extends StatelessWidget {
                 onTap: () =>
                 {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ViewClientView(kind: 2,)))
+                      builder: (context) => ViewClientsView(kind: 2,)))
                 },
                 child: Container(
                   decoration: BoxDecoration(

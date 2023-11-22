@@ -67,7 +67,7 @@ class RouteGenerator {
       case Routes.clients2Route:
         return MaterialPageRoute(builder: (_) => Clients2View());
       case Routes.periodsRoute:
-        return MaterialPageRoute(builder: (_) => TermsView());
+        return MaterialPageRoute(builder: (_) => const TermsView());
       case Routes.addClientRoute:
         return MaterialPageRoute(builder: (_) => AddClient());
       default:
