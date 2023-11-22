@@ -16,9 +16,9 @@ class Client {
   String ton;
   String smallShakara;
   String bigShakara;
-  int average;
-  int shakyir;
-  int priceOne;
+  String average;
+  String shakyir;
+  String priceOne;
 
   Client(
       this.id, this.name, this.phone, this.address, this.vegetableName,
@@ -47,9 +47,9 @@ class Client {
       json["data"]["ton"] as String? ?? "0",
       json["data"]["small_shakara"] as String? ?? "0",
       json["data"]["big_shakara"] as String? ?? "0",
-      json["data"]["avrage"] as int? ?? 0,
-      json["data"]["shakayir"] as int? ?? 0,
-      json["data"]["price_one"] as int? ?? 0,
+      json["data"]["avrage"] as String? ?? "0",
+      json["data"]["shakayir"] as String? ?? "0",
+      json["data"]["price_one"] as String? ?? "0",
     );
   }
 }

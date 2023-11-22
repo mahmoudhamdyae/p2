@@ -369,7 +369,7 @@ class ViewClientView extends StatelessWidget {
               ),
             ),
             // تفاصيل أخرى الطريقة الثالثة
-            client.average == 0 ? Container() : Padding(
+            client.average == "0" ? Container() : Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
                 child: Padding(
