@@ -1,8 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:testt/model/client.dart';
+import 'package:testt/presentation/component/alert.dart';
 
 import '../../../app/di.dart';
+import '../../component/error.dart';
 import 'clients_controller.dart';
 
 class ViewClientView extends StatelessWidget {
@@ -36,9 +38,16 @@ class ViewClientView extends StatelessWidget {
                       btnCancelOnPress:
                           () {},
                       btnOkOnPress: () async {
-                        await controller.delClient(client).then((value) {
+                        showLoading(context);
+                        try {
+                          await controller.delClient(client).then((value) {
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                          });
+                        }  on Exception catch (e) {
                           Navigator.of(context).pop();
-                        });
+                          showError(context, e.toString());
+                        }
                       }).show();
                 },
                 icon: const Icon(
