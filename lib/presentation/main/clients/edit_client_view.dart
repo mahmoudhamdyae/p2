@@ -106,7 +106,7 @@ class EditClient extends StatelessWidget {
                           child: Center(
                             child: DropdownMenu<String>(
                               width: 230,
-                              initialSelection: "فرد",
+                              initialSelection: client.status == "person" ? "فرد": "تاجر",
                               onSelected: (String? value) {
                                 if (value == "تاجر") {
                                   controller.setStatus("dealer");
@@ -220,20 +220,15 @@ class EditClient extends StatelessWidget {
                               child: Expanded(
                                 child: ElevatedButton(
                                     onPressed: () {
-                                    }, child: const Text("السعر الحالى")
+                                      showFirstWayDialogDialog(context);
+                                    }, child: const Text("تعديل السعر الحالى")
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            Expanded(child: Container()),
                             Text(
                                 controller.fixedPrice.toString(),
                                 style: const TextStyle(fontSize: 16)
-                            ),
-                            Expanded(child: Container()),
-                            ElevatedButton(
-                                onPressed: () {
-                                  showFirstWayDialogDialog(context);
-                                }, child: const Text("تعديل")
                             ),
                           ],
                         ),
