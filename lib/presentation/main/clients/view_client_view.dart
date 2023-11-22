@@ -83,6 +83,27 @@ class ViewClientView extends StatelessWidget {
                               ),
                             ),
                           ),
+                          Expanded(child: Container()),
+                          Padding(
+                            padding: const EdgeInsets.all(AppPadding.p16),
+                            child: Text(
+                              "العدد: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(AppPadding.p16),
+                            child: Text(
+                              controller.clients.value.length.toString(),
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 23,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       Row(
