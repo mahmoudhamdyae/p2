@@ -82,7 +82,7 @@ class TermsList extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ViewTermView(term: item)));
+                            builder: (context) => ViewTermView(termId: item.id.toString())));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(AppPadding.p8),

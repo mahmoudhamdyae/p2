@@ -54,6 +54,7 @@ abstract class ApiService {
   Future<(List<Client>, int)> getClients();
   Future<(List<Client>, int)> getPersons();
   Future<(List<Client>, int)> getDealers();
+  Future<(List<Client>, int)> getClientsOfTerms(String termId);
   Future<Client> showClient(String clientId);
   Future delClient(String clientId);
   Future<List<Client>> searchClient(String query);
@@ -821,5 +822,30 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     await json.decode(response.body);
+  }
+
+  @override
+  Future<(List<Client>, int)> getClientsOfTerms(String termId) async {
+    String token = await _appPreferences.getToken();
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}client/term/$termId";
+    final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json;charset=utf-8',
+          'charset': 'utf-8',
+          "authorization" : "bearer $token"
+        }
+    );
+    _checkServer(response);
+    final responseData = await json.decode(response.body);
+    List<Client> clients = [];
+    if (responseData["client"] != null) {
+      for (var singleClient in responseData["client"] ?? []) {
+        Client client = Client.fromJson(singleClient);
+        clients.add(client);
+      }
+    }
+    return (clients, responseData["total"] as int? ?? 0);
   }
 }

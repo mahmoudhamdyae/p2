@@ -268,6 +268,22 @@ class ClientsController extends GetxController {
     }
   }
 
+  Future getClientsOfTerms(String termId) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.getClientsOfTerms(termId).then((value) {
+        clients.value = value.$1;
+        sum.value = value.$2;
+        isLoading.value = false;
+        error.value = '';
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
+
   Future delClient(Client client) async {
     try {
       isLoading.value = true;
