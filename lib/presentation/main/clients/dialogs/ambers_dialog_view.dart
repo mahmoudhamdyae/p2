@@ -29,42 +29,58 @@ class CustomDialog extends StatelessWidget {
         child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.6,
           width: MediaQuery.of(context).size.width * 0.6,
-          child: Obx(() {
-            if (controller.isLoading.value) {
-              return StateRenderer(
-                  stateRendererType: StateRendererType.fullScreenLoadingState,
-                  retryActionFunction: () {});
-            } else if (controller.error.value != '') {
-              return StateRenderer(
-                  stateRendererType: StateRendererType.fullScreenErrorState,
-                  message: controller.error.value.replaceFirst("Exception: ", ""),
-                  retryActionFunction: () async {
-                    await controller.getPrices();
-                  });
-            } else {
-              if (controller.fridge.value.ambers.isEmpty) {
-                return emptyScreen(context, "لا يوجد عنابر");
-              } else {
-                return ListView.separated(
-                    itemCount: controller.fridge.value.ambers.length,
-                    separatorBuilder: (context, index) {
-                      return const Divider();
-                    },
-                    itemBuilder: (context, index) {
-                      final item = controller.fridge.value.ambers[index];
-                      return GestureDetector(
-                        onTap: () {
-                          controller.setAmber(item);
-                          Navigator.of(context).pop();
-                        },
-                        child: ListTile(
-                          title: Text(item.name),
-                        ),
-                      );
-                    });
-              }
-            }
-          }),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "اختر عنبر",
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).primaryColor
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Obx(() {
+                  if (controller.isLoading.value) {
+                    return StateRenderer(
+                        stateRendererType: StateRendererType.fullScreenLoadingState,
+                        retryActionFunction: () {});
+                  } else if (controller.error.value != '') {
+                    return StateRenderer(
+                        stateRendererType: StateRendererType.fullScreenErrorState,
+                        message: controller.error.value.replaceFirst("Exception: ", ""),
+                        retryActionFunction: () async {
+                          await controller.getPrices();
+                        });
+                  } else {
+                    if (controller.fridge.value.ambers.isEmpty) {
+                      return emptyScreen(context, "لا يوجد عنابر");
+                    } else {
+                      return ListView.separated(
+                          itemCount: controller.fridge.value.ambers.length,
+                          separatorBuilder: (context, index) {
+                            return const Divider();
+                          },
+                          itemBuilder: (context, index) {
+                            final item = controller.fridge.value.ambers[index];
+                            return GestureDetector(
+                              onTap: () {
+                                controller.setAmber(item);
+                                Navigator.of(context).pop();
+                              },
+                              child: ListTile(
+                                title: Text(item.name),
+                              ),
+                            );
+                          });
+                    }
+                  }
+                }),
+              ),
+            ],
+          ),
         )
         ,
       ),

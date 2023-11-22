@@ -234,37 +234,40 @@ class AddClient extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        var formData = formState.currentState;
-                        if (formData!.validate()) {
-                          formData.save();
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          var formData = formState.currentState;
+                          if (formData!.validate()) {
+                            formData.save();
 
-                          if (controller.fridge.value.name == "") {
-                            showError(context, "يجب إضافة ثلاجة");
-                          } else if (controller.amber.value.name == "") {
-                            showError(context, "يجب إضافة عنبر");
-                          } else if (controller.term.value.name == "") {
-                            showError(context, "يجب إضافة فترة");
-                          } else if (controller.price.value.vegetableName == "") {
-                            showError(context, "يجب إضافة نوع");
-                          } else if (controller.wayNumber.value == 0) {
-                            showError(context, "يجب إضافة طريقة تحديد السعر");
-                          } else {
-                            showLoading(context);
-                            try {
-                              controller.addClient(nameController.text, phoneController.
-                              text, addressController.text).then((value) {
+                            if (controller.fridge.value.name == "") {
+                              showError(context, "يجب إضافة ثلاجة");
+                            } else if (controller.amber.value.name == "") {
+                              showError(context, "يجب إضافة عنبر");
+                            } else if (controller.term.value.name == "") {
+                              showError(context, "يجب إضافة فترة");
+                            } else if (controller.price.value.vegetableName == "") {
+                              showError(context, "يجب إضافة نوع");
+                            } else if (controller.wayNumber.value == 0) {
+                              showError(context, "يجب إضافة طريقة تحديد السعر");
+                            } else {
+                              showLoading(context);
+                              try {
+                                controller.addClient(nameController.text, phoneController.
+                                text, addressController.text).then((value) {
+                                Navigator.of(context).pop();
+                                Navigator.of(context).pop();
+                              });
+                            } on Exception {
                               Navigator.of(context).pop();
-                              Navigator.of(context).pop();
-                            });
-                          } on Exception {
-                            Navigator.of(context).pop();
+                            }
+                            }
                           }
-                          }
-                        }
-                      },
-                      child: const Text("إضافة عميل"))
+                        },
+                        child: const Text("إضافة عميل")),
+                  )
                 ],
               )
             ],

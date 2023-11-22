@@ -32,6 +32,16 @@ class CustomDialog extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.6,
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "اختر فترة",
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).primaryColor
+                  ),
+                ),
+              ),
               Expanded(
                 child: Obx(() {
                   if (controller.isLoading.value) {
