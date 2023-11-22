@@ -60,51 +60,57 @@ class ViewClientView extends StatelessWidget {
                 } else {
                   return Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(AppPadding.p16),
-                            child: Text(
-                              "الإجمالى: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 8,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(AppPadding.p16),
+                                child: Text(
+                                  "الإجمالى: ",
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 23,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(AppPadding.p16),
-                            child: Text(
-                              controller.sum.toString(),
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 23,
+                              Padding(
+                                padding: const EdgeInsets.all(AppPadding.p16),
+                                child: Text(
+                                  controller.sum.toString(),
+                                  style: const TextStyle(
+                                    color: Colors.black45,
+                                    fontSize: 23,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          Expanded(child: Container()),
-                          Padding(
-                            padding: const EdgeInsets.all(AppPadding.p16),
-                            child: Text(
-                              "العدد: ",
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 23,
+                              Expanded(child: Container()),
+                              Padding(
+                                padding: const EdgeInsets.all(AppPadding.p16),
+                                child: Text(
+                                  "العدد: ",
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 23,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(AppPadding.p16),
-                            child: Text(
-                              controller.clients.value.length.toString(),
-                              style: const TextStyle(
-                                color: Colors.black45,
-                                fontSize: 23,
+                              Padding(
+                                padding: const EdgeInsets.all(AppPadding.p16),
+                                child: Text(
+                                  controller.clients.value.length.toString(),
+                                  style: const TextStyle(
+                                    color: Colors.black45,
+                                    fontSize: 23,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                       Row(
                         children: [
