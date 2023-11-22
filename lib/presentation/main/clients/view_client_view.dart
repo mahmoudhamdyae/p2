@@ -251,12 +251,34 @@ class ViewClientView extends StatelessWidget {
                           ],
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "السعر الكلى: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.priceAll,
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
-            Padding(
+            // تفاصيل أخرى الطريقة الثانية
+            client.ton == "0" && client.smallShakara == "0" && client.bigShakara == "0" ? Container() : Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
                 child: Padding(
@@ -333,6 +355,97 @@ class ViewClientView extends StatelessWidget {
                             ),
                             Text(
                               client.bigShakara.toString(),
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            // تفاصيل أخرى الطريقة الثالثة
+            client.average == 0 ? Container() : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "تفاصيل أخرى ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "متوسط وزن الشكارة: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.average.toString(),
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "عدد الشكاير: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.shakyir.toString(),
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "سعر الشكارة الواحدة: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.priceOne.toString(),
                               style: const TextStyle(
                                 color: Colors.black45,
                                 fontSize: 20,
