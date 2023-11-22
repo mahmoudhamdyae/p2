@@ -40,6 +40,7 @@ class AddClient extends StatelessWidget {
                   child: Form(
                     key: formState,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(AppPadding.p8),
@@ -98,6 +99,7 @@ class AddClient extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: DropdownMenu<String>(
+                            width: 230,
                             initialSelection: "فرد",
                             onSelected: (String? value) {
                               if (value == "تاجر") {
