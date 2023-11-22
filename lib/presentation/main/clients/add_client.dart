@@ -24,6 +24,7 @@ class AddClient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.clearAll();
     return Scaffold(
       appBar: AppBar(
         title: const Text("إضافة عميل"),
