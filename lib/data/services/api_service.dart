@@ -58,7 +58,7 @@ abstract class ApiService {
   Future<Client> showClient(String clientId);
   Future delClient(String clientId);
   Future<List<Client>> searchClient(String query);
-  Future updateClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
+  Future updateClient(String clientId, String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
   Future resubscribe(String clientId, String amberId, String fridgeId, String priceId, String termId, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
 }
 
@@ -804,10 +804,11 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future updateClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne) async {
+  Future updateClient(String clientId, String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne) async {
+    print("========= update client updating");
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
+    String url = "${Constants.baseUrl}client/$clientId/edit/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
     if (wayNumber == 1) {
       url += "&price_all=$fixedPrice";
     } else if(wayNumber == 2) {
@@ -823,8 +824,10 @@ class ApiServiceImpl implements ApiService {
           "authorization" : "bearer $token"
         }
     );
-    _checkServer(response);
-    await json.decode(response.body);
+    print("========= update client body ${response.body}");
+    // _checkServer(response);
+    final responseData = await json.decode(response.body);
+    print("========= update client $responseData");
   }
 
   @override

@@ -157,6 +157,40 @@ class ClientsController extends GetxController {
     }
   }
 
+  Future updateClient(String clientId, String name, String phone, String address) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.updateClient(
+          clientId,
+          amber.value.id.toString(),
+          fridge.value.id.toString(),
+          price.value.id.toString(),
+          term.value.id.toString(),
+          name,
+          phone,
+          address,
+          status.value,
+          wayNumber.value,
+          fixedPrice.value,
+          ton.value.toString(),
+          smallShakara.value.toString(),
+          bigShakara.value.toString(),
+          average.value.toString(),
+          shakayir.value.toString(),
+          priceOne.value.toString()
+      ).then((value) {
+        error.value = '';
+        isLoading.value = false;
+        clearAll();
+      });
+    } on Exception catch (e) {
+      print("========= update client error $e");
+      error.value = e.toString();
+      isLoading.value = false;
+    }
+  }
+
   clearAll() {
     fridges = List<Fridge>.empty().obs;
     fridge = Fridge(0, "", "", -1, Owner(""), []).obs;

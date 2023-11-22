@@ -69,7 +69,7 @@ class ViewClientView extends StatelessWidget {
                   controller.price.value.vegetableName = client.vegetableName;
                   controller.status.value = client.status;
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => EditClient(name: client.name,phone:  client.phone, address: client.address)));
+                      builder: (context) => EditClient(clientId: client.id.toString(), name: client.name,phone:  client.phone, address: client.address)));
                 },
                 icon: const Icon(
                   Icons.edit,

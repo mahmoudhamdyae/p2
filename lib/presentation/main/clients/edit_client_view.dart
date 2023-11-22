@@ -13,8 +13,8 @@ import '../../component/alert.dart';
 import '../../resources/values_manager.dart';
 
 class EditClient extends StatelessWidget {
-  final String name, phone, address;
-  EditClient({super.key, required this.name, required this.phone, required this.address});
+  final String clientId, name, phone, address;
+  EditClient({super.key, required this.clientId, required this.name, required this.phone, required this.address});
 
   final ClientsController controller = instance<ClientsController>();
   TextEditingController nameController = TextEditingController();
@@ -262,7 +262,7 @@ class EditClient extends StatelessWidget {
                             } else {
                               showLoading(context);
                               try {
-                                controller.addClient(nameController.text, phoneController.
+                                controller.updateClient(clientId, nameController.text, phoneController.
                                 text, addressController.text).then((value) {
                                   Navigator.of(context).pop();
                                   Navigator.of(context).pop();
