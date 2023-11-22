@@ -235,4 +235,51 @@ class ClientsController extends GetxController {
       error.value = e.toString();
     }
   }
+
+  Future getDealers() async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.getDealers().then((value) {
+        clients.value = value.$1;
+        sum.value = value.$2;
+        isLoading.value = false;
+        error.value = '';
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
+
+  Future getPersons() async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.getPersons().then((value) {
+        clients.value = value.$1;
+        sum.value = value.$2;
+        isLoading.value = false;
+        error.value = '';
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
+
+  Future delClient(Client client) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.delClient(client.id.toString()).then((value) {
+        clients.value.remove(client);
+        isLoading.value = false;
+        error.value = '';
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
 }

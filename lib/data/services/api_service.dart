@@ -685,7 +685,7 @@ class ApiServiceImpl implements ApiService {
     _checkServer(response);
     final responseData = await json.decode(response.body);
     List<Client> clients = [];
-    for (var singleClient in responseData["client"]) {
+    for (var singleClient in responseData["client"] ?? []) {
       Client client = Client.fromJson(singleClient);
       clients.add(client);
     }
@@ -725,7 +725,7 @@ class ApiServiceImpl implements ApiService {
     _checkServer(response);
     final responseData = await json.decode(response.body);
     List<Client> clients = [];
-    for (var singleClient in responseData["client"]) {
+    for (var singleClient in responseData["client"] ?? []) {
       Client client = Client.fromJson(singleClient);
       clients.add(client);
     }
@@ -748,7 +748,7 @@ class ApiServiceImpl implements ApiService {
     _checkServer(response);
     final responseData = await json.decode(response.body);
     List<Client> clients = [];
-    for (var singleClient in responseData["client"]) {
+    for (var singleClient in responseData["client"] ?? []) {
       Client client = Client.fromJson(singleClient);
       clients.add(client);
     }

@@ -4,7 +4,6 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/model/client.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
-import 'package:testt/presentation/resources/strings_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
@@ -19,7 +18,7 @@ class ViewClientView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.getClients();
+    (kind == 0) ? controller.getPersons() : (kind == 1) ? controller.getDealers() : controller.getClients();
     return Scaffold(
       appBar: AppBar(
         title: Text(kind == 0 ? "أفراد" : (kind == 1) ? "تجار" : "كل العملاء"),
@@ -225,8 +224,8 @@ class ViewClientView extends StatelessWidget {
                                                           btnCancelOnPress:
                                                               () {},
                                                           btnOkOnPress: () async {
-                                                            // await controller.delMasrof(controller.masrofat[index].id);
-                                                            // await controller.getMasrofat();
+                                                            await controller.delClient(controller.clients[index]);
+                                                            (kind == 0) ? await controller.getPersons() : (kind == 1) ? await controller.getDealers() : await controller.getClients();
                                                           }).show();
                                                     },
                                                     icon: const Icon(
