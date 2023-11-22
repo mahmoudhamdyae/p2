@@ -616,6 +616,7 @@ class CustomDialog6 extends StatelessWidget {
                     showLoading(context);
                     await controller.addAnbar(fridgeId, nameController.text)
                         .then((userCredential) {
+                          controller.getFridges();
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
                     });
