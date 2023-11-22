@@ -9,7 +9,6 @@ import 'package:testt/presentation/main/clients/dialogs/fridges_dialog_view.dart
 import 'package:testt/presentation/main/clients/dialogs/prices_dialog_view.dart';
 import 'package:testt/presentation/main/clients/dialogs/terms_dialog_view.dart';
 
-import '../../common/state_renderer/state_renderer.dart';
 import '../../component/alert.dart';
 import '../../resources/values_manager.dart';
 
@@ -141,7 +140,7 @@ class EditClient extends StatelessWidget {
                                     onPressed: () {
                                       showFridgesDialog(context);
                                     },
-                                    child: const Text("اختر ثلاجة")),
+                                    child: const Text("تغيير الثلاجة")),
                               ),
                             ),
                             Expanded(child: Container()),
@@ -164,7 +163,7 @@ class EditClient extends StatelessWidget {
                                         showAmbersDialog(context);
                                       }
                                     },
-                                    child: const Text("اختر عنبر")),
+                                    child: const Text("تغيير العنبر")),
                               ),
                             ),
                             Expanded(child: Container()),
@@ -183,7 +182,7 @@ class EditClient extends StatelessWidget {
                                     onPressed: () {
                                       showTermsDialog(context);
                                     },
-                                    child: const Text("اختر فترة")),
+                                    child: const Text("تغيير الفترة")),
                               ),
                             ),
                             Expanded(child: Container()),
@@ -202,7 +201,7 @@ class EditClient extends StatelessWidget {
                                     onPressed: () {
                                       showPricesDialog(context);
                                     },
-                                    child: const Text("اختر النوع من قائمة الأسعار")),
+                                    child: const Text("تغيير النوع من قائمة الأسعار")),
                               ),
                             ),
                             Expanded(child: Container()),

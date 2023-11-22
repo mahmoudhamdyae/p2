@@ -7,6 +7,7 @@ import 'package:testt/presentation/main/clients/dialogs/resubscribe_dialog.dart'
 import '../../../app/di.dart';
 import '../../component/error.dart';
 import 'clients_controller.dart';
+import 'edit_client_view.dart';
 
 class ViewClientView extends StatelessWidget {
   final ClientsController controller = instance<ClientsController>();
@@ -58,12 +59,17 @@ class ViewClientView extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  // controller.amber.value = client.amber;
-                  // controller.fridge.value = client.fridge;
-                  // controller.term.value = client.term;
-                  // controller.price.value = client.;
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) => EditClient(name: client.name,phone:  client.phone, address: client.address)));
+                  controller.amber.value.id = client.amberId;
+                  controller.amber.value.name = client.amberName;
+                  controller.fridge.value.id = client.fridgeId;
+                  controller.fridge.value.name = client.fridgeName;
+                  controller.term.value.id = client.termId;
+                  controller.term.value.name = client.termName;
+                  controller.price.value.id = client.priceId;
+                  controller.price.value.vegetableName = client.vegetableName;
+                  controller.status.value = client.status;
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => EditClient(name: client.name,phone:  client.phone, address: client.address)));
                 },
                 icon: const Icon(
                   Icons.edit,
@@ -255,12 +261,13 @@ class ViewClientView extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   controller.amber.value.id = client.amberId;
-                  controller.amber.value.name = client.name;
+                  controller.amber.value.name = client.amberName;
                   controller.fridge.value.id = client.fridgeId;
                   controller.fridge.value.name = client.fridgeName;
                   controller.term.value.id = client.termId;
                   controller.term.value.name = client.termName;
                   controller.price.value.id = client.priceId;
+                  controller.price.value.vegetableName = client.vegetableName;
                   showResubscribeDialog(context, client.id.toString());
                 },
                 child: const Text("تجديد الاشتراك"),
