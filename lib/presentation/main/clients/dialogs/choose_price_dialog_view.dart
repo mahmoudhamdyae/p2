@@ -27,6 +27,13 @@ class CustomDialog extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              Text(
+                "اختر طريقة حساب السعر",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Theme.of(context).primaryColor
+                ),
+              ),
               ElevatedButton(onPressed: () { showFirstWayDialogDialog(context); }, child: const Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Text("الطريقة الأولى"),
