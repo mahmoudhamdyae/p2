@@ -23,13 +23,13 @@ class Client {
       json['phone'] as String? ?? "",
       json['address'] as String? ?? "",
       json['vegetable_name'] as String? ?? "",
-      json['fridge'] as String? ?? "",
-      json['amber'] as String? ?? "",
-      json['term'] as String? ?? "",
-      json['fridge_id'] as int? ?? 0,
-      json['amber_id'] as int? ?? 0,
-      json['term_id'] as int? ?? 0,
-      json['price_list_id'] as int? ?? 0,
+      json["data"]['fridge'] as String? ?? "",
+      json["data"]['amber'] as String? ?? "",
+      json["term_details"]['name'] as String? ?? "",
+      json["data"]['fridge_id'] as int? ?? 0,
+      json["data"]['amber_id'] as int? ?? 0,
+      json["data"]['term_id'] as int? ?? 0,
+      json["data"]['price_list_id'] as int? ?? 0,
     );
   }
 }

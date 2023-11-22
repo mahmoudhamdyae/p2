@@ -685,6 +685,7 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
+    print("=============== $responseData");
     List<Client> clients = [];
     if (responseData["client"] != null) {
       for (var singleClient in responseData["client"]) {
