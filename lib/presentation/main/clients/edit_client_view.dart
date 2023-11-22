@@ -220,7 +220,7 @@ class EditClient extends StatelessWidget {
                               child: Expanded(
                                 child: ElevatedButton(
                                     onPressed: () {
-                                    }, child: const Text("السعر الحالى: ")
+                                    }, child: const Text("السعر الحالى")
                                 ),
                               ),
                             ),
