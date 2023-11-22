@@ -75,7 +75,7 @@ class CustomDialog extends StatelessWidget {
                           formData.save();
                           controller.setFirstWay(priceController.text);
                           Navigator.of(context).pop();
-                          Navigator.of(context).pop();
+                          // Navigator.of(context).pop();
                         }
                       },
                       child: const Text("تأكيد"),

@@ -12,6 +12,7 @@ import 'package:testt/presentation/main/clients/dialogs/terms_dialog_view.dart';
 import '../../../model/client.dart';
 import '../../component/alert.dart';
 import '../../resources/values_manager.dart';
+import 'dialogs/first_way_dialog_view.dart';
 
 class EditClient extends StatelessWidget {
   final Client client;
@@ -213,7 +214,6 @@ class EditClient extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
                               width: 230,
@@ -230,15 +230,10 @@ class EditClient extends StatelessWidget {
                                 style: const TextStyle(fontSize: 16)
                             ),
                             Expanded(child: Container()),
-                            SizedBox(
-                              width: 230,
-                              child: Expanded(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      showChoosePriceDialogDialog(context);
-                                    }, child: const Text("تعديل السعر")
-                                ),
-                              ),
+                            ElevatedButton(
+                                onPressed: () {
+                                  showFirstWayDialogDialog(context);
+                                }, child: const Text("تعديل السعر")
                             ),
                           ],
                         ),
