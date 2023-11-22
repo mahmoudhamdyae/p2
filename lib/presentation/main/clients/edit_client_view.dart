@@ -226,7 +226,7 @@ class EditClient extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                                client.pricaAll,
+                                controller.fixedPrice.toString(),
                                 style: const TextStyle(fontSize: 16)
                             ),
                             Expanded(child: Container()),

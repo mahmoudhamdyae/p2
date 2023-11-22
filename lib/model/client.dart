@@ -12,10 +12,10 @@ class Client {
   int termId;
   int priceId;
   String status;
-  String pricaAll;
+  String priceAll;
 
   Client(
-      this.id, this.name, this.phone, this.address, this.vegetableName, this.fridgeName, this.amberName, this.termName, this.fridgeId, this.amberId, this.termId, this.priceId, this.status, this.pricaAll
+      this.id, this.name, this.phone, this.address, this.vegetableName, this.fridgeName, this.amberName, this.termName, this.fridgeId, this.amberId, this.termId, this.priceId, this.status, this.priceAll
       );
 
   factory Client.fromJson(Map<String, dynamic> json) {
