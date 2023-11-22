@@ -650,7 +650,7 @@ class ApiServiceImpl implements ApiService {
   Future addClient(amberId, fridgeId, priceId, termId, name, phone, address, status, wayNumber, fixedPrice, ton, smallShakara, bigShakara, average, shakayir, priceOne) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
+    String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$termId/$priceId?name=$name&phone=$phone&address=$address&status=$status";
     if (wayNumber == 1) {
       url += "&price_all=$fixedPrice";
     } else if(wayNumber == 2) {
