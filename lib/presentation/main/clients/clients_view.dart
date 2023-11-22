@@ -23,6 +23,57 @@ class ClientsView extends StatelessWidget {
       child: Column(
         children: [
           Expanded(child: Container()),
+          // إضافة عميل
+          Expanded(
+            child: GestureDetector(
+              onTap: () =>
+              {
+                Navigator.pushNamed(context, Routes.addClientRoute)
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppSize.s16),
+                  color: Colors.white.withOpacity(.8),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3)
+                    ),
+                  ],
+                ),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.add_circle_outline,
+                            size: 65,
+                            color: Theme
+                                .of(context)
+                                .primaryColor),
+                        const SizedBox(
+                          width: AppSize.s40,
+                        ),
+                        Text(
+                          "إضافة عميل",
+                          style: TextStyle(
+                            color: Theme
+                                .of(context)
+                                .primaryColor,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: AppSize.s32,
+          ),
           // العملاء
           Expanded(
             child: GestureDetector(
