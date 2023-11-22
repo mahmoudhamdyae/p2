@@ -247,6 +247,15 @@ class ViewClientView extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            Expanded(child: Container()),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: ElevatedButton(
+                onPressed: () {
+                },
+                child: const Text("تجديد الاشتراك"),
+              ),
             )
           ],
         ),
