@@ -11,18 +11,25 @@ import '../clients_controller.dart';
 
 Future showResubscribeDialog(BuildContext context, String clientId, int fridgeId, int priceId, int termId) async {
   final ClientsController controller = instance<ClientsController>();
-  await controller.showFridge(fridgeId).then((value) async {
-    await controller.showPrice(priceId).then((value) async {
-      await controller.showTerm(termId.toString()).then((value) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return CustomDialog(fridgeId, clientId);
-          },
-        );
+  try {
+    showLoading(context);
+    await controller.showFridge(fridgeId).then((value) async {
+      await controller.showPrice(priceId).then((value) async {
+        await controller.showTerm(termId.toString()).then((value) {
+          Navigator.of(context).pop();
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return CustomDialog(fridgeId, clientId);
+            },
+          );
+        });
       });
     });
-  });
+  } on Exception catch (e) {
+    Navigator.of(context).pop();
+    showError(context, e.toString());
+  }
 }
 
 class CustomDialog extends StatelessWidget {
