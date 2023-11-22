@@ -8,23 +8,23 @@ import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
 import '../clients_controller.dart';
 
-Future showResubscribeDialog(BuildContext context, String clientId, int fridgeId, int priceId, int termId) async {
+Future showResubscribeDialog(BuildContext context, String clientId/*, int fridgeId, int priceId, int termId*/) async {
   final ClientsController controller = instance<ClientsController>();
   try {
     showLoading(context);
-    await controller.showFridge(fridgeId).then((value) async {
-      await controller.showPrice(priceId).then((value) async {
-        await controller.showTerm(termId.toString()).then((value) {
-          Navigator.of(context).pop();
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return CustomDialogAddTerm(clientId);
-            },
-          );
+    // await controller.showFridge(fridgeId).then((value) async {
+    //   await controller.showPrice(priceId).then((value) async {
+    //     await controller.showTerm(termId.toString()).then((value) {
+    Navigator.of(context).pop();
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CustomDialogAddTerm(clientId);
+          // },
+          //     );
+          //   });
+          // });
         });
-      });
-    });
   } on Exception catch (e) {
     Navigator.of(context).pop();
     showError(context, e.toString());

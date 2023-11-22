@@ -256,7 +256,12 @@ class ViewClientView extends StatelessWidget {
                 onPressed: () {
                   controller.amber.value.id = client.amberId;
                   controller.amber.value.name = client.name;
-                  showResubscribeDialog(context, client.id.toString(), client.fridgeId, client.priceId, client.termId);
+                  controller.fridge.value.id = client.fridgeId;
+                  controller.fridge.value.name = client.fridgeName;
+                  controller.term.value.id = client.termId;
+                  controller.term.value.name = client.termName;
+                  controller.price.value.id = client.priceId;
+                  showResubscribeDialog(context, client.id.toString());
                 },
                 child: const Text("تجديد الاشتراك"),
               ),
