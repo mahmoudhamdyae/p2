@@ -282,4 +282,19 @@ class ClientsController extends GetxController {
       error.value = e.toString();
     }
   }
+
+  Future searchClient(String query) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.searchClient(query).then((value) {
+        clients.value = value;
+        isLoading.value = false;
+        error.value = '';
+      });
+    } on Exception catch (e) {
+      isLoading.value = false;
+      error.value = e.toString();
+    }
+  }
 }

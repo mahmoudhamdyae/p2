@@ -36,7 +36,7 @@ class ViewClientView extends StatelessWidget {
                   hintText: "بحث",
                   border: OutlineInputBorder(borderSide: BorderSide(width: 1))),
               onChanged: (String query) {
-                // controller.search(query);
+                controller.searchClient(query);
               },
             ),
           ),
@@ -264,8 +264,8 @@ class ViewClientView extends StatelessWidget {
                                                   IconButton(
                                                     onPressed: () {
                                                       Client client = controller.clients[index];
-                                                      controller.amber.value = client.amber;
-                                                      controller.fridge.value = client.fridge;
+                                                      // controller.amber.value = client.amber;
+                                                      // controller.fridge.value = client.fridge;
                                                       // controller.term.value = client.term;
                                                       // controller.price.value = client.;
                                                       // Navigator.of(context).push(MaterialPageRoute(

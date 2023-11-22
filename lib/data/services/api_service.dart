@@ -761,7 +761,7 @@ class ApiServiceImpl implements ApiService {
   Future<List<Client>> searchClient(String query) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}client/search?query=$query";
+    String url = "${Constants.baseUrl}client/search?keyword=$query";
     final response = await http.post(
         Uri.parse(url),
         headers: {
@@ -773,7 +773,8 @@ class ApiServiceImpl implements ApiService {
     _checkServer(response);
     final responseData = await json.decode(response.body);
     List<Client> clients = [];
-    for (var singleClient in responseData["client"]) {
+    print("====== $responseData");
+    for (var singleClient in responseData["clients"]) {
       Client client = Client.fromJson(singleClient);
       clients.add(client);
     }
