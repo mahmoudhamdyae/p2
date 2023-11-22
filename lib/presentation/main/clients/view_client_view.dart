@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:testt/app/di.dart';
 import 'package:testt/model/client.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
+import 'package:testt/presentation/main/clients/edit_client_view.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
@@ -257,6 +258,21 @@ class ViewClientView extends StatelessWidget {
                                                     },
                                                     icon: const Icon(
                                                       Icons.delete,
+                                                      color: Colors.black38,
+                                                    ),
+                                                  ),
+                                                  IconButton(
+                                                    onPressed: () {
+                                                      Client client = controller.clients[index];
+                                                      controller.amber.value = client.amber;
+                                                      controller.fridge.value = client.fridge;
+                                                      // controller.term.value = client.term;
+                                                      // controller.price.value = client.;
+                                                      // Navigator.of(context).push(MaterialPageRoute(
+                                                      //     builder: (context) => EditClient(name: client.name,phone:  client.phone, address: client.address)));
+                                                    },
+                                                    icon: const Icon(
+                                                      Icons.edit,
                                                       color: Colors.black38,
                                                     ),
                                                   )
