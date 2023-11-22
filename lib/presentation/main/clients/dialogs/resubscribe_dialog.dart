@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../../../app/di.dart';
-import '../../../common/state_renderer/state_renderer.dart';
 import '../../../component/alert.dart';
-import '../../../component/empty.dart';
 import '../../../component/error.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';

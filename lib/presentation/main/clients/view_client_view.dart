@@ -254,6 +254,8 @@ class ViewClientView extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: ElevatedButton(
                 onPressed: () {
+                  controller.amber.value.id = client.amberId;
+                  controller.amber.value.name = client.name;
                   showResubscribeDialog(context, client.id.toString(), client.fridgeId, client.priceId, client.termId);
                 },
                 child: const Text("تجديد الاشتراك"),
