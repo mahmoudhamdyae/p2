@@ -1,29 +1,34 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:testt/presentation/component/alert.dart';
 
 import '../../../../app/di.dart';
 import '../../../common/state_renderer/state_renderer.dart';
+import '../../../component/alert.dart';
 import '../../../component/empty.dart';
 import '../../../component/error.dart';
+import '../../../resources/strings_manager.dart';
 import '../clients_controller.dart';
 
-Future showResubscribeDialog(BuildContext context, int fridgeId) async {
+Future showResubscribeDialog(BuildContext context, String clientId, int fridgeId, int priceId, int termId) async {
   final ClientsController controller = instance<ClientsController>();
-  await controller.showFridge(fridgeId).then((value) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return CustomDialog(fridgeId);
-      },
-    );
+  await controller.showFridge(fridgeId).then((value) async {
+    await controller.showPrice(priceId).then((value) async {
+      await controller.showTerm(termId.toString()).then((value) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return CustomDialog(fridgeId, clientId);
+          },
+        );
+      });
+    });
   });
 }
 
 class CustomDialog extends StatelessWidget {
   final int fridgeId;
-  CustomDialog(this.fridgeId, {super.key});
+  final String clientId;
+  CustomDialog(this.fridgeId, this.clientId, {super.key});
 
   final ClientsController controller = instance<ClientsController>();
 
@@ -74,7 +79,7 @@ class CustomDialog extends StatelessWidget {
                             return GestureDetector(
                               onTap: () {
                                 controller.setAmber(item);
-                                showChoosePriceDialogDialog(context);
+                                showChoosePriceDialogDialog(context, clientId);
                               },
                               child: ListTile(
                                 title: Text(item.name),
@@ -85,6 +90,7 @@ class CustomDialog extends StatelessWidget {
                   }
                 }),
               ),
+              ElevatedButton(onPressed: () { showAddAmberDialog(context, fridgeId); }, child: const Text("إضافة عنبر"))
             ],
           ),
         )
@@ -94,17 +100,18 @@ class CustomDialog extends StatelessWidget {
   }
 }
 
-void showChoosePriceDialogDialog(BuildContext context) {
+void showChoosePriceDialogDialog(BuildContext context, String clientId) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return const CustomDialog2();
+      return CustomDialog2(clientId);
     },
   );
 }
 
 class CustomDialog2 extends StatelessWidget {
-  const CustomDialog2({super.key});
+  String clientId;
+  CustomDialog2(this.clientId, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -124,15 +131,15 @@ class CustomDialog2 extends StatelessWidget {
                     color: Theme.of(context).primaryColor
                 ),
               ),
-              ElevatedButton(onPressed: () { showFirstWayDialogDialog1(context); }, child: const Padding(
+              ElevatedButton(onPressed: () { showFirstWayDialogDialog1(context, clientId); }, child: const Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Text("الطريقة الأولى"),
               )),
-              ElevatedButton(onPressed: () { showSecondWayDialogDialog1(context); }, child: const Padding(
+              ElevatedButton(onPressed: () { showSecondWayDialogDialog1(context, clientId); }, child: const Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Text("الطريقة الثانية"),
               )),
-              ElevatedButton(onPressed: () { showThirdWayDialogDialog1(context); }, child: const Padding(
+              ElevatedButton(onPressed: () { showThirdWayDialogDialog1(context, clientId); }, child: const Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Text("الطريقة الثالثة"),
               )),
@@ -146,17 +153,18 @@ class CustomDialog2 extends StatelessWidget {
 }
 
 
-void showFirstWayDialogDialog1(BuildContext context) {
+void showFirstWayDialogDialog1(BuildContext context, String clientId) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return CustomDialog3();
+      return CustomDialog3(clientId);
     },
   );
 }
 
 class CustomDialog3 extends StatelessWidget {
-  CustomDialog3({super.key});
+  String clientId;
+  CustomDialog3(this.clientId, {super.key});
 
   final ClientsController controller = instance<ClientsController>();
   TextEditingController priceController = TextEditingController();
@@ -219,7 +227,7 @@ class CustomDialog3 extends StatelessWidget {
                           controller.setFirstWay(priceController.text);
                           showLoading(context);
                           try {
-                            await controller.resubscribe().then((value) {
+                            await controller.resubscribe(clientId).then((value) {
                               Navigator.of(context).pop();
                             });
                           } on Exception catch (e) {
@@ -251,17 +259,18 @@ class CustomDialog3 extends StatelessWidget {
 }
 
 
-void showSecondWayDialogDialog1(BuildContext context) {
+void showSecondWayDialogDialog1(BuildContext context, String clientId) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return CustomDialog4();
+      return CustomDialog4(clientId);
     },
   );
 }
 
 class CustomDialog4 extends StatelessWidget {
-  CustomDialog4({super.key});
+  String clientId;
+  CustomDialog4(this.clientId, {super.key});
 
   final ClientsController controller = instance<ClientsController>();
   TextEditingController tonController = TextEditingController();
@@ -341,7 +350,7 @@ class CustomDialog4 extends StatelessWidget {
                           controller.setSecondWay(tonController.text, smallShakaraController.text, bigShakaraController.text);
                           showLoading(context);
                           try {
-                            await controller.resubscribe().then((value) {
+                            await controller.resubscribe(clientId).then((value) {
                               Navigator.of(context).pop();
                             });
                           } on Exception catch (e) {
@@ -373,17 +382,18 @@ class CustomDialog4 extends StatelessWidget {
 }
 
 
-void showThirdWayDialogDialog1(BuildContext context) {
+void showThirdWayDialogDialog1(BuildContext context, String clientId) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return CustomDialog5();
+      return CustomDialog5(clientId);
     },
   );
 }
 
 class CustomDialog5 extends StatelessWidget {
-  CustomDialog5({super.key});
+  String clientId;
+  CustomDialog5(this.clientId, {super.key});
 
   final ClientsController controller = instance<ClientsController>();
   TextEditingController averageController = TextEditingController();
@@ -491,7 +501,7 @@ class CustomDialog5 extends StatelessWidget {
                           controller.setThirdWay(averageController.text, shakayirController.text, priceOneController.text);
                           showLoading(context);
                           try {
-                            await controller.resubscribe().then((value) {
+                            await controller.resubscribe(clientId).then((value) {
                               Navigator.of(context).pop();
                             });
                           } on Exception catch (e) {
@@ -541,6 +551,88 @@ void showSuccessDialog(BuildContext context) {
       );
     },
   );
+}
+
+void showAddAmberDialog(BuildContext context, int fridgeId) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return CustomDialog6(fridgeId);
+    },
+  );
+}
+
+class CustomDialog6 extends StatelessWidget {
+  TextEditingController nameController = TextEditingController();
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  final ClientsController controller = instance<ClientsController>();
+  final int fridgeId;
+
+  CustomDialog6(this.fridgeId, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              AppStrings.add_anbar,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            Form(
+              key: formState,
+              child: TextFormField(
+                controller: nameController,
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.text,
+                validator: (val) {
+                  if (val == null || val.isEmpty) {
+                    return AppStrings.amber_name_invalid;
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                    hintText: AppStrings.amber_name_hint,
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1))),
+              ),
+            ),
+
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () async {
+                var formData = formState.currentState;
+                if (formData!.validate()) {
+                  formData.save();
+                  try {
+                    showLoading(context);
+                    await controller.addAnbar(fridgeId, nameController.text)
+                        .then((userCredential) {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                    });
+                  } on Exception catch (e) {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                    showError(context, e.toString());
+                  }
+                }
+              },
+              child: const Text("إضافة العنبر"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 

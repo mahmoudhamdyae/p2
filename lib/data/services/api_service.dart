@@ -59,7 +59,7 @@ abstract class ApiService {
   Future delClient(String clientId);
   Future<List<Client>> searchClient(String query);
   Future updateClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
-  Future resubscribe(String amberId, String fridgeId, String priceId, String termId, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
+  Future resubscribe(String clientId, String amberId, String fridgeId, String priceId, String termId, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
 }
 
 class ApiServiceImpl implements ApiService {
@@ -369,8 +369,8 @@ class ApiServiceImpl implements ApiService {
   Future<Price> showPrice(int id) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}price/$id/delete";
-    final response = await http.delete(
+    String url = "${Constants.baseUrl}price/$id/show";
+    final response = await http.get(
         Uri.parse(url),
         headers: {
           'content-type': 'application/json;charset=utf-8',
@@ -380,6 +380,7 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
+    print("====== prices $responseData");
     return Price.fromJson(responseData["price"]);
   }
 
@@ -686,6 +687,7 @@ class ApiServiceImpl implements ApiService {
     );
     _checkServer(response);
     final responseData = await json.decode(response.body);
+    print("============ clients $responseData");
     List<Client> clients = [];
     if (responseData["client"] != null) {
       for (var singleClient in responseData["client"]) {
@@ -851,10 +853,16 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future resubscribe(String amberId, String fridgeId, String priceId, String termId, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne) async {
+  Future resubscribe(String clientId, String amberId, String fridgeId, String priceId, String termId, int wayNumber, int fixedPrice, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne) async {
+    print("================ clientid $clientId");
+    print("================ amber $amberId");
+    print("================ fridge $fridgeId");
+    print("================ price $priceId");
+    print("================ term $termId");
     String token = await _appPreferences.getToken();
     await _checkNetwork();
-    String url = "${Constants.baseUrl}client/newterm/$amberId/$fridgeId/$termId/$priceId?term_id=$termId";
+    // String url = "${Constants.baseUrl}client/newterm/$amberId/$fridgeId/$termId/$priceId?term_id=$termId";
+    String url = "${Constants.baseUrl}client/newterm/$clientId/$amberId/$fridgeId/$priceId?term_id=$termId";
     if (wayNumber == 1) {
       url += "&price_all=$fixedPrice";
     } else if(wayNumber == 2) {
@@ -871,6 +879,7 @@ class ApiServiceImpl implements ApiService {
         }
     );
     _checkServer(response);
-    await json.decode(response.body);
+    final responseData = await json.decode(response.body);
+    print("========= $responseData");
   }
 }

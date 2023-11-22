@@ -329,11 +329,12 @@ class ClientsController extends GetxController {
     }
   }
 
-  Future resubscribe() async {
+  Future resubscribe(String clientId) async {
     try {
       isLoading.value = true;
       error.value = '';
       await _apiService.resubscribe(
+          clientId,
           amber.value.id.toString(),
           fridge.value.id.toString(),
           price.value.id.toString(),
@@ -353,6 +354,58 @@ class ClientsController extends GetxController {
     } on Exception catch (e) {
       isLoading.value = false;
       error.value = e.toString();
+    }
+  }
+
+  Future<void> addAnbar(int fridgeId, String amberName) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.addAmber(fridgeId, amberName).then((value) {
+        fridges.value = fridges.value.map((fridge) {
+          if (fridge.id == fridgeId) {
+            return Fridge(fridge.id, fridge.name, (int.parse(fridge.size) + 1).toString(), fridge.userId, fridge.owner, fridge.ambers);
+          } else {
+            return fridge;
+          }
+        }).toList();
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      fridges.value = List<Fridge>.empty();
+      isLoading.value = false;
+    }
+  }
+
+  Future showPrice(int priceId) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.showPrice(priceId).then((value) {
+        price.value = value;
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      isLoading.value = false;
+    }
+  }
+
+  Future showTerm(String termId) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.showTerm(termId).then((term2) {
+        term.value = term2;
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      isLoading.value = false;
     }
   }
 }
