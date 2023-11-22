@@ -1,8 +1,3 @@
-import 'package:testt/model/term.dart';
-
-import 'amber.dart';
-import 'fridge.dart';
-
 class Client {
   int id;
   String name;

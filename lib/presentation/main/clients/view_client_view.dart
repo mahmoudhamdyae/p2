@@ -74,10 +74,180 @@ class ViewClientView extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Text("ggg")
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "اسم العميل: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.name,
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "رقم الهاتف: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.phone,
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "العنوان: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.address,
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "الثلاجة: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.fridgeName,
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "العنبر: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.amberName,
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "نوع الثمار: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.vegetableName,
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "الفترة: ",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 23,
+                              ),
+                            ),
+                            Text(
+                              client.termName,
+                              style: const TextStyle(
+                                color: Colors.black45,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

@@ -7,7 +7,6 @@ import 'package:testt/app/di.dart';
 import 'package:testt/model/client.dart';
 import 'package:testt/presentation/main/clients/clients_controller.dart';
 import 'package:testt/presentation/main/clients/view_client_view.dart';
-import 'package:testt/presentation/resources/routes_manager.dart';
 
 import '../../common/state_renderer/state_renderer.dart';
 import '../../component/empty.dart';
