@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:testt/model/client.dart';
 import 'package:testt/presentation/component/alert.dart';
+import 'package:testt/presentation/main/clients/dialogs/resubscribe_dialog.dart';
 
 import '../../../app/di.dart';
 import '../../component/error.dart';
@@ -252,23 +253,8 @@ class ViewClientView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8),
               child: ElevatedButton(
-                onPressed: () async {
-                  showLoading(context);
-                  try {
-                    await controller.resubscribe().then((value) {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pop();
-                      AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.success,
-                          desc: 'تم تجديد الاشتراك',
-                          btnOkOnPress: () { Navigator.of(context).pop(); },
-                      ).show();
-                    });
-                  } on Exception catch (e) {
-                    Navigator.of(context).pop();
-                    showError(context, e.toString());
-                  }
+                onPressed: () {
+                  showResubscribeDialog(context, client.fridgeId);
                 },
                 child: const Text("تجديد الاشتراك"),
               ),

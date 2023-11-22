@@ -3,7 +3,6 @@ import 'package:testt/presentation/main/clients/dialogs/first_way_dialog_view.da
 import 'package:testt/presentation/main/clients/dialogs/second_way_dialog_view.dart';
 import 'package:testt/presentation/main/clients/dialogs/third_way_dialog_view.dart';
 
-
 void showChoosePriceDialogDialog(BuildContext context) {
   showDialog(
     context: context,

@@ -56,6 +56,21 @@ class ClientsController extends GetxController {
     }
   }
 
+  Future<void> showFridge(int fridgeId) async {
+    try {
+      isLoading.value = true;
+      error.value = '';
+      await _apiService.showFridge(fridgeId).then((fridgeApi) {
+        fridge.value = fridgeApi;
+        error.value = '';
+        isLoading.value = false;
+      });
+    } on Exception catch (e) {
+      error.value = e.toString();
+      isLoading.value = false;
+    }
+  }
+
   Future getTerms() async {
     try {
       isLoading.value = true;
