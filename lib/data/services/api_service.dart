@@ -809,13 +809,13 @@ class ApiServiceImpl implements ApiService {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}client/$clientId/edit/$amberId/$fridgeId/$priceId/$termId?name=$name&phone=$phone&address=$address&status=$status";
-    if (wayNumber == 1) {
+    // if (wayNumber == 1) {
       url += "&price_all=$fixedPrice";
-    } else if(wayNumber == 2) {
-      url += "&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
-    } else if(wayNumber == 3) {
-      url += "&avrage=$average&shakayir=$shakayir&price_one=$priceOne";
-    }
+    // } else if(wayNumber == 2) {
+    //   url += "&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
+    // } else if(wayNumber == 3) {
+    //   url += "&avrage=$average&shakayir=$shakayir&price_one=$priceOne";
+    // }
     final response = await http.put(
         Uri.parse(url),
         headers: {
