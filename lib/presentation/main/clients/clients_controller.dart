@@ -180,7 +180,8 @@ class ClientsController extends GetxController {
           bigShakara.value.toString(),
           average.value.toString(),
           shakayir.value.toString(),
-          priceOne.value.toString()
+          priceOne.value.toString(),
+          quantity.value.toString()
       ).then((value) {
         update();
         error.value = '';
