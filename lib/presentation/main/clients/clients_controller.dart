@@ -184,10 +184,9 @@ class ClientsController extends GetxController {
           priceOne.value.toString(),
           quantity.value.toString()
       ).then((value) {
-        update();
-        client.value.name = name;
-        error.value = '';
-        isLoading.value = false;
+        getClients();
+        // error.value = '';
+        // isLoading.value = false;
         clearAll();
       });
     } on Exception catch (e) {

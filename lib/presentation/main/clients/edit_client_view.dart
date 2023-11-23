@@ -255,6 +255,7 @@ class EditClient extends StatelessWidget {
                                 text, addressController.text).then((value) {
                                   Navigator.of(context).pop();
                                   Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
                                 });
                               } on Exception {
                                 Navigator.of(context).pop();
