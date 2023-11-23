@@ -177,9 +177,9 @@ class ViewClientsView extends StatelessWidget {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  Client client = controller.clients[index];
+                                  controller.client.value = controller.clients[index];
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => ViewClientView(client: client)));
+                                      builder: (context) => ViewClientView()));
                                 },
                                 child: Card(
                                   color: const Color(0xFFf6f6f6),

@@ -212,7 +212,7 @@ class EditClient extends StatelessWidget {
                               width: 230,
                               child: ElevatedButton(
                                   onPressed: () {
-                                    showFirstWayDialogDialog(context);
+                                    showEditFirstWayDialogDialog(context, client.quantity, client.priceAll);
                                   }, child: const Text("تعديل السعر الحالى")
                               ),
                             ),

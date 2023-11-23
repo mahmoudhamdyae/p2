@@ -1,6 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:testt/model/client.dart';
 import 'package:testt/presentation/component/alert.dart';
 import 'package:testt/presentation/main/clients/dialogs/resubscribe_dialog.dart';
 
@@ -11,15 +10,14 @@ import 'edit_client_view.dart';
 
 class ViewClientView extends StatelessWidget {
   final ClientsController controller = instance<ClientsController>();
-  Client client;
 
-  ViewClientView({super.key, required this.client});
+  ViewClientView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(client.name),
+        title: Text(controller.client.value.name),
         actions: [
           Row(
             mainAxisAlignment:
@@ -42,7 +40,7 @@ class ViewClientView extends StatelessWidget {
                       btnOkOnPress: () async {
                         showLoading(context);
                         try {
-                          await controller.delClient(client).then((value) {
+                          await controller.delClient(controller.client.value).then((value) {
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           });
@@ -59,18 +57,18 @@ class ViewClientView extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  controller.amber.value.id = client.amberId;
-                  controller.amber.value.name = client.amberName;
-                  controller.fridge.value.id = client.fridgeId;
-                  controller.fridge.value.name = client.fridgeName;
-                  controller.term.value.id = client.termId;
-                  controller.term.value.name = client.termName;
-                  controller.price.value.id = client.priceId;
-                  controller.price.value.vegetableName = client.vegetableName;
-                  controller.status.value = client.status;
-                  controller.fixedPrice.value = int.parse(client.priceAll);
+                  controller.amber.value.id = controller.client.value.amberId;
+                  controller.amber.value.name = controller.client.value.amberName;
+                  controller.fridge.value.id = controller.client.value.fridgeId;
+                  controller.fridge.value.name = controller.client.value.fridgeName;
+                  controller.term.value.id = controller.client.value.termId;
+                  controller.term.value.name = controller.client.value.termName;
+                  controller.price.value.id = controller.client.value.priceId;
+                  controller.price.value.vegetableName = controller.client.value.vegetableName;
+                  controller.status.value = controller.client.value.status;
+                  controller.fixedPrice.value = int.parse(controller.client.value.priceAll);
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => EditClient(client: client)));
+                      builder: (context) => EditClient(client: controller.client.value)));
                 },
                 icon: const Icon(
                   Icons.edit,
@@ -105,7 +103,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.name,
+                            controller.client.value.name,
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -126,7 +124,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.phone,
+                            controller.client.value.phone,
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -147,7 +145,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.address,
+                            controller.client.value.address,
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -180,7 +178,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.fridgeName,
+                            controller.client.value.fridgeName,
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -201,7 +199,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.amberName,
+                            controller.client.value.amberName,
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -222,7 +220,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.vegetableName,
+                            controller.client.value.vegetableName,
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -243,7 +241,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.termName,
+                            controller.client.value.termName,
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -264,7 +262,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.quantity,
+                            controller.client.value.quantity,
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -285,7 +283,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.priceAll,
+                            controller.client.value.priceAll,
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -300,7 +298,7 @@ class ViewClientView extends StatelessWidget {
             ),
           ),
           // تفاصيل أخرى الطريقة الثانية
-          client.ton == "0" && client.smallShakara == "0" && client.bigShakara == "0" ? Container() : Padding(
+            controller.client.value.ton == "0" && controller.client.value.smallShakara == "0" && controller.client.value.bigShakara == "0" ? Container() : Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
               child: Padding(
@@ -334,7 +332,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.ton.toString(),
+                            controller.client.value.ton.toString(),
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -355,7 +353,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.smallShakara.toString(),
+                            controller.client.value.smallShakara.toString(),
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -376,7 +374,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.bigShakara.toString(),
+                            controller.client.value.bigShakara.toString(),
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -391,7 +389,7 @@ class ViewClientView extends StatelessWidget {
             ),
           ),
           // تفاصيل أخرى الطريقة الثالثة
-          client.average == "0" ? Container() : Padding(
+            controller.client.value.average == "0" ? Container() : Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
               child: Padding(
@@ -425,7 +423,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.average.toString(),
+                            controller.client.value.average.toString(),
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -446,7 +444,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.shakyir.toString(),
+                            controller.client.value.shakyir.toString(),
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -467,7 +465,7 @@ class ViewClientView extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            client.priceOne.toString(),
+                            controller.client.value.priceOne.toString(),
                             style: const TextStyle(
                               color: Colors.black45,
                               fontSize: 20,
@@ -485,15 +483,15 @@ class ViewClientView extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: ElevatedButton(
               onPressed: () {
-                controller.amber.value.id = client.amberId;
-                controller.amber.value.name = client.amberName;
-                controller.fridge.value.id = client.fridgeId;
-                controller.fridge.value.name = client.fridgeName;
-                controller.term.value.id = client.termId;
-                controller.term.value.name = client.termName;
-                controller.price.value.id = client.priceId;
-                controller.price.value.vegetableName = client.vegetableName;
-                showResubscribeDialog(context, client.id.toString());
+                controller.amber.value.id = controller.client.value.amberId;
+                controller.amber.value.name = controller.client.value.amberName;
+                controller.fridge.value.id = controller.client.value.fridgeId;
+                controller.fridge.value.name = controller.client.value.fridgeName;
+                controller.term.value.id = controller.client.value.termId;
+                controller.term.value.name = controller.client.value.termName;
+                controller.price.value.id = controller.client.value.priceId;
+                controller.price.value.vegetableName = controller.client.value.vegetableName;
+                showResubscribeDialog(context, controller.client.value.id.toString());
               },
               child: const Text("تجديد الاشتراك"),
             ),
