@@ -16,6 +16,7 @@ class CustomDialog extends StatelessWidget {
   CustomDialog({super.key});
 
   final ClientsController controller = instance<ClientsController>();
+  TextEditingController quantityController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   GlobalKey<FormState> formState = GlobalKey<FormState>();
 
@@ -32,20 +33,45 @@ class CustomDialog extends StatelessWidget {
             children: [
               Form(
                 key: formState,
-                child: TextFormField(
-                  controller: priceController,
-                  textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.number,
-                  validator: (val) {
-                    if (val == null || val.isEmpty) {
-                      return "يحب إدخال سعر";
-                    }
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                      hintText: "السعر",
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1))),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: quantityController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return "يحب إدخال كمية";
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            hintText: "الكمية",
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(width: 1))),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: priceController,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.number,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return "يحب إدخال سعر";
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                            hintText: "السعر",
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(width: 1))),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 16),
@@ -73,7 +99,7 @@ class CustomDialog extends StatelessWidget {
                         var formData = formState.currentState;
                         if (formData!.validate()) {
                           formData.save();
-                          controller.setFirstWay(priceController.text);
+                          controller.setFirstWay(priceController.text, quantityController.text);
                           Navigator.of(context).pop();
                           // Navigator.of(context).pop();
                         }

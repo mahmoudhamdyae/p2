@@ -35,6 +35,7 @@ class ClientsController extends GetxController {
   Rx<int> average = 0.obs;
   Rx<int> shakayir = 0.obs;
   Rx<int> priceOne = 0.obs;
+  Rx<String> quantity = "".obs;
 
   Rx<bool> isLoading = true.obs;
   Rx<String> error = ''.obs;
@@ -145,7 +146,8 @@ class ClientsController extends GetxController {
           bigShakara.value.toString(),
           average.value.toString(),
           shakayir.value.toString(),
-          priceOne.value.toString()
+          priceOne.value.toString(),
+          quantity.value.toString()
       ).then((value) {
         error.value = '';
         isLoading.value = false;
@@ -213,11 +215,13 @@ class ClientsController extends GetxController {
     average = 0.obs;
     shakayir = 0.obs;
     priceOne = 0.obs;
+    quantity = "".obs;
   }
 
-  setFirstWay(String price) {
+  setFirstWay(String price, String newQuantity) {
     wayNumber.value = 1;
     fixedPrice.value = int.parse(price);
+    quantity.value = newQuantity;
   }
 
   setSecondWay(String newTon, String newSmallShakara, String newBigShakara) {

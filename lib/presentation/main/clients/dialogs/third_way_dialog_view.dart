@@ -49,7 +49,7 @@ class CustomDialog extends StatelessWidget {
                           return null;
                         },
                         decoration: const InputDecoration(
-                            hintText: "متوسط وزن الشكارة",
+                            hintText: "متوسط وزن الشكارة بالكيلو",
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(width: 1))),
                       ),

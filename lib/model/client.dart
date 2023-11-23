@@ -13,6 +13,7 @@ class Client {
   int priceId;
   String status;
   String priceAll;
+  String quantity;
   String ton;
   String smallShakara;
   String bigShakara;
@@ -23,7 +24,7 @@ class Client {
   Client(
       this.id, this.name, this.phone, this.address, this.vegetableName,
       this.fridgeName, this.amberName, this.termName, this.fridgeId,
-      this.amberId, this.termId, this.priceId, this.status, this.priceAll,
+      this.amberId, this.termId, this.priceId, this.status, this.priceAll, this.quantity,
       this.ton, this.smallShakara, this.bigShakara, this.average, this.shakyir,
       this.priceOne
       );
@@ -44,6 +45,7 @@ class Client {
       json["data"]['price_list_id'] as int? ?? 0,
       json["data"]["status"] as String? ?? "person",
       json["data"]["price_all"] as String? ?? "0",
+      json["data"]["quantity"] as String? ?? "0",
       json["data"]["ton"] as String? ?? "0",
       json["data"]["small_shakara"] as String? ?? "0",
       json["data"]["big_shakara"] as String? ?? "0",

@@ -50,7 +50,7 @@ abstract class ApiService {
   Future<Term> showTerm(String termId);
   Future delTerm(String termId);
   Future<List<Term>> searchTerm(String query);
-  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne);
+  Future addClient(String amberId, String fridgeId, String priceId, String termId, String name, String phone, String address, String status, int wayNumber, int price, String ton, String smallShakara, String bigShakara, String average, String shakayir, String priceOne, String quantity);
   Future<(List<Client>, int)> getClients();
   Future<(List<Client>, int)> getPersons();
   Future<(List<Client>, int)> getDealers();
@@ -649,16 +649,24 @@ class ApiServiceImpl implements ApiService {
   }
 
   @override
-  Future addClient(amberId, fridgeId, priceId, termId, name, phone, address, status, wayNumber, fixedPrice, ton, smallShakara, bigShakara, average, shakayir, priceOne) async {
+  Future addClient(amberId, fridgeId, priceId, termId, name, phone, address, status, wayNumber, fixedPrice, ton, smallShakara, bigShakara, average, shakayir, priceOne, quantity) async {
     String token = await _appPreferences.getToken();
     await _checkNetwork();
     String url = "${Constants.baseUrl}client/$amberId/$fridgeId/$termId/$priceId?name=$name&phone=$phone&address=$address&status=$status";
     if (wayNumber == 1) {
-      url += "&price_all=$fixedPrice";
+      print("============== quantity $quantity");
+      url += "&price_all=$fixedPrice&quantity=$quantity";
     } else if(wayNumber == 2) {
-      url += "&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara";
+      String quantity = "";
+      if (ton != "0") quantity += " $ton طن";
+      if (smallShakara != "0") quantity += " $smallShakara شكارة صغيرة";
+      if (bigShakara != "0") quantity += " $bigShakara شكارة كبيرة";
+      print("============== quantity $quantity");
+      url += "&ton=$ton&small_shakara=$smallShakara&big_shakara=$bigShakara&quantity=$quantity";
     } else if(wayNumber == 3) {
-      url += "&avrage=$average&shakayir=$shakayir&price_one=$priceOne";
+      String quantity = "${(int.parse(average) * int.parse(shakayir) / 1000.0).toString()} طن";
+      print("============== quantity $quantity");
+      url += "&avrage=$average&shakayir=$shakayir&price_one=$priceOne&quantity=$quantity";
     }
     final response = await http.post(
         Uri.parse(url),

@@ -255,6 +255,27 @@ class ViewClientView extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
+                            "الكمية: ",
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 23,
+                            ),
+                          ),
+                          Text(
+                            client.quantity,
+                            style: const TextStyle(
+                              color: Colors.black45,
+                              fontSize: 20,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
                             "السعر الكلى: ",
                             style: TextStyle(
                               color: Theme.of(context).primaryColor,
