@@ -185,6 +185,7 @@ class ClientsController extends GetxController {
           quantity.value.toString()
       ).then((value) {
         update();
+        client.value.name = name;
         error.value = '';
         isLoading.value = false;
         clearAll();

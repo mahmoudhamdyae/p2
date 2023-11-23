@@ -67,6 +67,7 @@ class ViewClientView extends StatelessWidget {
                   controller.price.value.vegetableName = controller.client.value.vegetableName;
                   controller.status.value = controller.client.value.status;
                   controller.fixedPrice.value = int.parse(controller.client.value.priceAll);
+                  controller.quantity.value = controller.client.value.quantity;
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => EditClient(client: controller.client.value)));
                 },
