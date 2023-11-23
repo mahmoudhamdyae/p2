@@ -31,12 +31,12 @@ class EditClient extends StatelessWidget {
     addressController.text = client.address;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("تعدبل عميل"),
+        title: const Text("تعديل عميل"),
       ),
       body: Obx(() {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: ListView(
             children: [
               Card(
                 elevation: 8,
@@ -134,18 +134,16 @@ class EditClient extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: 230,
-                              child: Expanded(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      showFridgesDialog(context);
-                                    },
-                                    child: const Text("تغيير الثلاجة")),
-                              ),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    showFridgesDialog(context);
+                                  },
+                                  child: const Text("تغيير الثلاجة")),
                             ),
-                            Expanded(child: Container()),
                             Text(controller.fridge.value.name, style: const TextStyle(fontSize: 16))
                           ],
                         ),
@@ -153,22 +151,20 @@ class EditClient extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: 230,
-                              child: Expanded(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      if (controller.fridge.value.name == "") {
-                                        showError(context, "اختر ثلاجة أولا");
-                                      } else {
-                                        showAmbersDialog(context);
-                                      }
-                                    },
-                                    child: const Text("تغيير العنبر")),
-                              ),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    if (controller.fridge.value.name == "") {
+                                      showError(context, "اختر ثلاجة أولا");
+                                    } else {
+                                      showAmbersDialog(context);
+                                    }
+                                  },
+                                  child: const Text("تغيير العنبر")),
                             ),
-                            Expanded(child: Container()),
                             Text(controller.amber.value.name, style: const TextStyle(fontSize: 16))
                           ],
                         ),
@@ -176,18 +172,16 @@ class EditClient extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: 230,
-                              child: Expanded(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      showTermsDialog(context);
-                                    },
-                                    child: const Text("تغيير الفترة")),
-                              ),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    showTermsDialog(context);
+                                  },
+                                  child: const Text("تغيير الفترة")),
                             ),
-                            Expanded(child: Container()),
                             Text(controller.term.value.name, style: const TextStyle(fontSize: 16))
                           ],
                         ),
@@ -195,18 +189,16 @@ class EditClient extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: 230,
-                              child: Expanded(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      showPricesDialog(context);
-                                    },
-                                    child: const Text("تغيير النوع من قائمة الأسعار")),
-                              ),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    showPricesDialog(context);
+                                  },
+                                  child: const Text("تغيير النوع من قائمة الأسعار")),
                             ),
-                            Expanded(child: Container()),
                             Text(controller.price.value.vegetableName, style: const TextStyle(fontSize: 16))
                           ],
                         ),
@@ -214,18 +206,16 @@ class EditClient extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
                               width: 230,
-                              child: Expanded(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      showFirstWayDialogDialog(context);
-                                    }, child: const Text("تعديل السعر الحالى")
-                                ),
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    showFirstWayDialogDialog(context);
+                                  }, child: const Text("تعديل السعر الحالى")
                               ),
                             ),
-                            Expanded(child: Container()),
                             Text(
                                 controller.fixedPrice.toString(),
                                 style: const TextStyle(fontSize: 16)
@@ -237,7 +227,6 @@ class EditClient extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(child: Container()),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

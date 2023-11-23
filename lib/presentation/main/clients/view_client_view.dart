@@ -83,7 +83,9 @@ class ViewClientView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView(children: [
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -479,7 +481,6 @@ class ViewClientView extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(child: Container()),
           Padding(
             padding: const EdgeInsets.all(8),
             child: ElevatedButton(

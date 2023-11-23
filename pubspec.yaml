@@ -55,6 +55,7 @@ dependencies:
   flutter_bloc: ^8.0.0
   get: ^4.6.6
   uuid: ^4.2.1
+  flutter_plugin_android_lifecycle: ^2.0.17
 
 dev_dependencies:
   flutter_test:
